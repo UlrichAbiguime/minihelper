@@ -1,9 +1,9 @@
 /**
  * Util.java
- * 主要提供时间格式、图片处理、网络请求等静态方法
- * @user comger
- * @mail comger@gmail.com
- * 2012-3-26
+ * 
+ * @user zn
+ * @mail wusheng198910@126.com
+ * 2012-8-2
  */
 package com.minihelper.core;
 
@@ -15,16 +15,10 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import android.content.Context;
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -33,52 +27,21 @@ import android.util.Log;
 
 public class Util {
 	
-	// 连接超时设置
+	/**
+	 * Set link timeout time
+	 */
 	public static int HttpTimeOut = 5 * 1000;
-	// 读取超时设置
+	/**
+	 * Set read timeout time
+	 */
 	public static int ReadTimeOut = 5 * 1000;
-	
-	
-	/**
-	 * 返回当前程序版本信息
-	 */
-	public static PackageInfo getAppVersionInfo(Context context) {
-		try {
-			PackageManager pm = context.getPackageManager();
-			PackageInfo pi = pm.getPackageInfo(context.getPackageName(), 0);
-			return pi;
-		} catch (Exception e) {
-			return null;
-		}
-	}
-
-
 
 	/**
-	 * 转化时间格式
-	 * */
-	public static String getTimeString(long timelnMillis) {
-		Calendar calendar = Calendar.getInstance();
-		calendar.setTimeInMillis(timelnMillis);
-		Date date = calendar.getTime();
-		SimpleDateFormat f = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		String newTypeDate = f.format(date);
-		return newTypeDate;
-	}
-
-	/**
-	 * 获取所需当前时间
-	 */
-	public static long getNowTime() {
-		return Calendar.getInstance().getTime().getTime();
-	}
-
-	/**
-	 * 编译接口地址
+	 * Splicing interface parameters
 	 * 
 	 * @param api
 	 * @param params
-	 * @return
+	 * @return  String (URL address)
 	 * @throws JSONException
 	 */
 	public static String build_api(String api, Bundle params)
@@ -95,25 +58,18 @@ public class Util {
 				}
 			}
 		}
-
 		return sBuffer.toString();
 	}
 
 	/**
-	 * 请求服务获取数据
+	 * To the server to send the request, and returns the string JSON
 	 * 
 	 * @param url
-	 * @param params
-	 * @return JSONObject
+	 * @return
 	 * @throws HttpRequstError
 	 * @throws JSONException
 	 */
-	public static JSONObject httpGet(String url, Bundle params)throws HttpRequstError, JSONException {
-		String urlstring = build_api(url, params);
-		return httpGet(urlstring);
-
-	}
-
+	
 	public static JSONObject httpGet(String url) throws HttpRequstError,
 			JSONException {
 		String urlstring = url;
@@ -136,7 +92,7 @@ public class Util {
 			reader.close();
 
 			if (document.toString().equals("")) {
-				throw new HttpRequstError("服务异常或返回格式有误", urlstring);
+				throw new HttpRequstError("Services exceptions or return format error!", urlstring);
 			}
 
 			urlstring = null;
@@ -146,19 +102,35 @@ public class Util {
 
 		} catch (FileNotFoundException e) {
 			document = null;
-			throw new HttpRequstError("无法找到此服务或服务中断，问问是不是服务报错啦!!", urlstring);
+			throw new HttpRequstError("Could not find this service or interruption of service！", urlstring);
 		} catch (MalformedURLException e) {
 			document = null;
-			throw new HttpRequstError("URL解析出错,看看是不是接口拼错啦～～", urlstring);
+			throw new HttpRequstError("URL parse error or splicing interface error！", urlstring);
 		} catch (IOException e) {
 			document = null;
-			throw new HttpRequstError("无法连接服务,服务关了？", urlstring);
+			throw new HttpRequstError("Unable to connect to service, please check whether the service closed！", urlstring);
 		} catch (JSONException e) {
 			document = null;
-			throw new HttpRequstError("返回格式有误", urlstring);
+			throw new HttpRequstError("Returns the JSON format error！", urlstring);
 		}
 
 	}
+	
+	/**
+	 * Send request, request to return data
+	 * 
+	 * @param url
+	 * @param params
+	 * @return JSONObject
+	 * @throws HttpRequstError
+	 * @throws JSONException
+	 */
+	public static JSONObject httpGet(String url, Bundle params)throws HttpRequstError, JSONException {
+		String urlstring = build_api(url, params);
+		return httpGet(urlstring);
+
+	}
+
 
 
 }
