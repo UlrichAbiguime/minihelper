@@ -26,8 +26,15 @@ import android.content.Context;
  * Application Configuration file
  */
 public class ClientApp extends Application {
-	/***
+	/**
 	 * Global reference context
 	 */
 	public static Context mContext;
+	
+	@Override
+	public void onCreate() {
+		// TODO Auto-generated method stub
+		super.onCreate();
+		mContext=this.getApplicationContext();
+	}
 }
