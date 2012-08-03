@@ -3,5 +3,11 @@
 
     <string name="hello">Hello World!</string>
     <string name="app_name">Minihelper</string>
-
+    <!-- UpdateManager更新 -->
+    <string name="nohasdownload">您当前没有可下载的更新！</string>
+    <string name="softupdate">软件版本更新</string>
+    <string name="softdownload">下载软件</string>
+    <string name="downloadlater">以后再说</string>
+    <string name="downloadcancel">取消</string>
+    <string name="softupdateyesorno">您的软件有更新，是否下载安装！</string>
 </resources>
