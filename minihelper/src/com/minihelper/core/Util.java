@@ -8,6 +8,7 @@
 package com.minihelper.core;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -28,19 +29,28 @@ import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.util.Log;
 
-
-
-
 public class Util {
-	
+
 	// 连接超时设置
 	public static int HttpTimeOut = 5 * 1000;
 	// 读取超时设置
 	public static int ReadTimeOut = 5 * 1000;
-	
-	
+
+	/**
+	 * 初始化路径,无则创建
+	 * @param filepath
+	 */
+	public static void initPath(String filepath) {
+		File mypic_dirs = new File(filepath);
+		if (!mypic_dirs.exists()) {
+			mypic_dirs.mkdirs();
+		}
+	}
+
 	/**
 	 * 返回当前程序版本信息
+	 * @param context
+	 * @return
 	 */
 	public static PackageInfo getAppVersionInfo(Context context) {
 		try {
@@ -52,11 +62,11 @@ public class Util {
 		}
 	}
 
-
-
 	/**
 	 * 转化时间格式
-	 * */
+	 * @param timelnMillis
+	 * @return
+	 */
 	public static String getTimeString(long timelnMillis) {
 		Calendar calendar = Calendar.getInstance();
 		calendar.setTimeInMillis(timelnMillis);
@@ -68,6 +78,7 @@ public class Util {
 
 	/**
 	 * 获取所需当前时间
+	 * @return
 	 */
 	public static long getNowTime() {
 		return Calendar.getInstance().getTime().getTime();
@@ -81,8 +92,7 @@ public class Util {
 	 * @return
 	 * @throws JSONException
 	 */
-	public static String build_api(String api, Bundle params)
-			throws HttpRequstError, JSONException {
+	public static String build_api(String api, Bundle params) throws HttpRequstError, JSONException {
 		StringBuffer sBuffer = new StringBuffer();
 		sBuffer.append(api);
 		if (!api.endsWith("?")) {
@@ -91,7 +101,7 @@ public class Util {
 		if (params != null) {
 			for (String key : params.keySet()) {
 				if (params.getString(key) != null) {
-					sBuffer.append(key + "="+ URLEncoder.encode(params.getString(key)) + "&");
+					sBuffer.append(key + "=" + URLEncoder.encode(params.getString(key)) + "&");
 				}
 			}
 		}
@@ -108,14 +118,21 @@ public class Util {
 	 * @throws HttpRequstError
 	 * @throws JSONException
 	 */
-	public static JSONObject httpGet(String url, Bundle params)throws HttpRequstError, JSONException {
+	public static JSONObject httpGet(String url, Bundle params) throws HttpRequstError, JSONException {
 		String urlstring = build_api(url, params);
 		return httpGet(urlstring);
 
 	}
 
-	public static JSONObject httpGet(String url) throws HttpRequstError,
-			JSONException {
+	/**
+	 * 发送请求获取json数据
+	 * 
+	 * @param url
+	 * @return
+	 * @throws HttpRequstError
+	 * @throws JSONException
+	 */
+	public static JSONObject httpGet(String url) throws HttpRequstError, JSONException {
 		String urlstring = url;
 		StringBuilder document = new StringBuilder();
 
@@ -126,8 +143,7 @@ public class Util {
 
 			conn.setConnectTimeout(HttpTimeOut);
 
-			BufferedReader reader = new BufferedReader(new InputStreamReader(
-					conn.getInputStream()), 5 * 1024);
+			BufferedReader reader = new BufferedReader(new InputStreamReader(conn.getInputStream()), 5 * 1024);
 
 			String line = null;
 			while ((line = reader.readLine()) != null)
@@ -159,6 +175,5 @@ public class Util {
 		}
 
 	}
-
 
 }
