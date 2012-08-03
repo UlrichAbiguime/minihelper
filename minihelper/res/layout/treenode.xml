@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/white"
+    android:orientation="vertical" >
+
+    <com.barfoo.ui.DashedLine
+        android:id="@+id/viewLine"
+        android:layout_width="wrap_content"
+        android:layout_height="20px"
+        android:layout_marginLeft="0sp"
+        android:layout_marginRight="5sp"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/nodelable"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:padding="10dp"
+        android:text="@string/defaulttext"
+        android:textColor="@color/black"
+        android:textStyle="bold" >
+    </TextView>
+
+    <CheckBox
+        android:id="@+id/treenodeid"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20sp"
+        android:clickable="false"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:text="CheckBox"
+        android:textColor="@color/black" />
+
+</LinearLayout>

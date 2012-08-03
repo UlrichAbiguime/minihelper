@@ -10,4 +10,10 @@
     <string name="downloadlater">以后再说</string>
     <string name="downloadcancel">取消</string>
     <string name="softupdateyesorno">您的软件有更新，是否下载安装！</string>
+    
+    <string name="selectuser">选择</string>
+    <string name="defaulttext">...</string>
+    
+    
+    
 </resources>
