@@ -27,24 +27,23 @@ import android.widget.ImageView;
 import com.minihelper.core.LazyImageLoader.ImageLoaderCallback;
 
 /***
- * External program calls download pictures entrance
- * Usage: SimpleImageLoader.display(imageView,imageUrl);
+ * External program calls download pictures entrance Usage:
+ * SimpleImageLoader.display(imageView,imageUrl);
  */
 public class SimpleImageLoader {
 
 	public static LazyImageLoader lazyimageloader = new LazyImageLoader();
-	
+
 	public static void display(final ImageView imageView, String url) {
 		imageView.setTag(url);
-		imageView.setImageBitmap(lazyimageloader.get(url,createImageViewCallback(imageView, url)));
+		imageView.setImageBitmap(lazyimageloader.get(url, createImageViewCallback(imageView, url)));
 	}
-	
-	public static void display(final ImageView imageView, String url,int width, DisplayCallBack dcb) {
+
+	public static void display(final ImageView imageView, String url, int width, DisplayCallBack dcb) {
 		imageView.setTag(url);
-		imageView.setImageBitmap(lazyimageloader.get(url,createImageViewCallback(imageView, url,width,dcb)));
+		imageView.setImageBitmap(lazyimageloader.get(url, createImageViewCallback(imageView, url, width, dcb)));
 	}
-	
-	
+
 	public static ImageLoaderCallback createImageViewCallback(final ImageView imageView, String url) {
 		return new ImageLoaderCallback() {
 			@Override
@@ -55,17 +54,16 @@ public class SimpleImageLoader {
 			}
 		};
 	}
-	
-	
-	public static ImageLoaderCallback createImageViewCallback(final ImageView imageView, String url,final int width,final DisplayCallBack dcb) {
+
+	public static ImageLoaderCallback createImageViewCallback(final ImageView imageView, String url, final int width, final DisplayCallBack dcb) {
 		return new ImageLoaderCallback() {
 			@Override
 			public void refresh(String url, Bitmap bitmap) {
 				if (url.equals(imageView.getTag())) {
 					imageView.setImageBitmap(bitmap);
-					if (width>0) {
+					if (width > 0) {
 						Matrix matrix = new Matrix();
-						matrix.postScale((float)((double)width/(double)bitmap.getWidth()),(float)((double)width/(double)bitmap.getWidth()));
+						matrix.postScale((float) ((double) width / (double) bitmap.getWidth()), (float) ((double) width / (double) bitmap.getWidth()));
 						imageView.setImageMatrix(matrix);
 						dcb.onCallBack();
 					}
@@ -73,23 +71,22 @@ public class SimpleImageLoader {
 			}
 		};
 	}
-	
+
 	/**
-	 * 保存图片
-	 * Save the image
+	 * 保存图片 Save the image
 	 * 
 	 * @param url
-	 * @throws IOException 
+	 * @throws IOException
 	 */
 	public static void save(String url) throws IOException {
 		lazyimageloader.save(url);
 	}
-	
-	public static Bitmap get(String url, ImageLoaderCallback callback){
+
+	public static Bitmap get(String url, ImageLoaderCallback callback) {
 		return lazyimageloader.get(url, callback);
 	}
-	
-	public interface DisplayCallBack{
+
+	public interface DisplayCallBack {
 		public void onCallBack();
 	}
 

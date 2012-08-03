@@ -46,17 +46,17 @@ import android.graphics.drawable.Drawable;
 import android.util.Log;
 
 /**
- * 管理图标图像的检索和存储。使用put方法下载和存储图像。使用get方法来检索图像的经理。
- * Manages retrieval and storage of icon images. Use the put method to download
- * and store images. Use the get method to retrieve images from the manager.
+ * 管理图标图像的检索和存储。使用put方法下载和存储图像。使用get方法来检索图像的经理。 Manages retrieval and storage of
+ * icon images. Use the put method to download and store images. Use the get
+ * method to retrieve images from the manager.
  */
 public class ImageManager implements ImageCache {
 	private String TAG = "ImageManager";
 
 	/***
-	 * 支持596px以上最大宽度缩小，比去年同期。 1192px最大高度，超过从拦截。
-	 * The largest width of the support 596px more than is narrowing year on
-	 * year. The maximum height of 1192px, more than from interception.
+	 * 支持596px以上最大宽度缩小，比去年同期。 1192px最大高度，超过从拦截。 The largest width of the support
+	 * 596px more than is narrowing year on year. The maximum height of 1192px,
+	 * more than from interception.
 	 */
 	public int DEFAULT_COMPRESS_QUALITY = 90;
 	public int IMAGE_MAX_WIDTH = 596;
@@ -135,8 +135,7 @@ public class ImageManager implements ImageCache {
 	}
 
 	/**
-	 * 下载文件
-	 * Downloads a file
+	 * 下载文件 Downloads a file
 	 * 
 	 * @param url
 	 * @return
@@ -155,7 +154,6 @@ public class ImageManager implements ImageCache {
 			myFileUrl = new URL(fileUrl);
 			Log.v("file_url", fileUrl);
 		} catch (MalformedURLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			Log.v("error", "no url");
 		}
@@ -175,12 +173,12 @@ public class ImageManager implements ImageCache {
 	}
 
 	/**
-	 * 下载远程图片 - >转换位图 - >写入缓冲区。
-	 * Download remote images -> converted to the Bitmap -> write buffer.
+	 * 下载远程图片 - >转换位图 - >写入缓冲区。 Download remote images -> converted to the
+	 * Bitmap -> write buffer.
 	 * 
 	 * @param url
-	 * @param quality
-	 *            image quality 1～100
+	 * @param image
+	 *            quality 1～100
 	 * @throws IOException
 	 * @throws HttpException
 	 */
@@ -188,8 +186,6 @@ public class ImageManager implements ImageCache {
 		if (!forceOverride && contains(url)) {
 			// Image already exists.
 			return;
-
-			// TODO: write to file if not present.
 		}
 
 		Bitmap bitmap = downloadImage(url);
@@ -201,8 +197,7 @@ public class ImageManager implements ImageCache {
 	}
 
 	/**
-	 * 重载 put(String url, int quality)
-	 * Overloaded put(String url, int quality)
+	 * 重载 put(String url, int quality) Overloaded put(String url, int quality)
 	 * 
 	 * @param url
 	 * @throws IOException
@@ -213,12 +208,13 @@ public class ImageManager implements ImageCache {
 	}
 
 	/**
-	 * 转换本地文件 - >位图 - >写入缓冲区大小的图片，超过MAX_WIDTH/ MAX_HEIGHT如果将图像缩放。
-	 * Convert Local File -> Bitmap -> write buffer if the size of the picture
-	 * to exceed MAX_WIDTH / MAX_HEIGHT will be on image scaling.
+	 * 转换本地文件 - >位图 - >写入缓冲区大小的图片，超过MAX_WIDTH/ MAX_HEIGHT如果将图像缩放。 Convert Local
+	 * File -> Bitmap -> write buffer if the size of the picture to exceed
+	 * MAX_WIDTH / MAX_HEIGHT will be on image scaling.
 	 * 
 	 * @param file
-	 * @param Picture quality (0 to 100)
+	 * @param Picture
+	 *            quality (0 to 100)
 	 * @param forceOverride
 	 * @throws IOException
 	 */
@@ -232,8 +228,6 @@ public class ImageManager implements ImageCache {
 			// Image already exists.
 			Log.d(TAG, file.getName() + " is exists");
 			return;
-			// TODO: 写文件，如果不存在。
-			// TODO: write to file if not present.
 		}
 
 		Bitmap bitmap = BitmapFactory.decodeFile(file.getPath());
@@ -249,7 +243,8 @@ public class ImageManager implements ImageCache {
 	/**
 	 * 位图写入缓冲区。
 	 * 
-	 * @param file path
+	 * @param file
+	 *            path
 	 * @param bitmap
 	 * @param quality
 	 *            1~100
@@ -265,17 +260,18 @@ public class ImageManager implements ImageCache {
 	/**
 	 * put(String file, Bitmap bitmap, int quality)
 	 * 
-	 * @param file path
+	 * @param file
+	 *            path
 	 * @param bitmap
-	 * @param quality 1~100
+	 * @param quality
+	 *            1~100
 	 */
 	public void put(String file, Bitmap bitmap) {
 		put(file, bitmap, DEFAULT_COMPRESS_QUALITY);
 	}
 
 	/**
-	 * 保存图像
-	 * Save the image
+	 * 保存图像 Save the image
 	 * 
 	 * @param file
 	 * @param bitmap
@@ -285,10 +281,10 @@ public class ImageManager implements ImageCache {
 	}
 
 	/**
-	 * 位图写入到本地缓存文件。
-	 * Bitmap written to the local cache file.
+	 * 位图写入到本地缓存文件。 Bitmap written to the local cache file.
 	 * 
-	 * @param file URL/PATH
+	 * @param file
+	 *            URL/PATH
 	 * @param bitmap
 	 * @param quality
 	 */
@@ -347,8 +343,7 @@ public class ImageManager implements ImageCache {
 	}
 
 	/**
-	 * 写入文件
-	 * write To File
+	 * 写入文件 write To File
 	 * 
 	 * @param is
 	 * @param filename
@@ -388,20 +383,21 @@ public class ImageManager implements ImageCache {
 	}
 
 	/**
-	 * 判断存在相应的位图缓存文件
-	 * Judgment the existence of the file corresponding to the bitmap cache with
-	 *  
+	 * 判断存在相应的位图缓存文件 Judgment the existence of the file corresponding to the
+	 * bitmap cache with
+	 * 
 	 * @param file
 	 * @return
 	 */
 	public boolean isContains(String file) {
 		return mCache.containsKey(file);
 	}
-	
+
 	/**
-	 * 指定相应的位图文件/ URL，查找本地文件，如果直接使用，或去网上获取
-	 * Designation for the file / URL corresponding to Bitmap, Find a local
-	 * file, if the direct use, or go online to obtain
+	 * 指定相应的位图文件/ URL，查找本地文件，如果直接使用，或去网上获取 Designation for the file / URL
+	 * corresponding to Bitmap, Find a local file, if the direct use, or go
+	 * online to obtain
+	 * 
 	 * @param file
 	 * @return
 	 * @throws IOException
@@ -427,10 +423,10 @@ public class ImageManager implements ImageCache {
 	}
 
 	/**
-	 * 从缓存中读取文件
-	 * Read the file from the cache
+	 * 从缓存中读取文件 Read the file from the cache
 	 * 
-	 * @param file URL/file PATH
+	 * @param File
+	 *            URL/file PATH
 	 * @param bitmap
 	 * @param quality
 	 */
@@ -438,7 +434,7 @@ public class ImageManager implements ImageCache {
 		SoftReference<Bitmap> ref;
 		Bitmap bitmap;
 
-		//先看看内存中。
+		// 先看看内存中。
 		// Look in memory first.
 		synchronized (this) {
 			ref = mCache.get(file);
@@ -452,7 +448,7 @@ public class ImageManager implements ImageCache {
 			}
 		}
 
-		//现在尝试文件
+		// 现在尝试文件
 		// Now try file.
 		bitmap = lookupFile(file);
 
@@ -460,13 +456,9 @@ public class ImageManager implements ImageCache {
 			synchronized (this) {
 				mCache.put(file, new SoftReference<Bitmap>(bitmap));
 			}
-
 			return bitmap;
 		}
 
-		// TODO: why?
-		// 上传：见profileImageCacheManager线96
-		// upload: see profileImageCacheManager line 96
 		Log.w(TAG, "Image is missing: " + file);
 		// 返回的默认照片
 		// return the default photo
@@ -478,8 +470,7 @@ public class ImageManager implements ImageCache {
 	}
 
 	/**
-	 * delete file
-	 * 删除文件
+	 * delete file 删除文件
 	 */
 	public void clear() {
 		String[] files = mContext.fileList();
@@ -494,8 +485,8 @@ public class ImageManager implements ImageCache {
 	}
 
 	/**
-	 * 查找文件
-	 * Find Files
+	 * 查找文件 Find Files
+	 * 
 	 * @param keepers
 	 */
 	public void cleanup(HashSet<String> keepers) {
@@ -514,8 +505,7 @@ public class ImageManager implements ImageCache {
 	}
 
 	/**
-	 * 压缩和调整图像
-	 * Compress and resize the Image
+	 * 压缩和调整图像 Compress and resize the Image
 	 * 
 	 * <br />
 	 * Regardless of image size and dimensions, will the picture is a lossy
@@ -523,7 +513,8 @@ public class ImageManager implements ImageCache {
 	 * quality caused by the pictures will be of secondary compression
 	 * 
 	 * @param targetFile
-	 * @param quality, 0~100, recommend 100
+	 * @param quality
+	 *            , 0~100, recommend 100
 	 * @return
 	 * @throws IOException
 	 */
@@ -569,7 +560,8 @@ public class ImageManager implements ImageCache {
 	 * @param bitmap
 	 * @param maxWidth
 	 * @param maxHeight
-	 * @param quality 1~100
+	 * @param quality
+	 *            1~100
 	 * @return
 	 */
 	public Bitmap resizeBitmap(Bitmap bitmap, int maxWidth, int maxHeight) {
@@ -578,7 +570,7 @@ public class ImageManager implements ImageCache {
 		int originHeight = bitmap.getHeight();
 
 		// no need to resize
-		//没有需要调整
+		// 没有需要调整
 		if (originWidth < maxWidth && originHeight < maxHeight) {
 			return bitmap;
 		}
@@ -587,7 +579,8 @@ public class ImageManager implements ImageCache {
 		int newHeight = originHeight;
 
 		// 若图片过宽, 则保持长宽比缩放图片
-		//If the picture is too wide, you maintain the aspect ratio to scale the image
+		// If the picture is too wide, you maintain the aspect ratio to scale
+		// the image
 		if (originWidth > maxWidth) {
 			newWidth = maxWidth;
 
@@ -598,7 +591,7 @@ public class ImageManager implements ImageCache {
 		}
 
 		// 若图片过长, 则从中部截取
-		//If the picture is too long, from the Central interception
+		// If the picture is too long, from the Central interception
 		if (newHeight > maxHeight) {
 			newHeight = maxHeight;
 

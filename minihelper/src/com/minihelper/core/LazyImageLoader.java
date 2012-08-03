@@ -36,20 +36,18 @@ import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
 
-
 /***
- *得到的图片调用主程序
- *Get the picture call main program
+ * 得到的图片调用主程序 Get the picture call main program
  */
 public class LazyImageLoader {
 
 	public final int HANDLER_MESSAGE_ID = 1;
-	
+
 	private String TAG = "ProfileImageCacheManager";
 	public String EXTRA_BITMAP = "extra_bitmap";
 	public String EXTRA_IMAGE_URL = "extra_image_url";
 	public String MACCHA_PATH = Environment.getExternalStorageDirectory().getAbsolutePath() + "/barfoo/imagetemp/";
-	
+
 	private ImageManager mImageManager = new ImageManager(ClientApp.mContext);
 	private BlockingQueue<String> mUrlList = new ArrayBlockingQueue<String>(50);
 	private CallbackManager mCallbackManager = new CallbackManager();
@@ -58,8 +56,8 @@ public class LazyImageLoader {
 	/**
 	 * 得到的图片，可直接从高速缓存，或下载图片返回返回
 	 * 
-	 * Get the picture, may be directly returned from the cache,
-	 * or download pictures and returned to
+	 * Get the picture, may be directly returned from the cache, or download
+	 * pictures and returned to
 	 * 
 	 * @param url
 	 * @param callback
@@ -79,8 +77,7 @@ public class LazyImageLoader {
 	}
 
 	/***
-	 * 异步保存的图像
-	 * Asynchronous to save the image
+	 * 异步保存的图像 Asynchronous to save the image
 	 * 
 	 * @param url
 	 * @throws IOException
@@ -129,8 +126,7 @@ public class LazyImageLoader {
 	}
 
 	/***
-	 * 低级别的接口得到ImageManager
-	 * Low-level interface to get the ImageManager
+	 * 低级别的接口得到ImageManager Low-level interface to get the ImageManager
 	 * 
 	 * @return mImageManager
 	 */
@@ -236,7 +232,8 @@ public class LazyImageLoader {
 			List<ImageLoaderCallback> callbackList = mCallbackMap.get(url);
 			if (callbackList == null) {
 				// FIXME: 有时来到这里，因为我没有想明白
-				// FIXME: Sometimes arrived here, because I did not want to understand
+				// FIXME: Sometimes arrived here, because I did not want to
+				// understand
 				return;
 			}
 			for (ImageLoaderCallback callback : callbackList) {

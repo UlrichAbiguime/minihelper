@@ -31,11 +31,10 @@ public class HttpRequstError extends Throwable {
 	 * @param cls
 	 *            (Analytical model)
 	 */
-	public HttpRequstError(String message,@SuppressWarnings("rawtypes") Class cls) {
+	public HttpRequstError(String message, @SuppressWarnings("rawtypes") Class cls) {
 		super(message);
 		mErrorType = cls.toString();
-		Log.i("BarfooError", "when parse json to " + mErrorType + " error is:"
-				+ message);
+		Log.i("BarfooError", "when parse json to " + mErrorType + " error is:" + message);
 	}
 
 	/**
@@ -48,8 +47,7 @@ public class HttpRequstError extends Throwable {
 	public HttpRequstError(String message, String failingUrl) {
 		super(message);
 		mFailingUrl = failingUrl;
-		Log.i("HttpRequstError", "when open url " + failingUrl + " error is:"
-				+ message);
+		Log.i("HttpRequstError", "when open url " + failingUrl + " error is:" + message);
 	}
 
 	public String getErrorType() {
