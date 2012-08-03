@@ -126,7 +126,8 @@ public class LazyImageLoader {
 	}
 
 	/***
-	 * 低级别的接口得到ImageManager Low-level interface to get the ImageManager
+	 * 低级别的接口得到
+	 * ImageManager Low-level interface to get the ImageManager
 	 * 
 	 * @return mImageManager
 	 */

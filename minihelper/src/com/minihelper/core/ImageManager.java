@@ -46,17 +46,17 @@ import android.graphics.drawable.Drawable;
 import android.util.Log;
 
 /**
- * 管理图标图像的检索和存储。使用put方法下载和存储图像。使用get方法来检索图像的经理。 Manages retrieval and storage of
- * icon images. Use the put method to download and store images. Use the get
- * method to retrieve images from the manager.
+ * 管理图标图像的检索和存储。使用put方法下载和存储图像。使用get方法来检索图像的经理。 
+ * Manages retrieval and storage of icon images. Use the put method to download and store images. 
+ * Use the get method to retrieve images from the manager.
  */
 public class ImageManager implements ImageCache {
 	private String TAG = "ImageManager";
 
 	/***
-	 * 支持596px以上最大宽度缩小，比去年同期。 1192px最大高度，超过从拦截。 The largest width of the support
-	 * 596px more than is narrowing year on year. The maximum height of 1192px,
-	 * more than from interception.
+	 * 支持596px以上最大宽度缩小，比去年同期。 1192px最大高度，超过从拦截。 
+	 * The largest width of the support 596px more than is narrowing year on year. 
+	 * The maximum height of 1192px, more than from interception.
 	 */
 	public int DEFAULT_COMPRESS_QUALITY = 90;
 	public int IMAGE_MAX_WIDTH = 596;
@@ -173,8 +173,8 @@ public class ImageManager implements ImageCache {
 	}
 
 	/**
-	 * 下载远程图片 - >转换位图 - >写入缓冲区。 Download remote images -> converted to the
-	 * Bitmap -> write buffer.
+	 * 下载远程图片 - >转换位图 - >写入缓冲区。 
+	 * Download remote images -> converted to the Bitmap -> write buffer.
 	 * 
 	 * @param url
 	 * @param image
@@ -208,8 +208,8 @@ public class ImageManager implements ImageCache {
 	}
 
 	/**
-	 * 转换本地文件 - >位图 - >写入缓冲区大小的图片，超过MAX_WIDTH/ MAX_HEIGHT如果将图像缩放。 Convert Local
-	 * File -> Bitmap -> write buffer if the size of the picture to exceed
+	 * 转换本地文件 - >位图 - >写入缓冲区大小的图片，超过MAX_WIDTH/ MAX_HEIGHT如果将图像缩放。 
+	 * Convert Local File -> Bitmap -> write buffer if the size of the picture to exceed
 	 * MAX_WIDTH / MAX_HEIGHT will be on image scaling.
 	 * 
 	 * @param file
@@ -260,11 +260,9 @@ public class ImageManager implements ImageCache {
 	/**
 	 * put(String file, Bitmap bitmap, int quality)
 	 * 
-	 * @param file
-	 *            path
+	 * @param file  path
 	 * @param bitmap
-	 * @param quality
-	 *            1~100
+	 * @param quality 1~100
 	 */
 	public void put(String file, Bitmap bitmap) {
 		put(file, bitmap, DEFAULT_COMPRESS_QUALITY);
@@ -383,8 +381,8 @@ public class ImageManager implements ImageCache {
 	}
 
 	/**
-	 * 判断存在相应的位图缓存文件 Judgment the existence of the file corresponding to the
-	 * bitmap cache with
+	 * 判断存在相应的位图缓存文件 
+	 * Judgment the existence of the file corresponding to the bitmap cache with
 	 * 
 	 * @param file
 	 * @return
@@ -394,9 +392,9 @@ public class ImageManager implements ImageCache {
 	}
 
 	/**
-	 * 指定相应的位图文件/ URL，查找本地文件，如果直接使用，或去网上获取 Designation for the file / URL
-	 * corresponding to Bitmap, Find a local file, if the direct use, or go
-	 * online to obtain
+	 * 指定相应的位图文件/ URL，查找本地文件，如果直接使用，或去网上获取 
+	 * Designation for the file / URL corresponding to Bitmap, Find a local file, 
+	 * if the direct use, or go online to obtain
 	 * 
 	 * @param file
 	 * @return
