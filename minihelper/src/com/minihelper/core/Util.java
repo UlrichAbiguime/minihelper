@@ -84,7 +84,6 @@ public class Util {
 	public static String build_api(String api, Bundle params)
 			throws HttpRequstError, JSONException {
 		StringBuffer sBuffer = new StringBuffer();
-		sBuffer.append("http://192.168.1.160:8080");
 		sBuffer.append(api);
 		if (!api.endsWith("?")) {
 			sBuffer.append("?");
