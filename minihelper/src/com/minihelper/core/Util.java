@@ -23,12 +23,19 @@ import java.util.Date;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.barfoo.core.BarfooError;
+import com.barfoo.core.Util;
+import com.barfoo.logic.BarfooApi;
+import com.barfoo.mcm.BarfooApp;
+import com.minihelper.ClientApp;
+
 import android.os.Bundle;
 import android.util.Log;
 
 public class Util {
 	
 
+	public static String Host = "http://192.168.1.160:8080";
 	/**
 	 * Set link timeout time
 	 */
@@ -85,7 +92,11 @@ public class Util {
 	public static String build_api(String api, Bundle params)
 			throws HttpRequstError, JSONException {
 		StringBuffer sBuffer = new StringBuffer();
+<<<<<<< HEAD
 		sBuffer.append("Host");
+=======
+		sBuffer.append(Host);
+>>>>>>> 3207a488e8da8b19e1738b7be224183858a68702
 		sBuffer.append(api);
 		if (!api.endsWith("?")) {
 			sBuffer.append("?");
@@ -164,7 +175,6 @@ public class Util {
 		}
 
 	}
-
 	/**
 	 * Send request, request to return data
 	 * 
@@ -179,6 +189,30 @@ public class Util {
 		String urlstring = build_api(url, params);
 		return httpGet(urlstring);
 
+	}
+	
+	
+	
+	/**
+	 * 获取更新地址，如果没有更新地址为null
+	 * @return
+	 */
+	public static String getUpdatePath(){
+		
+		try {
+			JSONObject appUpdate = BarfooApi.getAppUpdate();
+			int verSion = appUpdate.getInt("varcode");
+			if (Util.getAppVersionInfo(ClientApp.mContext).versionCode < verSion){
+				return appUpdate.getString("app_path");
+			}else{
+				return null;
+			}
+			
+		} catch (JSONException e) {
+			return null;
+		} catch (HttpRequstError e) {
+			return null;
+		}
 	}
 
 }

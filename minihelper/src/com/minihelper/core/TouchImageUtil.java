@@ -1,10 +1,21 @@
 /**
- *图片放大缩小页面
- *@author zxy
- *@Date 2012.7.25 pm
- *@Description 点击图片进入图片详细信息页面
+ * Copyright 2012 minihelper Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *  http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ * 
+ * Email：namezheng@gmail.com
  */
-package com.minihelper;
+package com.minihelper.core;
 
 import org.json.JSONException;
 
@@ -15,9 +26,10 @@ import android.graphics.Matrix;
 import android.graphics.PointF;
 import android.graphics.RectF;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.util.DisplayMetrics;
 import android.util.FloatMath;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
@@ -25,15 +37,13 @@ import android.view.View.OnClickListener;
 import android.view.View.OnTouchListener;
 import android.widget.ImageView;
 
-import com.minihelper.core.AsyncRunner;
-import com.minihelper.core.BaseRequestListener;
-import com.minihelper.core.HttpRequstError;
-import com.minihelper.core.SimpleImageLoader;
+import com.minihelper.R;
+import com.minihelper.core.LazyImageLoader.ImageLoaderCallback;
 
 /**
  * 图片浏览、缩放、拖动、自动居中
  */
-public class TouchAct extends Activity implements OnTouchListener, OnClickListener {
+public class TouchImageUtil extends Activity implements OnTouchListener, OnClickListener {
 
 	Matrix matrix = new Matrix();
 	Matrix savedMatrix = new Matrix();
@@ -56,6 +66,25 @@ public class TouchAct extends Activity implements OnTouchListener, OnClickListen
 	private String imageUrl;
 	private ProgressDialog mDialog;
 
+	Handler handler = new Handler() {
+		public void handleMessage(Message msg) {
+			SimpleImageLoader.get(imageUrl, new ImageLoaderCallback() {
+				
+				public void refresh(String url, Bitmap _bitmap) {
+					bitmap = _bitmap;
+					imgView.setImageBitmap(bitmap);// 填充控件
+					dm = new DisplayMetrics();
+					getWindowManager().getDefaultDisplay().getMetrics(dm);// 获取分辨率
+					minZoom();
+					center();
+					imgView.setImageMatrix(matrix);
+					mDialog.dismiss();
+				}
+			});
+			
+		};
+	};
+
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -65,25 +94,20 @@ public class TouchAct extends Activity implements OnTouchListener, OnClickListen
 		mDialog.setMessage("正在加载图片...");
 		if (getIntent().hasExtra("ImageUrl")) {
 			imageUrl = getIntent().getStringExtra("ImageUrl");
-			Log.i("msg", imageUrl);
 		} else {
 			finish();
 		}
-		//imageUrl = "http://192.168.1.160:8080/m/getimg?fid=501b30a3194f99763d00007e&token=X3Nlc3Npb25faWQ9Ik1HUTRPVE5oWTJKaVptRmhORGhsTjJFd01EUTVZV1ptWlRneFlUWXpNelE9fDEzNDM5ODQxNjN8MDNlN2UyMGUzNDg5NGE4NzlhMjY3ZTNjYTQ0MDczMjU2MjEyY2VjYyI7IGV4cGlyZXM9U3VuLCAwMiBTZXAgMjAxMiAwODo1NjowMyBHTVQ7IFBhdGg9Lw==&uid=4ff56539b322d01f1b000001&";
 		imgView = (ImageView) findViewById(R.id.imag);// 获取控件
-		iv_back = (ImageView) findViewById(R.id.image_back);
-
 		imgView.setOnTouchListener(this);// 设置触屏监听
+
+		iv_back = (ImageView) findViewById(R.id.image_back);
 		iv_back.setOnClickListener(this);
 
 		loadImage();
-		System.gc();
 	}
 
 	private void loadImage() {
-		
 		AsyncRunner.HttpGet(new BaseRequestListener() {
-
 			@Override
 			public void onReading() {
 				mDialog.show();
@@ -91,32 +115,20 @@ public class TouchAct extends Activity implements OnTouchListener, OnClickListen
 			}
 
 			@Override
-			public void onRequesting() throws HttpRequstError, JSONException {
+			public void onRequesting() throws com.minihelper.core.HttpRequstError, JSONException {
+				Message msg = handler.obtainMessage();
+				handler.sendMessage(msg);
 				super.onRequesting();
-				SimpleImageLoader.display(imgView, imageUrl);
-				/*SimpleImageLoader.get(imageUrl, new ImageLoaderCallback() {
-
-					public void refresh(String url, Bitmap _bitmap) {
-						bitmap = _bitmap;
-						imgView.setImageBitmap(bitmap);// 填充控件
-						dm = new DisplayMetrics();
-						getWindowManager().getDefaultDisplay().getMetrics(dm);// 获取分辨率
-						minZoom();
-						center();
-						imgView.setImageMatrix(matrix);
-						mDialog.dismiss();
-					}
-				});*/
-				
 			}
 
 			@Override
-			public void HttpRequstError(HttpRequstError e) {
+			public void HttpRequstError(com.minihelper.core.HttpRequstError e) {
 				mDialog.dismiss();
 				super.HttpRequstError(e);
 			}
 		});
 	}
+
 
 	/**
 	 * 触屏监听

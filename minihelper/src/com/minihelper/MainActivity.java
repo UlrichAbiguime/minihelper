@@ -7,6 +7,8 @@
  */
 package com.minihelper;
 
+import com.minihelper.core.TouchImageUtil;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -33,8 +35,8 @@ public class MainActivity extends Activity implements OnClickListener {
 	public void onClick(View v) {
 		switch (v.getId()) {
 		case R.id.button1:
-			Intent TouchAct = new Intent(this, TouchAct.class);
-			TouchAct.putExtra("ImageUrl", "http://192.168.1.160:8080/m/getimg?fid=501b30a3194f99763d00007e&token=X3Nlc3Npb25faWQ9Ik1HUTRPVE5oWTJKaVptRmhORGhsTjJFd01EUTVZV1ptWlRneFlUWXpNelE9fDEzNDM5ODQxNjN8MDNlN2UyMGUzNDg5NGE4NzlhMjY3ZTNjYTQ0MDczMjU2MjEyY2VjYyI7IGV4cGlyZXM9U3VuLCAwMiBTZXAgMjAxMiAwODo1NjowMyBHTVQ7IFBhdGg9Lw==&uid=4ff56539b322d01f1b000001&");
+			Intent TouchAct = new Intent(this, TouchImageUtil.class);
+			TouchAct.putExtra("ImageUrl", "http://hiphotos.baidu.com/tkj19860924/pic/item/9e4526f3679afe960a46e09e.jpg");
 			startActivity(TouchAct);
 			break;
 
