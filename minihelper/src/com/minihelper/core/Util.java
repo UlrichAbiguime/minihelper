@@ -35,7 +35,7 @@ import android.util.Log;
 public class Util {
 	
 
-	public static String Host = "http://192.168.1.160:8080";
+	public static String Host = "";
 	/**
 	 * Set link timeout time
 	 */
@@ -92,11 +92,7 @@ public class Util {
 	public static String build_api(String api, Bundle params)
 			throws HttpRequstError, JSONException {
 		StringBuffer sBuffer = new StringBuffer();
-<<<<<<< HEAD
-		sBuffer.append("Host");
-=======
 		sBuffer.append(Host);
->>>>>>> 3207a488e8da8b19e1738b7be224183858a68702
 		sBuffer.append(api);
 		if (!api.endsWith("?")) {
 			sBuffer.append("?");
