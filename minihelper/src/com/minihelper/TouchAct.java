@@ -83,6 +83,7 @@ public class TouchAct extends Activity implements OnTouchListener, OnClickListen
 		center();
 		imgView.setImageMatrix(matrix);
 		mDialog.dismiss();
+
 	}
 
 	/**

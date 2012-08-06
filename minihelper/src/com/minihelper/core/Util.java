@@ -96,7 +96,9 @@ public class Util {
 				}
 			}
 		}
+		Log.i("sBuffer", sBuffer.toString());
 		return sBuffer.toString();
+		
 	}
 
 	/**
