@@ -1,7 +1,20 @@
 /**
- * 软件更新
- * @author Zhengxy
- * */
+ * Copyright 2012 minihelper Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *  http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ * 
+ * Email：namezheng@gmail.com
+ */
 package com.minihelper.core;
 
 import java.io.File;
@@ -82,9 +95,9 @@ public class UpdateManager {
 	};
 
 	public UpdateManager(Context context, String url) {
-		apkUrl = Util.Host + url;
-		this.mContext = context;
-		resources = this.mContext.getResources();
+		apkUrl = Util.Hosts + url;
+		mContext = context;
+		resources = mContext.getResources();
 	}
 
 	// 外部接口让主Activity调用
@@ -118,7 +131,7 @@ public class UpdateManager {
 			public void onClick(DialogInterface dialog, int which) {
 				dialog.dismiss();
 				Editor editor = ClientApp.mPref.edit();
-				editor.putString("updateApp", "1");
+				editor.putString("updateApp", "1");//1
 				editor.commit();
 
 			}
@@ -193,7 +206,6 @@ public class UpdateManager {
 
 	/**
 	 * 下载apk
-	 * 
 	 * @param url
 	 */
 	private void downloadApk() {
@@ -203,7 +215,6 @@ public class UpdateManager {
 
 	/**
 	 * 安装apk
-	 * 
 	 * @param url
 	 */
 	private void installApk() {

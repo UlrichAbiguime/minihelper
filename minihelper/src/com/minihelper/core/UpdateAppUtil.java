@@ -1,9 +1,19 @@
 /**
+ * Copyright 2012 minihelper Inc.
  *
- *@Class UpdateUtil.java
- *@author zxy
- *@date 2012-2012-7-18-上午9:39:28
- *@Description 说明
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *  http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ * 
+ * Email：namezheng@gmail.com
  */
 package com.minihelper.core;
 
@@ -21,17 +31,10 @@ public class UpdateAppUtil {
 	UpdateManager mUpdateManager;
 	Timer timer = new Timer();
 	Context mContext;
+	private int times=3000;
 
 	public UpdateAppUtil(Context context) {
 		this.mContext = context;
-	}
-
-	public UpdateAppUtil(Context context, int times) {
-		this.mContext = context;
-		timer.schedule(task, times);
-	}
-
-	public void StartTimer(int times) {
 		timer.schedule(task, times);
 	}
 

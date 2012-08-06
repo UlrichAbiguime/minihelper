@@ -35,7 +35,9 @@ import com.minihelper.logic.ClientApi;
 public class Util {
 	
 
-	public static String Host = "";
+	public static String Host = "http://192.168.1.160:8080/m/mcm/check?token=X3Nlc3Npb25faWQ9IlpEVTNOek01WTJSbVlUYzBOR0l6WldJME5qZGpZbUZoWVRObU1UTXlNVFU9fDEzNDQyNDAwNDd8NDlhMDhmM2NlZjAzNzkzMzY1Yzg1ZGMxZmQ2MmUzMjFlZDNlZmRiMSI7IGV4cGlyZXM9V2VkLCAwNSBTZXAgMjAxMiAwODowMDo0NyBHTVQ7IFBhdGg9Lw==&uid=4ff56539b322d01f1b000001&";
+	public static String Hosts = "http://192.168.1.160:8080";
+	
 	/**
 	 * Set link timeout time
 	 */

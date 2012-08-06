@@ -15,11 +15,11 @@
  */
 package com.minihelper.core;
 
+import static android.widget.Toast.LENGTH_LONG;
 import android.app.Activity;
 import android.app.Application;
 import android.text.TextUtils;
 import android.widget.Toast;
-import static android.widget.Toast.LENGTH_LONG;
 
 public class ToastUtil {
 	/**
@@ -56,7 +56,6 @@ public class ToastUtil {
 	public static void show(final Activity activity, final int resId) {
 		if (activity == null)
 			return;
-
 		show(activity, activity.getString(resId));
 	}
 }

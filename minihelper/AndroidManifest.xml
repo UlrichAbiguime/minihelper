@@ -15,11 +15,14 @@
             android:name=".MainActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait" >
-           
+             <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         
         <activity
-            android:name=".core.TouchImageUtil"
+            android:name=".TouchImage"
             android:configChanges="orientation|keyboardHidden"
             android:label="@string/app_name" >
         </activity>
@@ -28,10 +31,7 @@
             android:name=".TreeListAct"
             android:configChanges="orientation|keyboardHidden"
             android:label="@string/app_name" >
-             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+           
         </activity>
         
     </application>

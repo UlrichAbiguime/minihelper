@@ -15,7 +15,7 @@
  * 
  * Email：namezheng@gmail.com
  */
-package com.minihelper.core;
+package com.minihelper;
 
 import org.json.JSONException;
 
@@ -37,13 +37,16 @@ import android.view.View.OnClickListener;
 import android.view.View.OnTouchListener;
 import android.widget.ImageView;
 
-import com.minihelper.R;
+import com.minihelper.core.AsyncRunner;
+import com.minihelper.core.BaseRequestListener;
+import com.minihelper.core.HttpRequstError;
 import com.minihelper.core.LazyImageLoader.ImageLoaderCallback;
+import com.minihelper.core.SimpleImageLoader;
 
 /**
  * 图片浏览、缩放、拖动、自动居中
  */
-public class TouchImageUtil extends Activity implements OnTouchListener, OnClickListener {
+public class TouchImage extends Activity implements OnTouchListener, OnClickListener {
 
 	Matrix matrix = new Matrix();
 	Matrix savedMatrix = new Matrix();
@@ -115,14 +118,14 @@ public class TouchImageUtil extends Activity implements OnTouchListener, OnClick
 			}
 
 			@Override
-			public void onRequesting() throws com.minihelper.core.HttpRequstError, JSONException {
+			public void onRequesting() throws HttpRequstError, JSONException {
 				Message msg = handler.obtainMessage();
 				handler.sendMessage(msg);
 				super.onRequesting();
 			}
 
 			@Override
-			public void HttpRequstError(com.minihelper.core.HttpRequstError e) {
+			public void HttpRequstError(HttpRequstError e) {
 				mDialog.dismiss();
 				super.HttpRequstError(e);
 			}

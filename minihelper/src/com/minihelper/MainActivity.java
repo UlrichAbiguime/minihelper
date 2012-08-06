@@ -7,7 +7,7 @@
  */
 package com.minihelper;
 
-import com.minihelper.core.TouchImageUtil;
+import com.minihelper.core.UpdateAppUtil;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -24,6 +24,11 @@ public class MainActivity extends Activity implements OnClickListener {
 		setContentView(R.layout.main);
 
 		init();
+
+		String updateflag = ClientApp.mPref.getString("updateApp", "0");
+		if (!updateflag.equals("1")) {
+			new UpdateAppUtil(this);
+		}
 	}
 
 	private void init() {
@@ -35,7 +40,7 @@ public class MainActivity extends Activity implements OnClickListener {
 	public void onClick(View v) {
 		switch (v.getId()) {
 		case R.id.button1:
-			Intent TouchAct = new Intent(this, TouchImageUtil.class);
+			Intent TouchAct = new Intent(this, TouchImage.class);
 			TouchAct.putExtra("ImageUrl", "http://hiphotos.baidu.com/tkj19860924/pic/item/9e4526f3679afe960a46e09e.jpg");
 			startActivity(TouchAct);
 			break;
