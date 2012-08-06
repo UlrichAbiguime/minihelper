@@ -20,7 +20,6 @@ package com.minihelper;
 import android.app.Application;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.content.res.Resources;
 
 /**
  * 应用程序配置文件 Application Configuration file

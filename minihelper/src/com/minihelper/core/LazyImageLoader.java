@@ -41,6 +41,8 @@ public class LazyImageLoader {
 	public Bitmap get(String url, ImageLoaderCallback callback) {
 		Bitmap bitmap = null;
 		if (mImageManager.isContains(url)) {
+			mCallbackManager.put(url, callback);
+			startDownloadThread(url);
 			bitmap = mImageManager.get(url);
 		} else {
 			// bitmap不存在，启动Task进行下载
