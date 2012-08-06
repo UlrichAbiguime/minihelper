@@ -26,11 +26,18 @@ import android.content.res.Resources;
  * 应用程序配置文件 Application Configuration file
  */
 public class ClientApp extends Application {
-	/***
+	/**
 	 * Global reference context
 	 */
 	public static Context mContext;
-	public static Resources res = mContext.getResources();
+	
+	@Override
+	public void onCreate() {
+		// TODO Auto-generated method stub
+		super.onCreate();
+		mContext=this.getApplicationContext();
+	}
+	//public static Resources res = mContext.getResources();
 	/**
 	 * 当前登录用户信息(username/password/nickname...)
 	 */

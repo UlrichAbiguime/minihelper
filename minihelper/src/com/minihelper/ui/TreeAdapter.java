@@ -36,13 +36,11 @@ public class TreeAdapter extends BaseAdapter {
 	JSONArray jsonArray;
 	LayoutInflater layoutinfla;
 	/**
-	 * The state of the storage Checkbox
-	 * 存储Checkbox的状态
+	 * The state of the storage Checkbox 存储Checkbox的状态
 	 */
 	Map<String, Boolean> valcheck;
 	/**
-	 * The bottom of the pop-up to the View
-	 * 底部弹出来的View
+	 * The bottom of the pop-up to the View 底部弹出来的View
 	 */
 	View buttonView;
 
@@ -56,29 +54,23 @@ public class TreeAdapter extends BaseAdapter {
 
 		try {
 			for (int i = 0; i < jsonArray.length(); i++) {
-				this.jsonArray.put(jsonArray.getJSONObject(i).put("childflag",
-						false));
-				JSONArray childData = jsonArray.getJSONObject(i).getJSONArray(
-						"users");
+				this.jsonArray.put(jsonArray.getJSONObject(i).put("childflag", false));
+				JSONArray childData = jsonArray.getJSONObject(i).getJSONArray("users");
 				for (int n = 0; n < childData.length(); n++) {
 					JSONObject child = childData.getJSONObject(n);
-					if (!child.getString("id").equals(
-							ClientApp.mLoginUser.getString("uid", ""))) {
-						this.jsonArray.put(child.put("childflag", true).put(
-								"name", child.getString("loginname")));
+					if (!child.getString("id").equals(ClientApp.mLoginUser.getString("uid", ""))) {
+						this.jsonArray.put(child.put("childflag", true).put("name", child.getString("loginname")));
 					}
 				}
 			}
 		} catch (Exception e) {
 			Toast.makeText(context, e.getMessage(), Toast.LENGTH_SHORT).show();
 		}
-		layoutinfla = (LayoutInflater) context
-				.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+		layoutinfla = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 	}
 
 	/**
-	 * Empty the list of items
-	 *  清空列表项
+	 * Empty the list of items 清空列表项
 	 */
 	public void clearSelectData() {
 		valcheck = new HashMap<String, Boolean>();
@@ -107,8 +99,7 @@ public class TreeAdapter extends BaseAdapter {
 	/**
 	 * Access to the selected value of the string concatenation (splicing in
 	 * listView list of selected text to assemble into a string separated by
-	 * commas) 
-	 * 获取选中的值的拼接字符串(拼接在listView列表中选中文本用逗号隔开拼接成字符串)
+	 * commas) 获取选中的值的拼接字符串(拼接在listView列表中选中文本用逗号隔开拼接成字符串)
 	 * 
 	 * @return
 	 */
@@ -123,8 +114,7 @@ public class TreeAdapter extends BaseAdapter {
 		}
 		String vals = sb.toString();
 		Log.i("receiver", vals);
-		if (vals != null && vals.lastIndexOf(',') == vals.length() - 1
-				&& vals.lastIndexOf(',') > -1) {
+		if (vals != null && vals.lastIndexOf(',') == vals.length() - 1 && vals.lastIndexOf(',') > -1) {
 			return vals.substring(0, vals.length() - 1);
 		} else {
 			return vals;
@@ -162,7 +152,7 @@ public class TreeAdapter extends BaseAdapter {
 				holder.cbtn.setVisibility(View.VISIBLE);
 				holder.tv.setVisibility(View.GONE);
 				holder.cbtn.setText(json.getString("name"));
-				holder.cbtn.setTextColor(R.color.grey);
+				//holder.cbtn.setTextColor(R.color.grey);
 				holder.cbtn.setTextSize(16);
 
 				boolean flag = false;
@@ -176,23 +166,18 @@ public class TreeAdapter extends BaseAdapter {
 					@Override
 					public void onClick(View v) {
 						try {
-							CheckBox cbtn = (CheckBox) v
-									.findViewById(R.id.treenodeid);
+							CheckBox cbtn = (CheckBox) v.findViewById(R.id.treenodeid);
 							cbtn.setChecked(!cbtn.isChecked());
 							/**
 							 * Save the state of the CheckBox selected
-							 *  保存选中的CheckBox的状态
+							 * 保存选中的CheckBox的状态
 							 */
 							valcheck.put(json.getString("id"), cbtn.isChecked());
 							String vals = getCheckedValString();
 							if (null != buttonView) {
 								if (vals != null && vals.length() > 0) {
 								} else {
-									Toast.makeText(
-											context,
-											ClientApp.res
-													.getString(R.string.selectuser),
-											Toast.LENGTH_SHORT).show();
+									//Toast.makeText(context, ClientApp.res.getString(R.string.selectuser), Toast.LENGTH_SHORT).show();
 								}
 							}
 
