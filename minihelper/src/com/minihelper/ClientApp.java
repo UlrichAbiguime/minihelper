@@ -20,6 +20,7 @@ package com.minihelper;
 import android.app.Application;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 
 /**
  * 应用程序配置文件 Application Configuration file
@@ -30,11 +31,17 @@ public class ClientApp extends Application {
 	 */
 	public static Context mContext;
 	
+	
 	@Override
 	public void onCreate() {
 		// TODO Auto-generated method stub
 		super.onCreate();
 		mContext=this.getApplicationContext();
+		mLoginUser = this.getSharedPreferences("userdata", Context.MODE_PRIVATE);
+		Editor editor=mLoginUser.edit();
+		editor.putString("uid", "1");
+		editor.commit();
+		
 	}
 	//public static Resources res = mContext.getResources();
 	/**

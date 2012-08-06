@@ -27,6 +27,7 @@ import android.os.Bundle;
 import android.util.Log;
 
 public class Util {
+	
 
 	/**
 	 * Set link timeout time
@@ -84,6 +85,7 @@ public class Util {
 	public static String build_api(String api, Bundle params)
 			throws HttpRequstError, JSONException {
 		StringBuffer sBuffer = new StringBuffer();
+		sBuffer.append("Host");
 		sBuffer.append(api);
 		if (!api.endsWith("?")) {
 			sBuffer.append("?");

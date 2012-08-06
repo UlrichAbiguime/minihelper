@@ -5,7 +5,7 @@
     android:background="@color/white"
     android:orientation="vertical" >
 
-    <com.barfoo.ui.DashedLine
+    <com.minihelper.ui.DashedLine
         android:id="@+id/viewLine"
         android:layout_width="wrap_content"
         android:layout_height="20px"

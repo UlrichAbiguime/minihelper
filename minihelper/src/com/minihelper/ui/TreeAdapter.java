@@ -46,11 +46,10 @@ public class TreeAdapter extends BaseAdapter {
 
 	EditText et_forwardcontent;
 
-	public TreeAdapter(Context context, JSONArray jsonArray, View v) {
+	public TreeAdapter(Context context, JSONArray jsonArray) {
 		this.context = context;
 		this.jsonArray = new JSONArray();
 		valcheck = new HashMap<String, Boolean>();
-		buttonView = v;
 
 		try {
 			for (int i = 0; i < jsonArray.length(); i++) {
@@ -152,7 +151,6 @@ public class TreeAdapter extends BaseAdapter {
 				holder.cbtn.setVisibility(View.VISIBLE);
 				holder.tv.setVisibility(View.GONE);
 				holder.cbtn.setText(json.getString("name"));
-				//holder.cbtn.setTextColor(R.color.grey);
 				holder.cbtn.setTextSize(16);
 
 				boolean flag = false;
@@ -174,12 +172,7 @@ public class TreeAdapter extends BaseAdapter {
 							 */
 							valcheck.put(json.getString("id"), cbtn.isChecked());
 							String vals = getCheckedValString();
-							if (null != buttonView) {
-								if (vals != null && vals.length() > 0) {
-								} else {
-									//Toast.makeText(context, ClientApp.res.getString(R.string.selectuser), Toast.LENGTH_SHORT).show();
-								}
-							}
+							Log.i("vals", vals);
 
 						} catch (JSONException e) {
 							e.printStackTrace();
