@@ -82,9 +82,7 @@ public class TouchAct extends Activity implements OnTouchListener, OnClickListen
 	}
 
 	private void loadImage() {
-		SimpleImageLoader.display(imgView, imageUrl);
 		
-		/*
 		AsyncRunner.HttpGet(new BaseRequestListener() {
 
 			@Override
@@ -96,8 +94,8 @@ public class TouchAct extends Activity implements OnTouchListener, OnClickListen
 			@Override
 			public void onRequesting() throws HttpRequstError, JSONException {
 				super.onRequesting();
-				
-				SimpleImageLoader.get(imageUrl, new ImageLoaderCallback() {
+				SimpleImageLoader.display(imgView, imageUrl);
+				/*SimpleImageLoader.get(imageUrl, new ImageLoaderCallback() {
 
 					public void refresh(String url, Bitmap _bitmap) {
 						bitmap = _bitmap;
@@ -109,7 +107,7 @@ public class TouchAct extends Activity implements OnTouchListener, OnClickListen
 						imgView.setImageMatrix(matrix);
 						mDialog.dismiss();
 					}
-				});
+				});*/
 				
 			}
 
@@ -119,7 +117,7 @@ public class TouchAct extends Activity implements OnTouchListener, OnClickListen
 				super.onBarfooError(e);
 			}
 		});
-	*/}
+	}
 
 	/**
 	 * 触屏监听
