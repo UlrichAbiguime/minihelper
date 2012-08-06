@@ -84,6 +84,7 @@ public class Util {
 	public static String build_api(String api, Bundle params)
 			throws HttpRequstError, JSONException {
 		StringBuffer sBuffer = new StringBuffer();
+		sBuffer.append("http://192.168.1.160:8080");
 		sBuffer.append(api);
 		if (!api.endsWith("?")) {
 			sBuffer.append("?");
@@ -96,7 +97,10 @@ public class Util {
 				}
 			}
 		}
+		sBuffer.append("token=X3Nlc3Npb25faWQ9Ik1EZ3pNRGczTkdWaFpUQXdORGd6WW1JNVlXVmhPVFJqT1RSbE4yUmxPV0k9fDEzNDQyMTk3MDF8Y2Q1ZmIyNDYxYzQzNmJmZGMxOTUxZTljODVhMTI0ODMxYmQwOGRjYyI7IGV4cGlyZXM9V2VkLCAwNSBTZXAgMjAxMiAwMjoyMTo0MSBHTVQ7IFBhdGg9Lw==&uid=4ff56539b322d01f1b000001&");
+		Log.i("sBuffer", sBuffer.toString());
 		return sBuffer.toString();
+		
 	}
 
 	/**

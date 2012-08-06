@@ -18,6 +18,7 @@ import android.view.View;
 
 /**
  *绘制虚线
+ *Drawing a dotted line
  */
 public class DashedLine extends View {
 
