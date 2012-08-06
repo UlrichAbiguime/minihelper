@@ -15,7 +15,8 @@
  */
 package com.minihelper.core;
 
-import static android.widget.Toast.LENGTH_LONG;
+
+import static android.widget.Toast.LENGTH_SHORT;
 import android.app.Activity;
 import android.app.Application;
 import android.text.TextUtils;
@@ -40,7 +41,7 @@ public class ToastUtil {
 		final Application application = activity.getApplication();
 		activity.runOnUiThread(new Runnable() {
 			public void run() {
-				Toast.makeText(application, message, LENGTH_LONG).show();
+				Toast.makeText(application, message, LENGTH_SHORT).show();
 			}
 		});
 	}
