@@ -22,6 +22,8 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 
+import com.minihelper.core.BaseLocation;
+
 /**
  * 应用程序配置文件 Application Configuration file
  */
@@ -39,11 +41,15 @@ public class ClientApp extends Application {
 
 	// 应用共享信息
 	public static SharedPreferences mPref;
+	public static BaseLocation mBaseLocation;
+	
 	@Override
 	public void onCreate() {
 		// TODO Auto-generated method stub
 		super.onCreate();
+		
 		mContext=this.getApplicationContext();
+		mBaseLocation = new BaseLocation(mContext);
 		
 		mLoginUser = this.getSharedPreferences("userdata", Context.MODE_PRIVATE);
 		mPref = this.getSharedPreferences("sharedoc", Context.MODE_PRIVATE);
@@ -51,12 +57,12 @@ public class ClientApp extends Application {
 		Editor editor=mLoginUser.edit();
 		editor.putString("uid", "1");
 		editor.commit();
+		
 		Editor editorUpdate=mPref.edit();
 		editorUpdate.putString("updateApp", "0");
 		editorUpdate.commit();
 		
+		
 	}
-
-
 
 }

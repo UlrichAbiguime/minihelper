@@ -72,7 +72,7 @@ public class TouchImage extends Activity implements OnTouchListener, OnClickList
 	Handler handler = new Handler() {
 		public void handleMessage(Message msg) {
 			SimpleImageLoader.get(imageUrl, new ImageLoaderCallback() {
-				
+
 				public void refresh(String url, Bitmap _bitmap) {
 					bitmap = _bitmap;
 					imgView.setImageBitmap(bitmap);// 填充控件
@@ -84,7 +84,7 @@ public class TouchImage extends Activity implements OnTouchListener, OnClickList
 					mDialog.dismiss();
 				}
 			});
-			
+
 		};
 	};
 
@@ -107,6 +107,7 @@ public class TouchImage extends Activity implements OnTouchListener, OnClickList
 		iv_back.setOnClickListener(this);
 
 		loadImage();
+		System.gc();
 	}
 
 	private void loadImage() {
@@ -131,7 +132,6 @@ public class TouchImage extends Activity implements OnTouchListener, OnClickList
 			}
 		});
 	}
-
 
 	/**
 	 * 触屏监听

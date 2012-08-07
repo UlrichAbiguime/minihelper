@@ -14,7 +14,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.minihelper.core.AsyncRunner;
 import com.minihelper.core.BaseRequestListener;
