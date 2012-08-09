@@ -19,15 +19,50 @@ package com.minihelper;
 
 import android.app.Application;
 import android.content.Context;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 
+import com.minihelper.core.BaseLocation;
 
 /**
- * 应用程序配置文件
- * Application Configuration file
+ * 应用程序配置文件 Application Configuration file
  */
 public class ClientApp extends Application {
-	/***
+	/**
 	 * Global reference context
 	 */
 	public static Context mContext;
+
+	// public static Resources res = mContext.getResources();
+	/**
+	 * 当前登录用户信息(username/password/nickname...)
+	 */
+	public static SharedPreferences mLoginUser;
+
+	// 应用共享信息
+	public static SharedPreferences mPref;
+	public static BaseLocation mBaseLocation;
+	
+	@Override
+	public void onCreate() {
+		// TODO Auto-generated method stub
+		super.onCreate();
+		
+		mContext=this.getApplicationContext();
+		mBaseLocation = new BaseLocation(mContext);
+		
+		mLoginUser = this.getSharedPreferences("userdata", Context.MODE_PRIVATE);
+		mPref = this.getSharedPreferences("sharedoc", Context.MODE_PRIVATE);
+		
+		Editor editor=mLoginUser.edit();
+		editor.putString("uid", "1");
+		editor.commit();
+		
+		Editor editorUpdate=mPref.edit();
+		editorUpdate.putString("updateApp", "0");
+		editorUpdate.commit();
+		
+		
+	}
+
 }

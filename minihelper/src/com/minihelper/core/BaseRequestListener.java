@@ -27,7 +27,7 @@ public class BaseRequestListener implements RequestListener {
 	}
 
 	@Override
-	public void onBarfooError(HttpRequstError e) {
+	public void HttpRequstError(HttpRequstError e) {
 		//TODO
 	}
 

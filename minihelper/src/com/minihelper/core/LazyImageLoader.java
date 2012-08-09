@@ -1,21 +1,3 @@
-/**
- * Copyright 2012 minihelper Inc.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *  http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- * 
- * Email:namezheng@gmail.com
- */
-
 package com.minihelper.core;
 
 import java.io.IOException;
@@ -36,28 +18,21 @@ import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
 
-/***
- * 得到的图片调用主程序 Get the picture call main program
- */
 public class LazyImageLoader {
-
-	public final int HANDLER_MESSAGE_ID = 1;
-
 	private String TAG = "ProfileImageCacheManager";
+	public final int HANDLER_MESSAGE_ID = 1;
 	public String EXTRA_BITMAP = "extra_bitmap";
 	public String EXTRA_IMAGE_URL = "extra_image_url";
 	public String MACCHA_PATH = Environment.getExternalStorageDirectory().getAbsolutePath() + "/barfoo/imagetemp/";
-
 	private ImageManager mImageManager = new ImageManager(ClientApp.mContext);
+
 	private BlockingQueue<String> mUrlList = new ArrayBlockingQueue<String>(50);
 	private CallbackManager mCallbackManager = new CallbackManager();
+
 	private GetImageTask mTask = new GetImageTask();
 
 	/**
-	 * 得到的图片，可直接从高速缓存，或下载图片返回返回
-	 * 
-	 * Get the picture, may be directly returned from the cache, or download
-	 * pictures and returned to
+	 * 取图片, 可能直接从cache中返回, 或下载图片后返回
 	 * 
 	 * @param url
 	 * @param callback
@@ -66,22 +41,18 @@ public class LazyImageLoader {
 	public Bitmap get(String url, ImageLoaderCallback callback) {
 		Bitmap bitmap = null;
 		if (mImageManager.isContains(url)) {
+			mCallbackManager.put(url, callback);
+			startDownloadThread(url);
 			bitmap = mImageManager.get(url);
 		} else {
-			// 位图不存在，启动任务下载
-			// The bitmap does not exist, start the Task download
+			// bitmap不存在，启动Task进行下载
 			mCallbackManager.put(url, callback);
 			startDownloadThread(url);
 		}
 		return bitmap;
 	}
 
-	/***
-	 * 异步保存的图像 Asynchronous to save the image
-	 * 
-	 * @param url
-	 * @throws IOException
-	 */
+	// 异步保存图片
 	public void save(String url) throws IOException {
 		Bitmap bitmap = null;
 		try {
@@ -102,8 +73,7 @@ public class LazyImageLoader {
 			addUrlToDownloadQueue(url);
 		}
 
-		// 启动线程
-		// Start thread
+		// Start Thread
 		State state = mTask.getState();
 		if (Thread.State.NEW == state) {
 			mTask = new GetImageTask();
@@ -125,12 +95,7 @@ public class LazyImageLoader {
 		}
 	}
 
-	/***
-	 * 低级别的接口得到
-	 * ImageManager Low-level interface to get the ImageManager
-	 * 
-	 * @return mImageManager
-	 */
+	// Low-level interface to get ImageManager
 	public ImageManager getImageManager() {
 		return mImageManager;
 	}
@@ -148,16 +113,16 @@ public class LazyImageLoader {
 					if (isPermanent) {
 						url = mUrlList.take();
 					} else {
-						url = mUrlList.poll(TIMEOUT, TimeUnit.SECONDS); // 等待
+						url = mUrlList.poll(TIMEOUT, TimeUnit.SECONDS); // waiting
 						if (null == url) {
 							break;
-						} // No more closed
+						} // no more, shutdown
 					}
 
 					// Bitmap bitmap = ImageCache.mDefaultBitmap;
+					// Log.i("download pic...", url);
 					final Bitmap bitmap = mImageManager.safeGet(url);
-					// 为了处理回调处理程序
-					// To handle the callback handler
+					// use handler to process callback
 					final Message m = handler.obtainMessage(HANDLER_MESSAGE_ID);
 					Bundle bundle = m.getData();
 					bundle.putString(EXTRA_IMAGE_URL, url);
@@ -193,17 +158,16 @@ public class LazyImageLoader {
 		@Override
 		public void handleMessage(Message msg) {
 			switch (msg.what) {
-			case HANDLER_MESSAGE_ID:
-				final Bundle bundle = msg.getData();
-				String url = bundle.getString(EXTRA_IMAGE_URL);
-				Bitmap bitmap = (Bitmap) (bundle.get(EXTRA_BITMAP));
-				// 回调
-				// Callback
-				mCallbackManager.call(url, bitmap);
-				break;
-			default:
-				// do nothing.
-				break;
+				case HANDLER_MESSAGE_ID:
+					final Bundle bundle = msg.getData();
+					String url = bundle.getString(EXTRA_IMAGE_URL);
+					Bitmap bitmap = (Bitmap) (bundle.get(EXTRA_BITMAP));
+					// callback
+					mCallbackManager.call(url, bitmap);
+					break;
+				default:
+					// do nothing.
+					break;
 			}
 		}
 	};
@@ -232,9 +196,7 @@ public class LazyImageLoader {
 		public void call(String url, Bitmap bitmap) {
 			List<ImageLoaderCallback> callbackList = mCallbackMap.get(url);
 			if (callbackList == null) {
-				// FIXME: 有时来到这里，因为我没有想明白
-				// FIXME: Sometimes arrived here, because I did not want to
-				// understand
+				// FIXME: 有时会到达这里，原因我还没想明白
 				return;
 			}
 			for (ImageLoaderCallback callback : callbackList) {

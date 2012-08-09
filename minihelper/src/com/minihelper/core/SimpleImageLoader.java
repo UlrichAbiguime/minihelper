@@ -22,6 +22,7 @@ import java.io.IOException;
 
 import android.graphics.Bitmap;
 import android.graphics.Matrix;
+import android.util.Log;
 import android.widget.ImageView;
 
 import com.minihelper.core.LazyImageLoader.ImageLoaderCallback;
@@ -83,6 +84,7 @@ public class SimpleImageLoader {
 	}
 
 	public static Bitmap get(String url, ImageLoaderCallback callback) {
+		Log.i("msg", url);
 		return lazyimageloader.get(url, callback);
 	}
 

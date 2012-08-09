@@ -38,7 +38,7 @@ public class AsyncRunner {
 		/**
 		 * Exception handling request
 		 */
-		public void onBarfooError(HttpRequstError e);
+		public void HttpRequstError(HttpRequstError e);
 
 	}
 
@@ -52,9 +52,9 @@ public class AsyncRunner {
 				try {
 					listener.onRequesting();//Send the request and returns data
 				} catch (HttpRequstError e) {
-					listener.onBarfooError(e);
+					listener.HttpRequstError(e);
 				} catch (JSONException e) {
-					listener.onBarfooError(new HttpRequstError("Request exception:"
+					listener.HttpRequstError(new HttpRequstError("Request exception:"
 							+ e.getMessage()));
 				}
 				Looper.loop();

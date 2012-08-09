@@ -23,11 +23,21 @@ import java.util.Date;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.content.Context;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.util.Log;
 
-public class Util {
+import com.minihelper.ClientApp;
+import com.minihelper.logic.ClientApi;
 
+public class Util {
+	
+
+	public static String Host = "http://192.168.1.160:8080/m/mcm/check?token=X3Nlc3Npb25faWQ9IlpEVTNOek01WTJSbVlUYzBOR0l6WldJME5qZGpZbUZoWVRObU1UTXlNVFU9fDEzNDQyNDAwNDd8NDlhMDhmM2NlZjAzNzkzMzY1Yzg1ZGMxZmQ2MmUzMjFlZDNlZmRiMSI7IGV4cGlyZXM9V2VkLCAwNSBTZXAgMjAxMiAwODowMDo0NyBHTVQ7IFBhdGg9Lw==&uid=4ff56539b322d01f1b000001&";
+	public static String Hosts = "http://192.168.1.160:8080";
+	
 	/**
 	 * Set link timeout time
 	 */
@@ -81,9 +91,9 @@ public class Util {
 	 * @return String (URL address)
 	 * @throws JSONException
 	 */
-	public static String build_api(String api, Bundle params)
-			throws HttpRequstError, JSONException {
+	public static String build_api(String api, Bundle params) throws HttpRequstError, JSONException {
 		StringBuffer sBuffer = new StringBuffer();
+		sBuffer.append(Host);
 		sBuffer.append(api);
 		if (!api.endsWith("?")) {
 			sBuffer.append("?");
@@ -91,12 +101,13 @@ public class Util {
 		if (params != null) {
 			for (String key : params.keySet()) {
 				if (params.getString(key) != null) {
-					sBuffer.append(key + "="
-							+ URLEncoder.encode(params.getString(key)) + "&");
+					sBuffer.append(key + "=" + URLEncoder.encode(params.getString(key)) + "&");
 				}
 			}
 		}
+		Log.i("sBuffer", sBuffer.toString());
 		return sBuffer.toString();
+
 	}
 
 	/**
@@ -107,8 +118,7 @@ public class Util {
 	 * @throws HttpRequstError
 	 * @throws JSONException
 	 */
-	public static JSONObject httpGet(String url) throws HttpRequstError,
-			JSONException {
+	public static JSONObject httpGet(String url) throws HttpRequstError, JSONException {
 		String urlstring = url;
 		StringBuilder document = new StringBuilder();
 
@@ -119,8 +129,7 @@ public class Util {
 
 			conn.setConnectTimeout(HttpTimeOut);
 
-			BufferedReader reader = new BufferedReader(new InputStreamReader(
-					conn.getInputStream()), 5 * 1024);
+			BufferedReader reader = new BufferedReader(new InputStreamReader(conn.getInputStream()), 5 * 1024);
 
 			String line = null;
 			while ((line = reader.readLine()) != null)
@@ -129,9 +138,7 @@ public class Util {
 			reader.close();
 
 			if (document.toString().equals("")) {
-				throw new HttpRequstError(
-						"Services exceptions or return format error!",
-						urlstring);
+				throw new HttpRequstError("Services exceptions or return format error!", urlstring);
 			}
 
 			urlstring = null;
@@ -141,22 +148,16 @@ public class Util {
 
 		} catch (FileNotFoundException e) {
 			document = null;
-			throw new HttpRequstError(
-					"Could not find this service or interruption of service！",
-					urlstring);
+			throw new HttpRequstError("Could not find this service or interruption of service！", urlstring);
 		} catch (MalformedURLException e) {
 			document = null;
-			throw new HttpRequstError(
-					"URL parse error or splicing interface error！", urlstring);
+			throw new HttpRequstError("URL parse error or splicing interface error！", urlstring);
 		} catch (IOException e) {
 			document = null;
-			throw new HttpRequstError(
-					"Unable to connect to service, please check whether the service closed！",
-					urlstring);
+			throw new HttpRequstError("Unable to connect to service, please check whether the service closed！", urlstring);
 		} catch (JSONException e) {
 			document = null;
-			throw new HttpRequstError("Returns the JSON format error！",
-					urlstring);
+			throw new HttpRequstError("Returns the JSON format error！", urlstring);
 		}
 
 	}
@@ -170,11 +171,46 @@ public class Util {
 	 * @throws HttpRequstError
 	 * @throws JSONException
 	 */
-	public static JSONObject httpGet(String url, Bundle params)
-			throws HttpRequstError, JSONException {
+	public static JSONObject httpGet(String url, Bundle params) throws HttpRequstError, JSONException {
 		String urlstring = build_api(url, params);
 		return httpGet(urlstring);
 
+	}
+
+	/**
+	 * 获取更新地址，如果没有更新地址为null
+	 * 
+	 * @return
+	 */
+	public static String getUpdatePath() {
+
+		try {
+			JSONObject appUpdate = ClientApi.getAppUpdate();
+			int verSion = appUpdate.getInt("varcode");
+			if (Util.getAppVersionInfo(ClientApp.mContext).versionCode < verSion) {
+				return appUpdate.getString("app_path");
+			} else {
+				return null;
+			}
+
+		} catch (JSONException e) {
+			return null;
+		} catch (HttpRequstError e) {
+			return null;
+		}
+	}
+
+	/**
+	 * 返回当前程序版本信息
+	 */
+	public static PackageInfo getAppVersionInfo(Context context) {
+		try {
+			PackageManager pm = context.getPackageManager();
+			PackageInfo pi = pm.getPackageInfo(context.getPackageName(), 0);
+			return pi;
+		} catch (Exception e) {
+			return null;
+		}
 	}
 
 }
