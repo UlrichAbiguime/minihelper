@@ -16,7 +16,6 @@ public class AsyncRunner {
 	 * Request listener interface
 	 *
 	 */
-
 	public interface RequestListener {
 
 		/**
