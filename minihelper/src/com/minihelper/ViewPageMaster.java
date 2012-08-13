@@ -27,6 +27,7 @@ public class ViewPageMaster extends ViewPagerList{
 
 		AddActivity("推荐", MainActivity.class);
 		AddActivity("回复", TreeListAct.class);
+		AddActivity("列表", TreeViewDemo.class);
 
 	}
 
