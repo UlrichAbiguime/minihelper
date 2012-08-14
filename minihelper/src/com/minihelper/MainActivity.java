@@ -20,8 +20,8 @@ import com.minihelper.core.ToastUtil;
 import com.minihelper.core.UpdateAppUtil;
 
 public class MainActivity extends Activity implements OnClickListener {
-	private double longitude;
-	private double latitude;
+	private double mLongitude;
+	private double mLatitude;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -32,8 +32,8 @@ public class MainActivity extends Activity implements OnClickListener {
 		// 定位经纬度
 		Location l = ClientApp.mBaseLocation.getLocation();
 		if (l != null) {
-			longitude = l.getLongitude();
-			latitude = l.getLatitude();
+			mLongitude = l.getLongitude();
+			mLatitude = l.getLatitude();
 		} else {
 			ToastUtil.show(MainActivity.this, "获取经纬度失败");
 		}
@@ -49,11 +49,11 @@ public class MainActivity extends Activity implements OnClickListener {
 		Button button = (Button) findViewById(R.id.button1);
 		Button button2 = (Button) findViewById(R.id.button2);
 		TextView textView = (TextView) findViewById(R.id.textView1);
-		
+
 		button.setOnClickListener(this);
 		button2.setOnClickListener(this);
-		
-		textView.setText("经度："+longitude+"纬度："+latitude);
+
+		textView.setText("经度：" + mLongitude + "纬度：" + mLatitude);
 	}
 
 	@Override
@@ -65,7 +65,7 @@ public class MainActivity extends Activity implements OnClickListener {
 			startActivity(TouchAct);
 			break;
 		case R.id.button2:
-			
+
 			break;
 
 		default:
