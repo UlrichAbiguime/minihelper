@@ -16,8 +16,8 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.minihelper.core.ToastUtil;
 import com.minihelper.core.UpdateAppUtil;
+import com.minihelper.core.Util;
 
 public class MainActivity extends Activity implements OnClickListener {
 	private double mLongitude;
@@ -35,7 +35,7 @@ public class MainActivity extends Activity implements OnClickListener {
 			mLongitude = l.getLongitude();
 			mLatitude = l.getLatitude();
 		} else {
-			ToastUtil.show(MainActivity.this, "获取经纬度失败");
+			Util.show(MainActivity.this, "获取经纬度失败");
 		}
 		init();
 

@@ -18,7 +18,7 @@ import android.widget.ListView;
 import com.minihelper.core.AsyncRunner;
 import com.minihelper.core.BaseRequestListener;
 import com.minihelper.core.HttpRequstError;
-import com.minihelper.core.ToastUtil;
+import com.minihelper.core.Util;
 import com.minihelper.logic.ClientApi;
 import com.minihelper.ui.TreeAdapter;
 
@@ -27,7 +27,6 @@ public class TreeListAct extends Activity {
 	private JSONArray array;
 	private ListView lv;
 	TreeAdapter adp;
-
 
 	Handler handler = new Handler() {
 
@@ -68,12 +67,10 @@ public class TreeListAct extends Activity {
 			@Override
 			public void HttpRequstError(HttpRequstError e) {
 				super.HttpRequstError(e);
-				ToastUtil.show(TreeListAct.this,  e.getMessage());
+				Util.show(TreeListAct.this, e.getMessage());
 			}
 
 		});
 	}
-
-	
 
 }

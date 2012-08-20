@@ -19,7 +19,7 @@ import com.minihelper.ui.TreeViewListAdp;
  * @author comger
  * 
  */
-public class TreeViewDemo extends Activity {
+public class TreeViewMaster extends Activity {
 
 	ExpandableListView elv;
 	TreeViewListAdp adp;

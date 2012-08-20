@@ -29,11 +29,11 @@
             android:label="@string/app_name" >
         </activity>
         <activity
-            android:name=".TreeViewDemo"
+            android:name=".TreeViewMaster"
             android:label="@string/app_name" >
         </activity>
         <activity
-            android:name=".TabActivity"
+            android:name=".ViewTabMaster"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -41,6 +41,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        
+        <activity
+            android:name=".ViewTopTabAct"
+            android:label="@string/app_name" >
+        </activity>
+        
         <activity
             android:name=".ViewPageMaster"
             android:label="@string/app_name" >

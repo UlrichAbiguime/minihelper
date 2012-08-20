@@ -16,18 +16,17 @@ import com.minihelper.ui.ViewPagerList;
  * 
  */
 public class ViewPageMaster extends ViewPagerList{
-	boolean isType = true;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
-		setContentView(R.layout.viewpagerlist);
+		setContentView(R.layout.viewpager);
 		_create(savedInstanceState, this);
 
 		AddActivity("推荐", MainActivity.class);
 		AddActivity("回复", TreeListAct.class);
-		AddActivity("列表", TreeViewDemo.class);
+		AddActivity("列表", TreeViewMaster.class);
 
 	}
 
