@@ -106,7 +106,7 @@ public class UpdateManager {
 			URL url = new URL(apkUrl);
 			conn = (HttpURLConnection) url.openConnection();
 			conn.connect();
-			showNoticeDialog();
+			//showNoticeDialog();
 		} catch (MalformedURLException e) {
 			// TODO
 		} catch (IOException e) {
