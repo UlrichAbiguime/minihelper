@@ -23,6 +23,7 @@ import org.json.JSONObject;
 import android.os.Bundle;
 import android.util.Log;
 
+import com.minihelper.core.AsyncRunner;
 import com.minihelper.core.HttpRequstError;
 import com.minihelper.core.Util;
 
@@ -38,7 +39,7 @@ public class ClientApi {
 	 */
 	public static JSONObject getjson(String url, Bundle params)
 			throws HttpRequstError, JSONException {
-		JSONObject jsonObject = Util.httpGet(url, params);
+		JSONObject jsonObject = AsyncRunner.httpGet(url, params);
 
 		if (!jsonObject.getBoolean("status")) {
 			throw new HttpRequstError(jsonObject.getString("errormsg"));
@@ -51,7 +52,7 @@ public class ClientApi {
 	 * */
 	public static JSONObject getAppUpdate() throws HttpRequstError,
 			JSONException {
-		JSONObject jsonobj = Util.httpGet(ApiConfig.AppUpdate, null);
+		JSONObject jsonobj = AsyncRunner.httpGet(ApiConfig.AppUpdate, null);
 		Log.i("app_msg", "" + jsonobj);
 		if (!jsonobj.getBoolean("status")) {
 			throw new HttpRequstError(jsonobj.getString("ErrorMessage"));

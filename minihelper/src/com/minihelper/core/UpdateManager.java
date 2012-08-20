@@ -114,6 +114,7 @@ public class UpdateManager {
 		}
 	}
 
+	@SuppressWarnings("unused")
 	private void showNoticeDialog() {
 
 		AlertDialog.Builder builder = new Builder(mContext);
