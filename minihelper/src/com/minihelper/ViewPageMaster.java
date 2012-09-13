@@ -39,5 +39,5 @@ public class ViewPageMaster extends ViewPagerList{
 	public LinearLayout getTabs() {
 		return null;
 	}
-*/
+	 */
 }

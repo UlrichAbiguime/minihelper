@@ -27,7 +27,6 @@ public abstract class ViewTabAct extends TabActivity {
 		mContext = context;
 	}
 
-	@SuppressWarnings("unused")
 	public void AddActivity(String title, Class t) {
 		AddActivity(title, t, null);
 	}

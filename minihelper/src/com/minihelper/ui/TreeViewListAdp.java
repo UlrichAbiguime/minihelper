@@ -107,7 +107,6 @@ public class TreeViewListAdp extends BaseExpandableListAdapter {
 							// 用户取消选择子项，父项也取消
 							String groupkey = ((JSONObject) getGroup(groupPosition)).getString("id");
 							if (groupcheck.containsKey(groupkey) && groupcheck.get(groupkey) == true) {
-
 								groupcheck.put(groupkey, false);
 								// notifyDataSetChanged();
 								// modify at 2012-08-10 by comger

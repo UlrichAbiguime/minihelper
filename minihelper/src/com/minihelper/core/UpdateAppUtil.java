@@ -31,7 +31,7 @@ public class UpdateAppUtil {
 	UpdateManager mUpdateManager;
 	Timer timer = new Timer();
 	Context mContext;
-	private int times=3000;
+	private int times = 3000;
 
 	public UpdateAppUtil(Context context) {
 		this.mContext = context;
@@ -41,15 +41,15 @@ public class UpdateAppUtil {
 	Handler handler = new Handler() {
 		public void handleMessage(Message msg) {
 			switch (msg.what) {
-			case 1:
-				update_app();
-				break;
-			case 2:
-				if (app_path != null) {
-					mUpdateManager = new UpdateManager(mContext, app_path);
-					mUpdateManager.checkUpdateInfo();
+				case 1:
+					update_app();
+					break;
+				case 2:
+					if (app_path != null) {
+						mUpdateManager = new UpdateManager(mContext, app_path);
+						mUpdateManager.checkUpdateInfo();
+					}
 				}
-			}
 			super.handleMessage(msg);
 		}
 	};

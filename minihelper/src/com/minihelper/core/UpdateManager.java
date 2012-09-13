@@ -51,24 +51,21 @@ import com.minihelper.R.string;
 public class UpdateManager {
 
 	private Context mContext;
-	Resources resources = null;
+	private Resources resources = null;
 
 	// 返回的安装包url
 	private String apkUrl = "";
 
-	public Dialog noticeDialog;
-
+	private Dialog noticeDialog;
 	private Dialog downloadDialog;
 	/* 下载包安装路径 */
 	private static final String savePath = "/sdcard/UpdateMiniHelper/";
-
 	private static final String saveFileName = savePath + "ppf.apk";
 
 	/* 进度条与通知ui刷新的handler和msg常量 */
 	private ProgressBar mProgress;
 
 	private static final int DOWN_UPDATE = 1;
-
 	private static final int DOWN_OVER = 2;
 
 	private int progress;
@@ -79,6 +76,7 @@ public class UpdateManager {
 
 	private HttpURLConnection conn;
 
+	
 	private Handler mHandler = new Handler() {
 		public void handleMessage(Message msg) {
 			switch (msg.what) {
@@ -106,7 +104,7 @@ public class UpdateManager {
 			URL url = new URL(apkUrl);
 			conn = (HttpURLConnection) url.openConnection();
 			conn.connect();
-			//showNoticeDialog();
+			// showNoticeDialog();
 		} catch (MalformedURLException e) {
 			// TODO
 		} catch (IOException e) {
@@ -132,7 +130,7 @@ public class UpdateManager {
 			public void onClick(DialogInterface dialog, int which) {
 				dialog.dismiss();
 				Editor editor = ClientApp.mPref.edit();
-				editor.putString("updateApp", "1");//1
+				editor.putString("updateApp", "1");// 1
 				editor.commit();
 
 			}
@@ -194,7 +192,6 @@ public class UpdateManager {
 					}
 					fos.write(buf, 0, numread);
 				} while (!interceptFlag);// 点击取消就停止下载.
-
 				fos.close();
 				is.close();
 			} catch (MalformedURLException e) {
@@ -207,6 +204,7 @@ public class UpdateManager {
 
 	/**
 	 * 下载apk
+	 * 
 	 * @param url
 	 */
 	private void downloadApk() {
@@ -216,6 +214,7 @@ public class UpdateManager {
 
 	/**
 	 * 安装apk
+	 * 
 	 * @param url
 	 */
 	private void installApk() {
