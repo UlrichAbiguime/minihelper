@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:gravity="center" >
+
+    <RelativeLayout
+        android:id="@+id/rliv"
+        android:layout_width="84dp"
+        android:layout_height="84dp"
+        android:background="@drawable/downs" >
+
+        <LinearLayout
+            android:id="@+id/ivdemowrap"
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/white" >
+        </LinearLayout>
+    </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/ivdown"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:minHeight="84dip"
+        android:minWidth="84dip"
+        android:visibility="gone" />
+
+</LinearLayout>
