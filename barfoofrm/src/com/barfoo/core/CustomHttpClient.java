@@ -179,7 +179,7 @@ public class CustomHttpClient {
 			Log.w("Util-HttpGet", url);
 			httpClient.getParams().setParameter(ClientPNames.COOKIE_POLICY, CookiePolicy.BEST_MATCH);
 			HttpResponse response = httpClient.execute(httpGet);
-			
+			/**
 			List<Cookie> cookies = httpClient.getCookieStore().getCookies();
 			if (cookies.isEmpty()) {
 	            Log.i(TAG, "NONE");
@@ -194,7 +194,7 @@ public class CustomHttpClient {
 	               Log.i(TAG,"- commenturl" + cookies.get(i).getCommentURL());
 	             }
 	         }
-			
+			**/
 			BufferedReader reader = new BufferedReader(new InputStreamReader(response.getEntity().getContent()));
 			String line = null;
 			while ((line = reader.readLine()) != null)
