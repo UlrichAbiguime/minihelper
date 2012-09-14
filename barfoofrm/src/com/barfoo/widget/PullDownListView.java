@@ -25,7 +25,7 @@ import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.barfoo.app.R;
+import com.barfoo.R;
 
 public class PullDownListView extends ListView implements OnScrollListener {
 

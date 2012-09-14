@@ -15,6 +15,7 @@ import android.content.res.Resources;
 public class BarfooApp extends Application {
 
 	public static String API_HOST = "http://192.168.1.160:8080";
+	public static String Host = "http://192.168.1.160:8080/m/mcm/check?token=X3Nlc3Npb25faWQ9Ik1tSXhOekpqWldJNU56RXpOR0ZqWmpnNE1UZzJaak01WlRrNE9UUTFObVE9fDEzNDc1ODc0Mzd8OWU3ODc3YTMxYjFiZTFmMGZjZWM4MzlmYzM0NWYyZDA3MDhhMzMzMyI7IGV4cGlyZXM9U3VuLCAxNCBPY3QgMjAxMiAwMTo1MDozNyBHTVQ7IFBhdGg9Lw==&uid=4ff565c6b322d01f1c000008&";
 	public static Resources resources;
 	public static Context mContext;
 	public static SharedPreferences mLoginUser;

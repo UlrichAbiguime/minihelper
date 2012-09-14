@@ -32,6 +32,8 @@ import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.barfoo.R;
+
 public class UpdateManager {
 
 	private Context mContext;

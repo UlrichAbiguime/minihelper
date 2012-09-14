@@ -11,13 +11,17 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import org.json.JSONException;
+import org.json.JSONObject;
 
 import android.content.Context;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.os.Handler;
 import android.os.Message;
 
 import com.barfoo.core.AsyncRunner;
 import com.barfoo.core.BaseRequestListener;
+import com.barfoo.logic.BarfooApi;
 
 public class UpdateAppUtil {
 	String app_path = null;
@@ -58,7 +62,7 @@ public class UpdateAppUtil {
 		AsyncRunner.HttpGet(new BaseRequestListener() {
 			@Override
 			public void onRequesting() throws BarfooError, JSONException {
-				//app_path = Util.getUpdatePath();
+				app_path = UpdateAppUtil.getUpdatePath();
 				Message msg = new Message();
 				msg.what = 2;
 				handler.sendMessage(msg);
@@ -73,5 +77,41 @@ public class UpdateAppUtil {
 			handler.sendMessage(msg);
 		}
 	};
+	
+	/**
+	 * 获取更新地址，如果没有更新地址为null
+	 * 
+	 * @return
+	 */
+	public static String getUpdatePath() {
+
+		try {
+			JSONObject appUpdate = BarfooApi.getAppUpdate();
+			int verSion = appUpdate.getInt("varcode");
+			if (UpdateAppUtil.getAppVersionInfo(BarfooApp.mContext).versionCode < verSion) {
+				return appUpdate.getString("app_path");
+			} else {
+				return null;
+			}
+
+		} catch (JSONException e) {
+			return null;
+		} catch (BarfooError e) {
+			return null;
+		}
+	}
+	
+	/**
+	 * 返回当前程序版本信息
+	 */
+	public static PackageInfo getAppVersionInfo(Context context) {
+		try {
+			PackageManager pm = context.getPackageManager();
+			PackageInfo pi = pm.getPackageInfo(context.getPackageName(), 0);
+			return pi;
+		} catch (Exception e) {
+			return null;
+		}
+	}
 
 }

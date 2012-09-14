@@ -34,8 +34,8 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import com.barfoo.R;
 import com.barfoo.app.BarfooApp;
-import com.barfoo.app.R;
 import com.barfoo.core.CustomHttpClient;
 import com.barfoo.interfaces.OnDownLoadCallBack;
 
