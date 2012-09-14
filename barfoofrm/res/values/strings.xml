@@ -5,4 +5,12 @@
     <string name="menu_settings">Settings</string>
     <string name="title_activity_main">MainActivity</string>
 
+    <!-- UpdateManager -->
+    <string name="nohasdownload">您当前没有可下载的更新！</string>
+    <string name="softupdate">软件版本更新</string>
+    <string name="softdownload">下载软件</string>
+    <string name="downloadlater">以后再说</string>
+    <string name="downloadcancel">取消</string>
+    <string name="softupdateyesorno">您的软件有更新，是否下载安装！</string>
+
 </resources>

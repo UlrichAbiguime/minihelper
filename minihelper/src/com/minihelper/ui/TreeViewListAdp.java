@@ -27,10 +27,6 @@ import android.widget.TextView;
 
 import com.minihelper.R;
 
-/**
- * @author comger
- * 
- */
 public class TreeViewListAdp extends BaseExpandableListAdapter {
 
 	ExpandableListView elv;
