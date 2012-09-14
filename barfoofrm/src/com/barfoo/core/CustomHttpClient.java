@@ -184,7 +184,7 @@ public class CustomHttpClient {
 			if (cookies.isEmpty()) {
 	            Log.i(TAG, "NONE");
 	         } else {
-	             for (int i = 0; i < cookies.size(); i++) {             
+	             for (int i = 0; i < cookies.size(); i++) {
 	               Log.i(TAG,"- domain " + cookies.get(i).getDomain());
 	               Log.i(TAG,"- path " + cookies.get(i).getPath());
 	               Log.i(TAG,"- value " + cookies.get(i).getValue());
@@ -195,6 +195,7 @@ public class CustomHttpClient {
 	             }
 	         }
 			**/
+			httpClient.getParams().setParameter(ClientPNames.COOKIE_POLICY, CookiePolicy.BEST_MATCH);
 			BufferedReader reader = new BufferedReader(new InputStreamReader(response.getEntity().getContent()));
 			String line = null;
 			while ((line = reader.readLine()) != null)

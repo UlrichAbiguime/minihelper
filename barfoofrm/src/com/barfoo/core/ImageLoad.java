@@ -256,7 +256,6 @@ public class ImageLoad {
 			@Override
 			public void run() {
 				try {
-
 					savesImagetate = saveFile(bitmap, imageUrl,imageQuality);
 					switch (savesImagetate) {
 					case 0:
