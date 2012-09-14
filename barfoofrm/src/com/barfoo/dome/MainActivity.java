@@ -5,8 +5,9 @@
  *@date 2012-2012-9-13-下午5:07:25
  *@Description 说明
  */
-package com.barfoo;
+package com.barfoo.dome;
 
+import com.barfoo.R;
 import com.barfoo.app.UpdateAppUtil;
 
 import android.app.Activity;

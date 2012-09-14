@@ -11,7 +11,6 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URLEncoder;
-import java.util.List;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.HttpVersion;
@@ -27,7 +26,6 @@ import org.apache.http.conn.scheme.PlainSocketFactory;
 import org.apache.http.conn.scheme.Scheme;
 import org.apache.http.conn.scheme.SchemeRegistry;
 import org.apache.http.conn.ssl.SSLSocketFactory;
-import org.apache.http.cookie.Cookie;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.impl.conn.tsccm.ThreadSafeClientConnManager;
@@ -46,7 +44,6 @@ import com.barfoo.app.BarfooApp;
 import com.barfoo.app.BarfooError;
 
 public class CustomHttpClient {
-	private static final String TAG = "msg";
 	private static HttpClient customHttpClient;
 
 	public static synchronized HttpClient getHttpClient() {
@@ -179,12 +176,12 @@ public class CustomHttpClient {
 			Log.w("Util-HttpGet", url);
 			httpClient.getParams().setParameter(ClientPNames.COOKIE_POLICY, CookiePolicy.BEST_MATCH);
 			HttpResponse response = httpClient.execute(httpGet);
-			
+			/**
 			List<Cookie> cookies = httpClient.getCookieStore().getCookies();
 			if (cookies.isEmpty()) {
 	            Log.i(TAG, "NONE");
 	         } else {
-	             for (int i = 0; i < cookies.size(); i++) {             
+	             for (int i = 0; i < cookies.size(); i++) {
 	               Log.i(TAG,"- domain " + cookies.get(i).getDomain());
 	               Log.i(TAG,"- path " + cookies.get(i).getPath());
 	               Log.i(TAG,"- value " + cookies.get(i).getValue());
@@ -194,7 +191,8 @@ public class CustomHttpClient {
 	               Log.i(TAG,"- commenturl" + cookies.get(i).getCommentURL());
 	             }
 	         }
-			
+			**/
+			httpClient.getParams().setParameter(ClientPNames.COOKIE_POLICY, CookiePolicy.BEST_MATCH);
 			BufferedReader reader = new BufferedReader(new InputStreamReader(response.getEntity().getContent()));
 			String line = null;
 			while ((line = reader.readLine()) != null)
