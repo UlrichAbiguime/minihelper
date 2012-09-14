@@ -81,7 +81,7 @@ public class ImageLoad {
 		if (checkbitmap != null) {
 			imageView.setImageBitmap(checkbitmap);
 		} else {// 下载图片同时设置保存在SD卡中的图片品质
-			queueJob(imageURL, imageView,imageQuality);
+			DownLoadImageFromNetWork(imageURL, imageView,imageQuality);
 		}
 
 	}
@@ -92,7 +92,7 @@ public class ImageLoad {
 	 * @param imageUrl
 	 * @param imageView
 	 */
-	public void queueJob(final String imageUrl, final ImageView imageView,final int imageQuality) {
+	public void DownLoadImageFromNetWork(final String imageUrl, final ImageView imageView,final int imageQuality) {
 		/* Create handler in UI thread. */
 		final Handler handler = new Handler() {
 			public void handleMessage(Message msg) {
