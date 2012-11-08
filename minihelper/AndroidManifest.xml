@@ -51,6 +51,10 @@
             android:name=".ViewPageMaster"
             android:label="@string/app_name" >
         </activity>
+        <activity
+            android:name=".SidePageActivity"
+            android:label="@string/app_name" >
+        </activity>
     </application>
 
     <!-- 在SDCard中创建与删除文件权限 -->

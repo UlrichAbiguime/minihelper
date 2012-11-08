@@ -8,6 +8,8 @@ package com.minihelper.ui;
 
 import java.util.Date;
 
+import com.minihelper.R;
+
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
@@ -24,8 +26,6 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-
-import com.minihelper.R;
 
 public class MiuiListView extends ListView implements OnScrollListener {
 

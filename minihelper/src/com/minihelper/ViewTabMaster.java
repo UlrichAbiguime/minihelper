@@ -21,5 +21,6 @@ public class ViewTabMaster extends ViewTabAct {
 		AddActivity("第一个act", MainActivity.class);
 		AddActivity("第二个act", ViewPageMaster.class);
 		AddActivity("第三个act", ViewTopTabAct.class);
+		AddActivity("第四个act", SidePageActivity.class);
 	}
 }
