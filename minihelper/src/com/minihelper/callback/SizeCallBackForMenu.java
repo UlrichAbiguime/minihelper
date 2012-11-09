@@ -1,4 +1,4 @@
-package xmu.barfoo.sliding.callback;
+package com.minihelper.callback;
 
 import android.widget.Button;
 

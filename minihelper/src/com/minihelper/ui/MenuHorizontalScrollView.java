@@ -1,6 +1,5 @@
 package com.minihelper.ui;
 
-import xmu.barfoo.sliding.callback.SizeCallBack;
 import android.content.Context;
 import android.os.Handler;
 import android.util.AttributeSet;
@@ -13,6 +12,7 @@ import android.widget.HorizontalScrollView;
 import android.widget.ListView;
 
 import com.minihelper.R;
+import com.minihelper.callback.SizeCallBack;
 
 public class MenuHorizontalScrollView extends HorizontalScrollView {
 

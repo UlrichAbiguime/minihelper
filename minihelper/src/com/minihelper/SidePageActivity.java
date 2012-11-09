@@ -1,9 +1,5 @@
 package com.minihelper;
 
-import com.minihelper.adapter.MenuListAdapter;
-import com.minihelper.ui.MenuHorizontalScrollView;
-
-import xmu.barfoo.sliding.callback.SizeCallBackForMenu;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
@@ -13,6 +9,10 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ListView;
+
+import com.minihelper.adapter.MenuListAdapter;
+import com.minihelper.callback.SizeCallBackForMenu;
+import com.minihelper.ui.MenuHorizontalScrollView;
 
 public class SidePageActivity extends Activity implements OnClickListener {
 
