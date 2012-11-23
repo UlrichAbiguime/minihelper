@@ -1,3 +1,8 @@
+/***
+ * 执行图片下载主要辅助类。可以将图片的url和view传入DisplayImage(url,view)进行图片的现实处理。
+ * 特点：主要使用了synchronizedMap锁机制，可以执行多个线程并发下载。并且在获取bitmap的时候进行了
+ * 适当的压缩处理将图片的质量和运行效率最大限度的保存
+ */
 package com.minihelper.listview;
 
 import java.io.File;
@@ -182,11 +187,6 @@ public class ImageLoader {
 		}
 	}
 
-	public void clearCache() {
-		memoryCache.clear();
-		fileCache.clear();
-	}
-
 	public void CopyStream(InputStream is, OutputStream os) {
 		final int buffer_size = 1024;
 		try {
@@ -199,6 +199,11 @@ public class ImageLoader {
 			}
 		} catch (Exception ex) {
 		}
+	}
+
+	public void clearCache() {
+		memoryCache.clear();
+		fileCache.clear();
 	}
 
 }
