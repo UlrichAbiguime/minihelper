@@ -95,7 +95,7 @@ public class AsyncRunner {
 	 */
 	public static String build_api(String api, Bundle params) throws HttpRequstError, JSONException {
 		StringBuffer sBuffer = new StringBuffer();
-		sBuffer.append(Util.Host);
+		sBuffer.append(Util.Hostst);
 		sBuffer.append(api);
 		if (!api.endsWith("?")) {
 			sBuffer.append("?");
