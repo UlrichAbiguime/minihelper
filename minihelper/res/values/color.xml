@@ -15,4 +15,8 @@
     <color name="yellowgreen">#90d43f</color>
     <color name="blue">#19a6a7</color>
     <color name="orange">#ff9c00</color>
+    
+     <color name="textColor">#FFFFFF</color>
+    <color name="bgColor">#000000</color>
+    <color name="border_line">#ffd7dadc</color>
 </resources>

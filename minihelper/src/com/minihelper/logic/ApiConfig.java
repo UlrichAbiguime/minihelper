@@ -18,4 +18,6 @@ package com.minihelper.logic;
 
 public class ApiConfig {
 	public static String AppUpdate = "/m/mcm/check";//App更新
+	
+	public static String ListHost="/getdata";
 }

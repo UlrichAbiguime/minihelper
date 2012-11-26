@@ -1,17 +1,17 @@
 /**
  * Copyright 2012 minihelper Inc.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *  http://www.apache.org/licenses/LICENSE-2.0
- *
+ * 
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not
+ * use this file except in compliance with the License. You may obtain a copy of
+ * the License at
+ * 
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * 
  * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations under
+ * the License.
  * 
  */
 package com.minihelper.logic;
@@ -37,8 +37,7 @@ public class ClientApi {
 	 * @throws HttpRequstError
 	 * @throws JSONException
 	 */
-	public static JSONObject getjson(String url, Bundle params)
-			throws HttpRequstError, JSONException {
+	public static JSONObject getjson(String url, Bundle params) throws HttpRequstError, JSONException {
 		JSONObject jsonObject = AsyncRunner.httpGet(url, params);
 
 		if (!jsonObject.getBoolean("status")) {
@@ -50,14 +49,24 @@ public class ClientApi {
 	/**
 	 * add by zxy update at 2012-07-05 软件更新
 	 * */
-	public static JSONObject getAppUpdate() throws HttpRequstError,
-			JSONException {
+	public static JSONObject getAppUpdate() throws HttpRequstError, JSONException {
 		JSONObject jsonobj = AsyncRunner.httpGet(ApiConfig.AppUpdate, null);
 		Log.i("app_msg", "" + jsonobj);
 		if (!jsonobj.getBoolean("status")) {
 			throw new HttpRequstError(jsonobj.getString("ErrorMessage"));
 		}
 		return jsonobj.getJSONObject("msg");
+	}
+	
+	
+
+	public static JSONArray getListView() throws HttpRequstError, JSONException {
+		JSONObject jsonobj = AsyncRunner.httpGet(ApiConfig.ListHost, null);
+		Log.i("app_msg", "" + jsonobj);
+		if (!jsonobj.getBoolean("status")) {
+			throw new HttpRequstError(jsonobj.getString("ErrorMessage"));
+		}
+		return jsonobj.getJSONArray("data");
 	}
 
 	/**
@@ -68,8 +77,7 @@ public class ClientApi {
 	 * @throws HttpRequstError
 	 * @throws JSONException
 	 */
-	public static JSONArray getTreeListData() throws HttpRequstError,
-			JSONException {
+	public static JSONArray getTreeListData() throws HttpRequstError, JSONException {
 		/**
 		 * 从网络上获取数据
 		 * 
