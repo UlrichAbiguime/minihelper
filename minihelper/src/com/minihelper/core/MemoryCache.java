@@ -2,7 +2,7 @@
  * 缓存图片到map里合理计算图片的大下防止图片内存溢出
  */
 
-package com.minihelper.listview;
+package com.minihelper.core;
 
 import java.util.Collections;
 import java.util.Iterator;

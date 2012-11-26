@@ -3,7 +3,7 @@
  * 特点：主要使用了synchronizedMap锁机制，可以执行多个线程并发下载。并且在获取bitmap的时候进行了
  * 适当的压缩处理将图片的质量和运行效率最大限度的保存
  */
-package com.minihelper.listview;
+package com.minihelper.core;
 
 import java.io.File;
 import java.io.FileInputStream;
