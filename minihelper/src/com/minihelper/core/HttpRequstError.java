@@ -1,8 +1,8 @@
 /**
- * HttpRequstError.java
- * @user zn
- * @mail wusheng198910@126.com
- * 2012-8-2
+ * BarfooError.java barfoo 接口请求异常类描述
+ * 
+ * @user comger
+ * @mail comger@gmail.com 2012-3-26
  */
 package com.minihelper.core;
 
@@ -11,13 +11,12 @@ import android.util.Log;
 public class HttpRequstError extends Throwable {
 
 	private static final long serialVersionUID = 1L;
-
-	private String mErrorType;
 	private String mFailingUrl;
+	private Exception e = null;
+	private Class cls = null;
 
 	/**
-	 * Exception message
-	 * 
+	 * 简单异常信息提示
 	 * @param message
 	 */
 	public HttpRequstError(String message) {
@@ -25,31 +24,36 @@ public class HttpRequstError extends Throwable {
 	}
 
 	/**
-	 * Analysis of JSON data failed
-	 * 
+	 * 请求服务失败，无法接连网络
 	 * @param message
-	 * @param cls (Analytical model)
+	 * @param e
+	 * @param failingUrl
 	 */
-	public HttpRequstError(String message, @SuppressWarnings("rawtypes") Class cls) {
+	public HttpRequstError(String message, Exception e, String failingUrl) {
 		super(message);
-		mErrorType = cls.toString();
-		Log.i("HttpRequestError", "when parse json to " + mErrorType + " error is:" + message);
+		this.e = e;
+		this.cls = e.getClass();
+		mFailingUrl = failingUrl;
+		Log.i("BarfooError", "when open url " + failingUrl + " error is:" + message);
 	}
 
 	/**
-	 * Request service error
-	 * 
+	 * 请求服务出错
 	 * @param message
-	 * @param failingUrl (Interface address)
+	 * @param failingUrl 接口地址
 	 */
 	public HttpRequstError(String message, String failingUrl) {
 		super(message);
 		mFailingUrl = failingUrl;
-		Log.i("HttpRequstError", "when open url " + failingUrl + " error is:" + message);
+		Log.i("BarfooError", "when open url " + failingUrl + " error is:" + message);
 	}
 
-	public String getErrorType() {
-		return mErrorType;
+	public Exception getException() {
+		return this.e;
+	}
+
+	public Class getExceptionClass() {
+		return this.cls;
 	}
 
 	public String getFailingUrl() {

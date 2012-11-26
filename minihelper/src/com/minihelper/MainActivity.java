@@ -8,16 +8,15 @@
 package com.minihelper;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.location.Location;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.minihelper.core.UpdateAppUtil;
-import com.minihelper.core.Util;
 
 public class MainActivity extends Activity implements OnClickListener {
 	private double mLongitude;
@@ -35,7 +34,7 @@ public class MainActivity extends Activity implements OnClickListener {
 			mLongitude = l.getLongitude();
 			mLatitude = l.getLatitude();
 		} else {
-			Util.show(MainActivity.this, "获取经纬度失败");
+			Toast.makeText(this, "获取经纬度失败", Toast.LENGTH_LONG).show();
 		}
 		init();
 
@@ -60,9 +59,9 @@ public class MainActivity extends Activity implements OnClickListener {
 	public void onClick(View v) {
 		switch (v.getId()) {
 			case R.id.button1:
-				Intent TouchAct = new Intent(this, TouchImage.class);
+				/*Intent TouchAct = new Intent(this, TouchImage.class);
 				TouchAct.putExtra("ImageUrl", "http://img.en.china.cn/0/0%2C0%2C49%2C62516%2C2048%2C1536%2Cb0379d67.jpg");
-				startActivity(TouchAct);
+				startActivity(TouchAct);*/
 				break;
 			case R.id.button2:
 	

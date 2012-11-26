@@ -1,21 +1,8 @@
 /**
- * Copyright 2012 minihelper Inc.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *  http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- * 
- * Email：namezheng@gmail.com
- */
-package com.minihelper.core;
+ * 软件更新
+ * @author Zhengxy
+ * */
+package com.minihelper;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -32,7 +19,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
-import android.content.SharedPreferences.Editor;
 import android.content.res.Resources;
 import android.net.Uri;
 import android.os.Handler;
@@ -43,29 +29,27 @@ import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import com.minihelper.ClientApp;
-import com.minihelper.R.id;
-import com.minihelper.R.layout;
-import com.minihelper.R.string;
-
 public class UpdateManager {
 
 	private Context mContext;
-	private Resources resources = null;
+	Resources resources = null;
 
 	// 返回的安装包url
 	private String apkUrl = "";
 
-	private Dialog noticeDialog;
+	public Dialog noticeDialog;
+
 	private Dialog downloadDialog;
 	/* 下载包安装路径 */
-	private static final String savePath = "/sdcard/UpdateMiniHelper/";
+	private static final String savePath = "/sdcard/updatebarfoo/";
+
 	private static final String saveFileName = savePath + "ppf.apk";
 
 	/* 进度条与通知ui刷新的handler和msg常量 */
 	private ProgressBar mProgress;
 
 	private static final int DOWN_UPDATE = 1;
+
 	private static final int DOWN_OVER = 2;
 
 	private int progress;
@@ -76,7 +60,6 @@ public class UpdateManager {
 
 	private HttpURLConnection conn;
 
-	
 	private Handler mHandler = new Handler() {
 		public void handleMessage(Message msg) {
 			switch (msg.what) {
@@ -93,62 +76,67 @@ public class UpdateManager {
 	};
 
 	public UpdateManager(Context context, String url) {
-		apkUrl = Util.Hosts + url;
-		mContext = context;
-		resources = mContext.getResources();
+		apkUrl = ClientApp.API_HOST + url;
+		Log.i("skinapk", apkUrl);
+		this.mContext = context;
+		resources = this.mContext.getResources();
 	}
 
 	// 外部接口让主Activity调用
-	public void checkUpdateInfo() {
+	public void checkUpdateInfo(boolean flag) {
 		try {
 			URL url = new URL(apkUrl);
 			conn = (HttpURLConnection) url.openConnection();
 			conn.connect();
-			// showNoticeDialog();
+			if (flag) {
+				showNoticeDialog();
+			} else {
+				showDownloadDialog(false);
+			}
 		} catch (MalformedURLException e) {
 			// TODO
 		} catch (IOException e) {
-			Toast.makeText(mContext, resources.getString(string.nohasdownload), Toast.LENGTH_LONG).show();
+			Toast.makeText(mContext, resources.getString(R.string.nohasdownload), Toast.LENGTH_LONG).show();
 		}
 	}
 
-	@SuppressWarnings("unused")
 	private void showNoticeDialog() {
 
 		AlertDialog.Builder builder = new Builder(mContext);
-		builder.setTitle(resources.getString(string.softupdate));
-		builder.setMessage(resources.getString(string.softupdateyesorno));
-		builder.setPositiveButton(resources.getString(string.softdownload), new OnClickListener() {
+		builder.setTitle(resources.getString(R.string.softupdate));
+		builder.setMessage(resources.getString(R.string.softupdateyesorno));
+		builder.setPositiveButton(resources.getString(R.string.softdownload), new OnClickListener() {
 			@Override
 			public void onClick(DialogInterface dialog, int which) {
 				dialog.dismiss();
-				showDownloadDialog();
+				showDownloadDialog(true);
 			}
 		});
-		builder.setNegativeButton(resources.getString(string.downloadlater), new OnClickListener() {
+		builder.setNegativeButton(resources.getString(R.string.downloadlater), new OnClickListener() {
 			@Override
 			public void onClick(DialogInterface dialog, int which) {
 				dialog.dismiss();
-				Editor editor = ClientApp.mPref.edit();
-				editor.putString("updateApp", "1");// 1
-				editor.commit();
-
 			}
 		});
 		noticeDialog = builder.create();
 		noticeDialog.show();
 	}
 
-	private void showDownloadDialog() {
+	private void showDownloadDialog(boolean flag) {
 
 		AlertDialog.Builder builder = new Builder(mContext);
-		builder.setTitle(resources.getString(string.softupdate));
+		if (flag) {
+
+			builder.setTitle(resources.getString(R.string.softupdate));
+		} else {
+			builder.setTitle(resources.getString(R.string.downloadlater));
+		}
 		final LayoutInflater inflater = LayoutInflater.from(mContext);
-		View v = inflater.inflate(layout.progress, null);
-		mProgress = (ProgressBar) v.findViewById(id.progress);
+		View v = inflater.inflate(R.layout.progress, null);
+		mProgress = (ProgressBar) v.findViewById(R.id.progress);
 
 		builder.setView(v);
-		builder.setNegativeButton(resources.getString(string.downloadcancel), new OnClickListener() {
+		builder.setNegativeButton(resources.getString(R.string.downloadcancel), new OnClickListener() {
 			@Override
 			public void onClick(DialogInterface dialog, int which) {
 				dialog.dismiss();
@@ -190,8 +178,10 @@ public class UpdateManager {
 						mHandler.sendEmptyMessage(DOWN_OVER);
 						break;
 					}
+
 					fos.write(buf, 0, numread);
 				} while (!interceptFlag);// 点击取消就停止下载.
+
 				fos.close();
 				is.close();
 			} catch (MalformedURLException e) {

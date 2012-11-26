@@ -1,181 +1,57 @@
 /**
  * AsyncRunner.java
- * @author zn 
- * Aug 3, 2012  9:22:42 AM
- * @Description：Exception interface program to provide start state, and run to completion and exception handling
+ * @user comger
+ * @mail comger@gmail.com
+ * 2012-5-9
  */
 package com.minihelper.core;
-
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.net.URLEncoder;
-
 import org.json.JSONException;
-import org.json.JSONObject;
 
-import android.os.Bundle;
 import android.os.Looper;
-import android.util.Log;
 
+/**
+ * @author comger
+ * 异常接口方案,提供开始状态、运行完成及异常处理
+ */
 public class AsyncRunner {
 	
-	/**
-	 * Set link timeout time
-	 */
-	public static int HttpTimeOut = 5 * 1000;
-	/**
-	 * Set read timeout time
-	 */
-	public static int ReadTimeOut = 5 * 1000;
-	
+	//请求的监听接口
+    public interface RequestListener {
+    	
+    	//请求之前
+    	public void onReading();
+    	
+    	//请求完成处理数据
+    	public void onRequesting() throws HttpRequstError, JSONException;
+    	
+    	//处理完成
+    	public void onDone();
+        
+    	//请求处理时的异常
+        public void onHttpRequstError(HttpRequstError e);
 
-	/**
-	 * Request listener interface
-	 *
-	 */
-	public interface RequestListener {
-
-		/**
-		 * Before the request
-		 */
-		public void onReading();
-
-		/**
-		 * Request is complete and return the request data
-		 * @throws HttpRequstError
-		 * @throws JSONException
-		 */
-		public void onRequesting() throws HttpRequstError, JSONException;
-
-		/**
-		 * Processing is complete
-		 */
-		public void onDone();
-
-		/**
-		 * Exception handling request
-		 */
-		public void HttpRequstError(HttpRequstError e);
-
-	}
-
-	
-	public static void HttpGet(final RequestListener listener) {
-		listener.onReading(); // Prepare the request
-		new Thread() {
-			@Override
-			public void run() {
-				Looper.prepare();
-				try {
-					listener.onRequesting();//Send the request and returns data
+    }
+ 
+    
+    //快速入口
+    public static void HttpGet(final RequestListener listener){
+    	listener.onReading(); //准备请求
+    	Thread thread = new Thread() {
+            @Override 
+            public void run() {
+            	Looper.prepare();
+            	try {
+            		listener.onRequesting();
 				} catch (HttpRequstError e) {
-					listener.HttpRequstError(e);
+					listener.onHttpRequstError(e);
 				} catch (JSONException e) {
-					listener.HttpRequstError(new HttpRequstError("Request exception:"
-							+ e.getMessage()));
+					listener.onHttpRequstError(new HttpRequstError("请求解析异常:"+e.getMessage()));
 				}
-				Looper.loop();
-			}
-		}.start();
-		listener.onDone();
-	}
-	
-	/**
-	 * Splicing interface parameters
-	 * 
-	 * @param api
-	 * @param params
-	 * @return String (URL address)
-	 * @throws JSONException
-	 */
-	public static String build_api(String api, Bundle params) throws HttpRequstError, JSONException {
-		StringBuffer sBuffer = new StringBuffer();
-		sBuffer.append(Util.Hostst);
-		sBuffer.append(api);
-		if (!api.endsWith("?")) {
-			sBuffer.append("?");
-		}
-		if (params != null) {
-			for (String key : params.keySet()) {
-				if (params.getString(key) != null) {
-					sBuffer.append(key + "=" + URLEncoder.encode(params.getString(key)) + "&");
-				}
-			}
-		}
-		Log.i("sBuffer", sBuffer.toString());
-		return sBuffer.toString();
+                Looper.loop();
+            }
+        };
+        thread.start();
+        listener.onDone();
 
-	}
-
-	/**
-	 * To the server to send the request, and returns the string JSON
-	 * 
-	 * @param url
-	 * @return
-	 * @throws HttpRequstError
-	 * @throws JSONException
-	 */
-	public static JSONObject httpGet(String url) throws HttpRequstError, JSONException {
-		String urlstring = url;
-		StringBuilder document = new StringBuilder();
-
-		try {
-			URL _url = new URL(urlstring);
-			Log.w("Util-HttpGet", urlstring);
-			HttpURLConnection conn = (HttpURLConnection) _url.openConnection();
-
-			conn.setConnectTimeout(HttpTimeOut);
-
-			BufferedReader reader = new BufferedReader(new InputStreamReader(conn.getInputStream()), 5 * 1024);
-
-			String line = null;
-			while ((line = reader.readLine()) != null)
-				document.append(line);
-
-			reader.close();
-
-			if (document.toString().equals("")) {
-				throw new HttpRequstError("Services exceptions or return format error!", urlstring);
-			}
-
-			urlstring = null;
-			line = null;
-			Log.w("Util-HttpGet", "done");
-			return new JSONObject(document.toString());
-
-		} catch (FileNotFoundException e) {
-			document = null;
-			throw new HttpRequstError("Could not find this service or interruption of service！", urlstring);
-		} catch (MalformedURLException e) {
-			document = null;
-			throw new HttpRequstError("URL parse error or splicing interface error！", urlstring);
-		} catch (IOException e) {
-			document = null;
-			throw new HttpRequstError("Unable to connect to service, please check whether the service closed！", urlstring);
-		} catch (JSONException e) {
-			document = null;
-			throw new HttpRequstError("Returns the JSON format error！", urlstring);
-		}
-
-	}
-
-	/**
-	 * Send request, request to return data
-	 * 
-	 * @param url
-	 * @param params
-	 * @return JSONObject
-	 * @throws HttpRequstError
-	 * @throws JSONException
-	 */
-	public static JSONObject httpGet(String url, Bundle params) throws HttpRequstError, JSONException {
-		String urlstring = build_api(url, params);
-		return httpGet(urlstring);
-
-	}
+    }
 }
