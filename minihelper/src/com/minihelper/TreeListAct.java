@@ -18,7 +18,6 @@ import android.widget.ListView;
 import com.minihelper.core.AsyncRunner;
 import com.minihelper.core.BaseRequestListener;
 import com.minihelper.core.HttpRequstError;
-import com.minihelper.core.Util;
 import com.minihelper.logic.ClientApi;
 import com.minihelper.ui.TreeAdapter;
 
@@ -64,11 +63,6 @@ public class TreeListAct extends Activity {
 				handler.sendMessage(msg);
 			}
 
-			@Override
-			public void HttpRequstError(HttpRequstError e) {
-				super.HttpRequstError(e);
-				Util.show(TreeListAct.this, e.getMessage());
-			}
 
 		});
 	}

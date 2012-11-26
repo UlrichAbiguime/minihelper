@@ -1,20 +1,10 @@
-/**
- * BaseRequestListener.java
- * 
- * @author zn Aug 2, 2012 6:43:22 PM
- * @mail wusheng198910@126.com
- * @Description:Process of the realization of the request to send the request
- *                      before the request, the request and the exception
- *                      handling process
- */
 package com.minihelper.core;
 
 import org.json.JSONException;
 
 import com.minihelper.core.AsyncRunner.RequestListener;
 
-
-public class BaseRequestListener implements RequestListener {
+public class BaseRequestListener implements RequestListener{
 
 	@Override
 	public void onReading() {
@@ -27,13 +17,14 @@ public class BaseRequestListener implements RequestListener {
 	}
 
 	@Override
-	public void HttpRequstError(HttpRequstError e) {
-		//TODO
+	public void onDone(){
+		// TODO Auto-generated method stub
 	}
 
 	@Override
-	public void onDone() {
-		//TODO
+	public void onHttpRequstError(HttpRequstError e) {
+		// TODO Auto-generated method stub
+		
 	}
-
+	
 }

@@ -23,7 +23,6 @@ import org.json.JSONObject;
 import android.os.Bundle;
 import android.util.Log;
 
-import com.minihelper.core.AsyncRunner;
 import com.minihelper.core.HttpRequstError;
 import com.minihelper.core.Util;
 
@@ -38,7 +37,7 @@ public class ClientApi {
 	 * @throws JSONException
 	 */
 	public static JSONObject getjson(String url, Bundle params) throws HttpRequstError, JSONException {
-		JSONObject jsonObject = AsyncRunner.httpGet(url, params);
+		JSONObject jsonObject = Util.httpGet(url, params);
 
 		if (!jsonObject.getBoolean("status")) {
 			throw new HttpRequstError(jsonObject.getString("errormsg"));
@@ -50,7 +49,7 @@ public class ClientApi {
 	 * add by zxy update at 2012-07-05 软件更新
 	 * */
 	public static JSONObject getAppUpdate() throws HttpRequstError, JSONException {
-		JSONObject jsonobj = AsyncRunner.httpGet(ApiConfig.AppUpdate, null);
+		JSONObject jsonobj = Util.httpGet(ApiConfig.AppUpdate, new Bundle());
 		Log.i("app_msg", "" + jsonobj);
 		if (!jsonobj.getBoolean("status")) {
 			throw new HttpRequstError(jsonobj.getString("ErrorMessage"));
@@ -58,10 +57,9 @@ public class ClientApi {
 		return jsonobj.getJSONObject("msg");
 	}
 	
-	
 
 	public static JSONArray getListView() throws HttpRequstError, JSONException {
-		JSONObject jsonobj = AsyncRunner.httpGet(ApiConfig.ListHost, null);
+		JSONObject jsonobj = Util.httpGet(ApiConfig.ListHost, new Bundle());
 		Log.i("app_msg", "" + jsonobj);
 		if (!jsonobj.getBoolean("status")) {
 			throw new HttpRequstError(jsonobj.getString("ErrorMessage"));
