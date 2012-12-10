@@ -44,6 +44,7 @@ public class ClientApi {
 		}
 		return jsonObject;
 	}
+	
 
 	/**
 	 * add by zxy update at 2012-07-05 软件更新
@@ -59,8 +60,7 @@ public class ClientApi {
 	
 
 	public static JSONArray getListView() throws HttpRequstError, JSONException {
-		JSONObject jsonobj = Util.httpGet(ApiConfig.ListHost, new Bundle());
-		Log.i("app_msg", "" + jsonobj);
+		JSONObject jsonobj = getjson(ApiConfig.ListHost, new Bundle());
 		if (!jsonobj.getBoolean("status")) {
 			throw new HttpRequstError(jsonobj.getString("ErrorMessage"));
 		}

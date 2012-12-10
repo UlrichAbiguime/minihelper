@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.minihelper.R;
 import com.minihelper.core.HttpRequstError;
@@ -28,7 +29,9 @@ public class AsyncListview extends Activity {
 		try {
 			jsonArray = ClientApi.getListView();
 		} catch (JSONException e) {
+			Toast.makeText(AsyncListview.this, e.getMessage(), Toast.LENGTH_SHORT).show();
 		} catch (HttpRequstError e) {
+			Toast.makeText(AsyncListview.this, e.getMessage(), Toast.LENGTH_SHORT).show();
 		}
 		list = (ListView) findViewById(R.id.listView1);
 		adapter = new LazyAdapter(this, jsonArray);
