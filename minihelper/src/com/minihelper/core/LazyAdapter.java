@@ -34,31 +34,6 @@ public class LazyAdapter extends BaseAdapter {
 		ListGetJson(jsonArray);
 	}
 
-	private void ListGetJson(JSONArray jsonArray) {
-		try {
-			int length = jsonArray.length();
-			for (int i = 0; i < length; i++) {
-				JSONObject jsonObj = (JSONObject) jsonArray.get(i);
-				AlbumInfo info = new AlbumInfo();
-				info.mName = jsonObj.getString("title");
-				info.mImage = jsonObj.getString("img");
-				albums.add(info);
-			}
-		} catch (JSONException e) {
-			Log.i("jsonerror", e.getMessage());
-		}
-	}
-
-	class AlbumInfo {
-		@Override
-		public String toString() {
-			return "AlbumInfo [mName=" + mName + ", mImage=" + mImage + "]";
-		}
-
-		String mName;
-		String mImage;
-	}
-
 	public int getCount() {
 		return mJsonArray.length();
 	}
@@ -90,6 +65,31 @@ public class LazyAdapter extends BaseAdapter {
 		imageLoader.DisplayImage(albumInfo.mImage, holder.mImageView);
 
 		return layout;
+	}
+
+	private void ListGetJson(JSONArray jsonArray) {
+		try {
+			int length = jsonArray.length();
+			for (int i = 0; i < length; i++) {
+				JSONObject jsonObj = (JSONObject) jsonArray.get(i);
+				AlbumInfo info = new AlbumInfo();
+				info.mName = jsonObj.getString("Author");
+				info.mImage = jsonObj.getString("ImageUrl");
+				albums.add(info);
+			}
+		} catch (JSONException e) {
+			Log.i("jsonerror", e.getMessage());
+		}
+	}
+
+	class AlbumInfo {
+		@Override
+		public String toString() {
+			return "AlbumInfo [mName=" + mName + ", mImage=" + mImage + "]";
+		}
+
+		String mName;
+		String mImage;
 	}
 
 	class ViewHolder {

@@ -34,7 +34,7 @@ public class ClientApp extends Application {
 	 */
 	public static Context mContext;
 
-	public static String API_HOST = "https://192.168.1.172:8089";
+	public static String API_HOST = "http://192.168.1.172:8888";
 
 	public static Context skinContext;
 

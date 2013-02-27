@@ -8,6 +8,7 @@
 package com.minihelper;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.location.Location;
 import android.os.Bundle;
 import android.view.View;
@@ -59,9 +60,9 @@ public class MainActivity extends Activity implements OnClickListener {
 	public void onClick(View v) {
 		switch (v.getId()) {
 			case R.id.button1:
-				/*Intent TouchAct = new Intent(this, TouchImage.class);
-				TouchAct.putExtra("ImageUrl", "http://img.en.china.cn/0/0%2C0%2C49%2C62516%2C2048%2C1536%2Cb0379d67.jpg");
-				startActivity(TouchAct);*/
+				Intent intent = new Intent(this, ProessTouchAct.class);
+				intent.putExtra("ImageUrl", "http://img2.duitang.com/uploads/item/201203/26/20120326204202_YsuTE.jpeg");
+				startActivity(intent);
 				break;
 			case R.id.button2:
 	
