@@ -28,6 +28,8 @@ import java.util.HashMap;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+import com.barfoo.R;
+
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Environment;
@@ -36,7 +38,6 @@ import android.os.Message;
 import android.util.Log;
 import android.widget.ImageView;
 
-import com.barfoo.R;
 
 import dalvik.system.VMRuntime;
 
