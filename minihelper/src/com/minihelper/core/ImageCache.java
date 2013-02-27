@@ -1,12 +1,18 @@
 package com.minihelper.core;
 
+import java.util.HashMap;
+
 import android.graphics.Bitmap;
 
-public interface ImageCache {
-
-	public static Bitmap mDefaultBitmap = null;
-
-	public Bitmap get(String url);
-
-	public void put(String url, Bitmap bitmap);
+public class ImageCache {
+	private static HashMap<String, Bitmap> imageCache = new HashMap<String, Bitmap>();
+		
+		public static void put(String key, Bitmap bmp) {
+			imageCache.put(key, bmp);
+		}
+		
+		public static Bitmap get(String key) {
+			return imageCache.get(key);
+		}
 }
+

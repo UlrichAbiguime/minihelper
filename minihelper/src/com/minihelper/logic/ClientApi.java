@@ -23,6 +23,7 @@ import org.json.JSONObject;
 import android.os.Bundle;
 import android.util.Log;
 
+import com.minihelper.ClientApp;
 import com.minihelper.core.HttpRequstError;
 import com.minihelper.core.Util;
 
@@ -59,8 +60,9 @@ public class ClientApi {
 	}
 	
 
-	public static JSONArray getListView() throws HttpRequstError, JSONException {
-		JSONObject jsonobj = getjson(ApiConfig.ListHost, new Bundle());
+	public static JSONArray getListView(String pageindex,String pagesize) throws HttpRequstError, JSONException {
+		//JSONObject jsonobj = getjson(ApiConfig.ListHost, new Bundle());
+		JSONObject jsonobj = Util.httpsGet("https://61.136.59.250:8018/m/blog/result?pageindex=1&pagesize=15&cid=1258&typeid=4&token=X3Nlc3Npb25faWQ9IlpXRmpNMkptTVRCbU9UVTRaREl3WWpVelpqSmtZakE0TlRFeFpHSmxOekk9fDEzNTUzNzcwNTV8MGI1NDlhNDRlMTNkMDE2NjViOGUzODRmYmM2MGQyYmY3OGRmNzY0NyI7IGV4cGlyZXM9U2F0LCAxMiBKYW4gMjAxMyAwNTozNzozNSBHTVQ7IFBhdGg9Lw==&uid=50a9f09796948a40827bf632&", ClientApp.isDebug);
 		if (!jsonobj.getBoolean("status")) {
 			throw new HttpRequstError(jsonobj.getString("ErrorMessage"));
 		}
