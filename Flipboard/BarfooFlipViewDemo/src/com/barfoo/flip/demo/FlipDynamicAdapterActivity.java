@@ -12,6 +12,7 @@ package com.barfoo.flip.demo;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 import com.barfoo.flip.FlipViewController;
 import com.barfoo.flip.demo.adapter.TravelAdapter;
@@ -36,6 +37,9 @@ public class FlipDynamicAdapterActivity extends Activity {
 				if (position == adapter.getCount() - 1) {
 					adapter.setRepeatCount(adapter.getRepeatCount() + 5);
 					adapter.notifyDataSetChanged();
+				}
+				if (position==0) {
+					Toast.makeText(FlipDynamicAdapterActivity.this, "刷新0", Toast.LENGTH_LONG).show();
 				}
 			}
 		});
