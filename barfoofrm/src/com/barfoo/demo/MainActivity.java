@@ -7,18 +7,24 @@
  */
 package com.barfoo.demo;
 
-import com.barfoo.R;
-import com.barfoo.app.UpdateAppUtil;
-
 import android.app.Activity;
 import android.os.Bundle;
+import android.widget.ImageView;
 
-public class MainActivity extends Activity {
+import com.barfoo.R;
+import com.barfoo.core.ImageLoad;
+
+public class MainActivity extends Activity{
+	private ImageView iv_pic1;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
-		
-		new UpdateAppUtil(this, 3000);
+		iv_pic1=(ImageView)findViewById(R.id.iv_pic1);
+		ImageLoad load=new ImageLoad();
+		//http://s1.it.itc.cn/z/forum_attachment/day_110130/110130003081a87a9881d094f9.jpg
+		//http://picm.bbzhi.com/fengjingbizhi/meilitianyuanfengjingsheying/nature_sky-farm_19478_m.jpg", iv_pic1
+		load.loadBitmap("http://s1.it.itc.cn/z/forum_attachment/day_110130/110130003081a87a9881d094f9.jpg", iv_pic1, 100);
 	}
 }

@@ -22,10 +22,7 @@
                 android:id="@+id/iv_pic1"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:contentDescription="@string/hello_world" 
-                
-                
-                />
+                android:contentDescription="@string/hello_world" />
 
             <ImageView
                 android:id="@+id/iv_pic2"
@@ -56,8 +53,8 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:contentDescription="@string/hello_world" />
-            
-             <ImageView
+
+            <ImageView
                 android:id="@+id/iv_pic7"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
