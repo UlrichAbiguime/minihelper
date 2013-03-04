@@ -9,22 +9,28 @@
  */
 package com.barfoo.flip.demo.adapter;
 
+import org.json.JSONArray;
+
 import android.content.Context;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
-import com.barfoo.flipview.demo.R;
+import com.barfoo.formatstyle.AFormateStyle;
 
 public class TravelAdapter extends BaseAdapter {
 
-	private LayoutInflater inflater;
+	 
+	private Context mContext;
 
+	private JSONArray mJsonArray;
+	
 	private int repeatCount = 1;
 
-	public TravelAdapter(Context context) {
-		inflater = LayoutInflater.from(context);
+	public TravelAdapter(Context context, JSONArray jsonArray) {
+		this.mContext=context;
+		this.mJsonArray=jsonArray;
+
 	}
 
 	@Override
@@ -52,10 +58,6 @@ public class TravelAdapter extends BaseAdapter {
 
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
-		View layout = convertView;
-		if (convertView == null) {
-			layout = inflater.inflate(R.layout.complex1, null);
-		}
-		return layout;
+		return new AFormateStyle(mContext,null,mJsonArray);
 	}
 }
