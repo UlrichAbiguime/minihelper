@@ -29,16 +29,16 @@ public class DContainerFormate extends LinearLayout implements IContainer {
 	public ImageView ivc_source;
 	public TextView tvc_content;
 	private LinearLayout ll_bodyforlin;
-	boolean misScreen;
+	boolean misScreen=true;
 
 	public DContainerFormate(Context context) {
 		super(context);
 	}
 
-	public DContainerFormate(Context context, AttributeSet attrs,JSONObject json,boolean isScreen) {
+	public DContainerFormate(Context context, AttributeSet attrs,JSONObject json) {
 		super(context, attrs);
 		mContext = context;
-		misScreen=isScreen;
+		//misScreen=isScreen;
 		LayoutInflater.from(mContext).inflate(R.layout.containeritemd, this,true);
 		buildView(json);
 	}
@@ -46,7 +46,7 @@ public class DContainerFormate extends LinearLayout implements IContainer {
 	@Override
 	public void buildView(JSONObject json) {
 		View view = this;
-		ViewUtil.setViewWidHeight(this, 0.5, 0.35);
+		ViewUtil.setViewWidHeight(this, 0.5, 0.34);//竖屏0.35
 		int itemviewW = ViewUtil.getViewWidth(this);
 		int itemviewH = ViewUtil.getViewHeight(this);
 		ll_titlepic = (LinearLayout) findViewById(R.id.ll_titlepic);
@@ -66,12 +66,10 @@ public class DContainerFormate extends LinearLayout implements IContainer {
 			tvc_source.setText(json.getString("source"));
 			tvc_content.setText(json.getString("content"));
 			if(misScreen){
-				truncate(tvc_content,6);
-				
+				truncate(tvc_content,5);
 				if (Util.isJsonNull(json, "titleimage")) {
-					
-					ll_titlepic.setLayoutParams(new LayoutParams((int)(itemviewW * 0.6), LayoutParams.WRAP_CONTENT));
-					ll_bodyforlin.setLayoutParams(new LayoutParams((int)(itemviewW * 0.35), LayoutParams.WRAP_CONTENT));
+					ll_titlepic.setLayoutParams(new LayoutParams((int)(itemviewW * 0.35), LayoutParams.WRAP_CONTENT));
+					ll_bodyforlin.setLayoutParams(new LayoutParams((int)(itemviewW * 0.6), LayoutParams.WRAP_CONTENT));
 					ViewUtil.setViewPadding(ll_titlepic, ViewUtil.getViewWidth(ll_titlepic), ViewUtil.getViewHeight(ll_titlepic), 0.05, 0, 0, 0);
 					ivpicc.setImageResource(R.drawable.loginbg);
 				} else {
@@ -82,8 +80,8 @@ public class DContainerFormate extends LinearLayout implements IContainer {
 				truncate(tvc_content,11);
 				if (Util.isJsonNull(json, "titleimage")) {
 					
-					ll_titlepic.setLayoutParams(new LayoutParams((int)(itemviewW * 0.55), LayoutParams.WRAP_CONTENT));
-					ll_bodyforlin.setLayoutParams(new LayoutParams((int)(itemviewW * 0.45), LayoutParams.WRAP_CONTENT));
+					ll_titlepic.setLayoutParams(new LayoutParams((int)(itemviewW * 0.45), LayoutParams.WRAP_CONTENT));
+					ll_bodyforlin.setLayoutParams(new LayoutParams((int)(itemviewW * 0.55), LayoutParams.WRAP_CONTENT));
 					ViewUtil.setViewPadding(ll_titlepic, ViewUtil.getViewWidth(ll_titlepic), ViewUtil.getViewHeight(ll_titlepic), 0.05, 0, 0, 0);
 					ivpicc.setImageResource(R.drawable.loginbg);
 				} else {

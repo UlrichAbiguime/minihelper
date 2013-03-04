@@ -1,3 +1,12 @@
+/**
+ * Copyright 2013 Barfoo
+ * 
+ * All right reserved
+ * 
+ * Created on 2013-2-27 上午10:14:31
+ * 
+ * @author zxy
+ */
 package com.barfoo.flip.demo;
 
 import org.json.JSONArray;
@@ -5,94 +14,112 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.app.Activity;
-import android.content.res.Configuration;
 import android.content.res.Resources;
+import android.graphics.Color;
 import android.os.Bundle;
-import android.util.Log;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 
+import com.barfoo.flip.FlipViewController;
+import com.barfoo.flip.demo.adapter.FlipDynamicAdapter;
 import com.barfoo.flip.demo.data.ViewUtil;
 import com.barfoo.flipview.demo.R;
-import com.barfoo.formatstyle.BFormateStyle;
 
-public class TestDemo extends Activity {
+public class FlipDynamicActivity extends Activity {
+	private FlipViewController flipView;
 
-	Resources res;
+	private FlipDynamicAdapter adapter;
+
+	private Resources res;
+
 	private JSONArray array;
-	boolean isScreen;
 
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
+	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		ViewUtil.screenInfo(this);
-		res=getResources();
+
+		ViewUtil.screenInfo(this);// 获取屏幕的宽高
+
+		res = getResources();
+
 		getData();
-		//setContentView(new AFormateStyle(TestDemo.this,null,array));
-		setContentView(new BFormateStyle(TestDemo.this,null,array));
+
+		flipView = new FlipViewController(this, FlipViewController.HORIZONTAL);
+		flipView.setBackgroundColor(Color.WHITE);
+		adapter = new FlipDynamicAdapter(this, array);
+		flipView.setAdapter(adapter);
+
+		flipView.setOnViewFlipListener(new FlipViewController.ViewFlipListener() {
+			@Override
+			public void onViewFlipped(View view, int position) {
+				if (position == adapter.getCount() - 1) {
+					adapter.setRepeatCount(adapter.getRepeatCount() + 3);
+					adapter.notifyDataSetChanged();
+				}
+			}
+		});
+
+		setContentView(flipView);
 	}
 
 	@Override
 	protected void onResume() {
 		super.onResume();
-		Configuration configuration = getResources().getConfiguration();
-		if (configuration.orientation == Configuration.ORIENTATION_LANDSCAPE) {
-			isScreen=true;
-			Log.e("onResume", "hengping");
-		}else{
-			isScreen=false;
-			Log.e("onResume:", "shuping");
-		}
+		flipView.onResume();
 	}
-	
+
+	@Override
+	protected void onPause() {
+		super.onPause();
+		flipView.onPause();
+	}
+
 	public void getData() {
-		//title、sourceimage、source、content、titleimage
-		
+
 		array = new JSONArray();
 		try {
 			JSONObject obj0 = new JSONObject();
 			obj0.put("title", res.getString(R.string.Adatatitle));
 			obj0.put("sourceimage", "sourceimage");
-			obj0.put("source",res.getString(R.string.Adatasource));
+			obj0.put("source", res.getString(R.string.Adatasource));
 			obj0.put("content", res.getString(R.string.Adatacontent));
-			obj0.put("titleimage","image");
-			//obj0.put("titleimage",null);
+			obj0.put("titleimage", null);
 
 			JSONObject obj1 = new JSONObject();
 			obj1.put("title", res.getString(R.string.Bdatatitle));
 			obj1.put("sourceimage", "sourceimage");
-			obj1.put("source",res.getString(R.string.Bdatasource));
+			obj1.put("source", res.getString(R.string.Bdatasource));
 			obj1.put("content", res.getString(R.string.Bdatacontent));
-			obj1.put("titleimage",null);
+			obj1.put("titleimage", null);
 
 			JSONObject obj2 = new JSONObject();
 			obj2.put("title", res.getString(R.string.Cdatatitle));
 			obj2.put("sourceimage", "sourceimage");
-			obj2.put("source",res.getString(R.string.Cdatasource));
+			obj2.put("source", res.getString(R.string.Cdatasource));
 			obj2.put("content", res.getString(R.string.Cdatacontent));
-			obj2.put("titleimage",null);
-			
-			
+			obj2.put("titleimage", null);
+
 			JSONObject obj3 = new JSONObject();
 			obj3.put("title", res.getString(R.string.Ddatatitle));
 			obj3.put("sourceimage", "sourceimage");
-			obj3.put("source",res.getString(R.string.Ddatasource));
+			obj3.put("source", res.getString(R.string.Ddatasource));
 			obj3.put("content", res.getString(R.string.Ddatacontent));
-			obj3.put("titleimage",null);
-			
-			
+			obj3.put("titleimage", null);
+
 			JSONObject obj4 = new JSONObject();
 			obj4.put("title", res.getString(R.string.Edatatitle));
 			obj4.put("sourceimage", "sourceimage");
-			obj4.put("source",res.getString(R.string.Edatasource));
+			obj4.put("source", res.getString(R.string.Edatasource));
 			obj4.put("content", res.getString(R.string.Edatacontent));
-			obj4.put("titleimage",null);
-			
-			
+			obj4.put("titleimage", null);
+
 			JSONObject obj5 = new JSONObject();
 			obj5.put("title", res.getString(R.string.Fdatatitle));
 			obj5.put("sourceimage", "sourceimage");
-			obj5.put("source",res.getString(R.string.Fdatasource));
+			obj5.put("source", res.getString(R.string.Fdatasource));
 			obj5.put("content", res.getString(R.string.Fdatacontent));
-			obj5.put("titleimage",null);
+			obj5.put("titleimage", null);
 
 			array.put(obj0);
 			array.put(obj1);

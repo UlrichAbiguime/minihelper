@@ -20,10 +20,10 @@ public class BFormateStyle extends BaseFormat implements IFormat{
 		super(context);
 	}
 
-	public BFormateStyle(Context context,AttributeSet attrs,JSONArray array,boolean isScreen) {
+	public BFormateStyle(Context context,AttributeSet attrs,JSONArray array) {
 		super(context,attrs);
 		mContext=context;
-		this.misScreen=isScreen;
+		//this.misScreen=isScreen;
 		LayoutInflater.from(context).inflate(R.layout.baseviewmain, this, true);
 		buildFormat(array);
 		
@@ -35,11 +35,11 @@ public class BFormateStyle extends BaseFormat implements IFormat{
 		try {
 			
 			for(int i=0;i<3;i++){
-				getCenterLeftLinear().addView(new DContainerFormate(mContext,null,array.getJSONObject(i),misScreen));
+				getCenterLeftLinear().addView(new DContainerFormate(mContext,null,array.getJSONObject(i)));
 			}
 			
 			for(int i=3;i<6;i++){
-				getCenterRightLinear().addView(new DContainerFormate(mContext,null,array.getJSONObject(i),misScreen));
+				getCenterRightLinear().addView(new DContainerFormate(mContext,null,array.getJSONObject(i)));
 			}
 		} catch (JSONException e) {
 			e.printStackTrace();

@@ -8,6 +8,8 @@ import android.view.ViewGroup.LayoutParams;
 public class ViewUtil {
 	public static int screenW;
 	public static int screenH;
+	public static int trueScreenW;
+	public static int trueScreenH;
 	
 	public static void screenInfo(Activity activity){
 		DisplayMetrics dm=new DisplayMetrics();
