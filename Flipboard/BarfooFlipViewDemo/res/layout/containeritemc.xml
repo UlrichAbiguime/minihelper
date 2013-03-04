@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/lla_container"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/white"
+    android:orientation="vertical" >
+
+    <!-- 标题 -->
+
+    <LinearLayout
+        android:id="@+id/llc_title"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:id="@+id/tvc_title"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_margin="10dip"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:maxLines="2"
+            android:text="标题"
+            android:textColor="@color/black"
+            android:textSize="@dimen/texttitleSize" />
+    </LinearLayout>
+
+    <!-- 来源 -->
+
+    <LinearLayout
+        android:id="@+id/ll_source"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dip" >
+
+        <ImageView
+            android:id="@+id/ivc_source"
+            android:layout_width="15dip"
+            android:layout_height="15dip"
+            android:layout_marginRight="5dip" />
+
+        <TextView
+            android:id="@+id/tvc_source"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:maxLines="2"
+            android:text="来源"
+            android:textColor="@color/black"
+            android:textSize="@dimen/textSourceSize" />
+    </LinearLayout>
+
+    <!-- 内容 -->
+
+    <LinearLayout
+        android:id="@+id/llc_tvcontent"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:id="@+id/tvc_content"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="内容A"
+            android:textColor="@color/black"
+            android:textSize="@dimen/textContentSize" />
+
+        <!-- 图片 -->
+
+        <LinearLayout
+            android:id="@+id/ll_titlepic"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" >
+
+            <ImageView
+                android:id="@+id/ivpicc"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:background="@drawable/feed_taggeduser_image" />
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

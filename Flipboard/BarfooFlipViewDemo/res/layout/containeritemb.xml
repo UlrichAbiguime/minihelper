@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/orange"
+    android:orientation="vertical" >
+
+    <!-- 标题 -->
+
+    <LinearLayout
+        android:id="@+id/ll_title"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_margin="10dip"
+            android:ellipsize="end"
+            android:gravity="center_vertical|left"
+            android:maxLines="2"
+            android:text="标题"
+            android:textColor="@color/black"
+            android:textSize="@dimen/texttitleSize" />
+    </LinearLayout>
+
+    <!-- 来源 -->
+
+    <LinearLayout
+        android:id="@+id/ll_source"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dip"
+        android:layout_marginRight="10dip" >
+
+        <!-- 来源图片 -->
+
+        <LinearLayout
+            android:id="@+id/ll_ivsourceforlin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+
+            <ImageView
+                android:id="@+id/iv_sourceicon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="5dip"
+                android:background="@drawable/feed_taggeduser_image" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_tvsourceforlin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" >
+
+            <TextView
+                android:id="@+id/tv_source"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:text="来源"
+                android:textColor="@color/black"
+                android:textSize="@dimen/textSourceSize" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- 内容 -->
+
+    <LinearLayout
+        android:id="@+id/ll_tvcontent"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dip" >
+
+        <TextView
+            android:id="@+id/tv_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical|left"
+            android:text="内容A"
+            android:textColor="@color/black"
+            android:textSize="@dimen/textContentSize" />
+    </LinearLayout>
+
+    <!-- 图片 -->
+
+    <LinearLayout
+        android:id="@+id/ll_image"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" >
+
+        <ImageView
+            android:id="@+id/iv_image"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:background="@drawable/feed_taggeduser_image" />
+    </LinearLayout>
+
+</LinearLayout>
