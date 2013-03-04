@@ -15,7 +15,6 @@ import android.view.View;
 
 import com.barfoo.flip.FlipViewController;
 import com.barfoo.flip.demo.adapter.TravelAdapter;
-import com.barfoo.flipview.demo.R;
 
 public class FlipDynamicAdapterActivity extends Activity {
 	private FlipViewController flipView;
@@ -26,8 +25,6 @@ public class FlipDynamicAdapterActivity extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
-		setTitle(R.string.activity_title);
-
 		flipView = new FlipViewController(this, FlipViewController.HORIZONTAL);
 
 		adapter = new TravelAdapter(this);
@@ -37,7 +34,7 @@ public class FlipDynamicAdapterActivity extends Activity {
 			@Override
 			public void onViewFlipped(View view, int position) {
 				if (position == adapter.getCount() - 1) {
-					adapter.setRepeatCount(adapter.getRepeatCount() + 1);
+					adapter.setRepeatCount(adapter.getRepeatCount() + 5);
 					adapter.notifyDataSetChanged();
 				}
 			}
