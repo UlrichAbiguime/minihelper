@@ -12,17 +12,13 @@ import com.barfoo.flipview.demo.R;
 
 public class LayoutFormat extends LinearLayout {
 
-	LinearLayout basetop;
-	LinearLayout basebottom;
-	LinearLayout basecenter;
-	LinearLayout centerleft;
-	LinearLayout centerright;
-	private viewHolder mHolder;
+	LinearLayout baseheader;
+	LinearLayout basefooder;
+	LinearLayout basefragment;
 
 	public LayoutFormat(Context context) {
 		super(context);
 		LayoutInflater.from(context).inflate(R.layout.layoutmain, this, true);
-		mHolder = new viewHolder();
 	}
 
 	public LayoutFormat(Context context, AttributeSet attrs) {
@@ -31,30 +27,25 @@ public class LayoutFormat extends LinearLayout {
 	}
 
 	public LinearLayout getHeaderLinear() {
-		if (mHolder.mLayoutHeader == null) {
-			mHolder.mLayoutHeader = (LinearLayout) findViewById(R.id.layoutheader);
+		if (baseheader == null) {
+			baseheader = (LinearLayout) findViewById(R.id.layoutheader);
 		}
-		return mHolder.mLayoutHeader;
+		return baseheader;
 	}
 
 	public LinearLayout getFragmentLinear() {
-		if (mHolder.mLayoutFragment == null) {
-			mHolder.mLayoutFragment = (LinearLayout) findViewById(R.id.layoutfragment);
+		if (basefragment == null) {
+			basefragment = (LinearLayout) findViewById(R.id.layoutfragment);
 		}
-		return mHolder.mLayoutFragment;
+		return basefragment;
 	}
 
 	public LinearLayout getFooderLinear() {
-		if (mHolder.mLayoutFooder == null) {
-			mHolder.mLayoutFooder = (LinearLayout) findViewById(R.id.layoutfooder);
+		if (basefooder == null) {
+			basefooder = (LinearLayout) findViewById(R.id.layoutfooder);
 		}
-		return mHolder.mLayoutFooder;
+		return basefooder;
 	}
 
-	class viewHolder {
-		LinearLayout mLayoutHeader;
-		LinearLayout mLayoutFragment;
-		LinearLayout mLayoutFooder;
-	}
 
 }

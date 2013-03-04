@@ -21,6 +21,7 @@ import android.widget.LinearLayout;
 
 import com.barfoo.flipview.demo.R;
 import com.barfoo.formatstyle.AFormateStyle;
+import com.barfoo.formatstyle.LayoutFormat;
 
 public class FlipDynamicAdapter extends BaseAdapter {
 
@@ -67,17 +68,7 @@ public class FlipDynamicAdapter extends BaseAdapter {
 
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
-		View view = convertView;
-		viewHolder mHolder = new viewHolder();
-		if (convertView == null) {
-			view = LayoutInflater.from(mContext).inflate(R.layout.layoutmain, null);
-			mHolder.mLayoutHeader = (LinearLayout) view.findViewById(R.id.layoutheader);
-			mHolder.mLayoutFragment = (LinearLayout) view.findViewById(R.id.layoutfragment);
-			mHolder.mLayoutFooder = (LinearLayout) view.findViewById(R.id.layoutfooder);
-			view.setTag(mHolder);
-		} else {
-			mHolder = (viewHolder) view.getTag();
-		}
+		LayoutFormat layoutFormat = new LayoutFormat(mContext);
 
 		for (int i = 0; i <= getCount(); i++) {
 			ImageView image = new ImageView(mContext);
@@ -88,12 +79,12 @@ public class FlipDynamicAdapter extends BaseAdapter {
 			}
 
 			image.setLayoutParams(new LinearLayout.LayoutParams(32, 32));
-			mHolder.mLayoutHeader.addView(image);
+			layoutFormat.getHeaderLinear().addView(image);
 		}
 
-		mHolder.mLayoutFragment.addView(new AFormateStyle(mContext, null, mJsonArray));
+		layoutFormat.getFragmentLinear().addView(new AFormateStyle(mContext, null, mJsonArray));
 
-		return view;
+		return layoutFormat;
 	}
 
 	class viewHolder {
