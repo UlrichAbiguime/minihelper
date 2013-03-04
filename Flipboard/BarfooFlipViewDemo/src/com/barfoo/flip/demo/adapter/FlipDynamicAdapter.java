@@ -12,7 +12,6 @@ package com.barfoo.flip.demo.adapter;
 import org.json.JSONArray;
 
 import android.content.Context;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -31,12 +30,6 @@ public class FlipDynamicAdapter extends BaseAdapter {
 	private JSONArray mJsonArray;
 
 	private int repeatCount = 1;
-
-	private LinearLayout layoutfragment;
-
-	private LinearLayout layoutheader;
-
-	private LinearLayout layoutfooder;
 
 	public FlipDynamicAdapter(Context context, JSONArray jsonArray) {
 		this.mContext = context;
@@ -80,14 +73,13 @@ public class FlipDynamicAdapter extends BaseAdapter {
 			}
 
 			image.setLayoutParams(new LinearLayout.LayoutParams(32, 32));
-			layoutFormat.getHeaderLinear().addView(image);
+			layoutFormat.getFooderLinear().addView(image);
 		}
 		
 		ViewUtil.setViewHeight(layoutFormat.getHeaderLinear(),0.1);
 		ViewUtil.setViewHeight(layoutFormat.getFragmentLinear(),0.8);
 		ViewUtil.setViewHeight(layoutFormat.getFooderLinear(),0.1);
 		ViewUtil.trueScreenH=ViewUtil.getViewHeight(layoutFormat.getFragmentLinear());
-		
 		layoutFormat.getFragmentLinear().addView(new AFormateStyle(mContext, null, mJsonArray));
 		
 
