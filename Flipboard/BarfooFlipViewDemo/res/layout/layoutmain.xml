@@ -9,7 +9,6 @@
         android:id="@+id/layoutheader"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content" >
-
     </LinearLayout>
 
     <LinearLayout
@@ -21,11 +20,6 @@
         android:id="@+id/layoutfooder"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content" >
-
-        <TextView
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:text="footer" />
     </LinearLayout>
 
 </LinearLayout>
