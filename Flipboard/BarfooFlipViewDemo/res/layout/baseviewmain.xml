@@ -9,7 +9,7 @@
         android:id="@+id/ll_basetop"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-         >
+        android:orientation="vertical" >
     </LinearLayout>
 
     <View
@@ -26,8 +26,7 @@
             android:id="@+id/ll_centerleft"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginRight="5dip"
-            >
+            android:orientation="vertical" >
         </LinearLayout>
 
         <View
@@ -39,8 +38,8 @@
             android:id="@+id/ll_centerright"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-           android:layout_marginLeft="5dip"
-            android:background="@color/white" >
+            android:background="@color/white"
+            android:orientation="vertical" >
         </LinearLayout>
     </LinearLayout>
 
@@ -53,7 +52,7 @@
         android:id="@+id/ll_basebottom"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-         >
+        android:orientation="vertical" >
     </LinearLayout>
 
 </LinearLayout>

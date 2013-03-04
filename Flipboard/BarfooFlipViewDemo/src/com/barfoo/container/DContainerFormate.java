@@ -28,14 +28,17 @@ public class DContainerFormate extends LinearLayout implements IContainer {
 	public TextView tvc_source;
 	public ImageView ivc_source;
 	public TextView tvc_content;
+	private LinearLayout ll_bodyforlin;
+	boolean misScreen;
 
 	public DContainerFormate(Context context) {
 		super(context);
 	}
 
-	public DContainerFormate(Context context, AttributeSet attrs,JSONObject json) {
+	public DContainerFormate(Context context, AttributeSet attrs,JSONObject json,boolean isScreen) {
 		super(context, attrs);
 		mContext = context;
+		misScreen=isScreen;
 		LayoutInflater.from(mContext).inflate(R.layout.containeritemd, this,true);
 		buildView(json);
 	}
@@ -43,15 +46,16 @@ public class DContainerFormate extends LinearLayout implements IContainer {
 	@Override
 	public void buildView(JSONObject json) {
 		View view = this;
-		ViewUtil.setViewWidHeight(this, 0.5, 0.3);
+		ViewUtil.setViewWidHeight(this, 0.5, 0.35);
 		int itemviewW = ViewUtil.getViewWidth(this);
 		int itemviewH = ViewUtil.getViewHeight(this);
 		ll_titlepic = (LinearLayout) findViewById(R.id.ll_titlepic);
+		ll_bodyforlin = (LinearLayout) findViewById(R.id.ll_contextforlin);
 		ivpicc = (ImageView) findViewById(R.id.ivpicc);
+		//ViewUtil.setViewWidth(ll_bodyforlin, groupviewWidth, width)
 		tvc_title = (TextView) findViewById(R.id.tvc_title);
 		tvc_source = (TextView) findViewById(R.id.tvc_source);
 		ivc_source = (ImageView) findViewById(R.id.ivc_source);
-		ViewUtil.setViewWidHeight(ll_titlepic, itemviewW, itemviewH, 1, 0.5);
 		tvc_content = (TextView) findViewById(R.id.tvc_content);
 
 		try {
@@ -61,12 +65,31 @@ public class DContainerFormate extends LinearLayout implements IContainer {
 			}
 			tvc_source.setText(json.getString("source"));
 			tvc_content.setText(json.getString("content"));
-			truncate(tvc_content,25);
-
-			if (Util.isJsonNull(json, "titleimage")) {
-				ivpicc.setImageResource(R.drawable.bg);
-			} else {
-				ll_titlepic.setVisibility(View.GONE);
+			if(misScreen){
+				truncate(tvc_content,6);
+				
+				if (Util.isJsonNull(json, "titleimage")) {
+					
+					ll_titlepic.setLayoutParams(new LayoutParams((int)(itemviewW * 0.6), LayoutParams.WRAP_CONTENT));
+					ll_bodyforlin.setLayoutParams(new LayoutParams((int)(itemviewW * 0.35), LayoutParams.WRAP_CONTENT));
+					ViewUtil.setViewPadding(ll_titlepic, ViewUtil.getViewWidth(ll_titlepic), ViewUtil.getViewHeight(ll_titlepic), 0.05, 0, 0, 0);
+					ivpicc.setImageResource(R.drawable.loginbg);
+				} else {
+					//ViewUtil.setViewWidHeight(ll_titlepic, itemviewW, itemviewH,0.5, 0.5);
+					ll_titlepic.setVisibility(View.GONE);
+				}
+			}else{
+				truncate(tvc_content,11);
+				if (Util.isJsonNull(json, "titleimage")) {
+					
+					ll_titlepic.setLayoutParams(new LayoutParams((int)(itemviewW * 0.55), LayoutParams.WRAP_CONTENT));
+					ll_bodyforlin.setLayoutParams(new LayoutParams((int)(itemviewW * 0.45), LayoutParams.WRAP_CONTENT));
+					ViewUtil.setViewPadding(ll_titlepic, ViewUtil.getViewWidth(ll_titlepic), ViewUtil.getViewHeight(ll_titlepic), 0.05, 0, 0, 0);
+					ivpicc.setImageResource(R.drawable.loginbg);
+				} else {
+					//ViewUtil.setViewWidHeight(ll_titlepic, itemviewW, itemviewH,0.5, 0.5);
+					ll_titlepic.setVisibility(View.GONE);
+				}
 			}
 		} catch (JSONException e) {
 			e.printStackTrace();

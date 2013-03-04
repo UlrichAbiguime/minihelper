@@ -1,9 +1,17 @@
 <resources>
 
     <style name="AppTheme" parent="android:Theme.Light" />
-    
+
     <style name="AppTheme1" parent="@android:style/Theme.NoTitleBar.Fullscreen" />
+
     <color name="white">#ffffff</color>
     <color name="transparentBlack">#55000000</color>
+
+    <style name="itemstyle">
+        <item name="android:layout_marginLeft">10dip</item>
+        <item name="android:layout_marginRight">10dip</item>
+         <item name="android:layout_marginTop">5dip</item>
+          <item name="android:layout_marginBottom">5dip</item>
+    </style>
 
 </resources>

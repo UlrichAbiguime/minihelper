@@ -34,11 +34,14 @@ public final class R {
         public static final int orientation=0x7f010000;
     }
     public static final class color {
-        public static final int black=0x7f070005;
+        public static final int black=0x7f070008;
         public static final int blue=0x7f070003;
         public static final int darkgrey=0x7f070002;
-        public static final int newgreen=0x7f070007;
-        public static final int orange=0x7f070006;
+        public static final int greywhite=0x7f070007;
+        public static final int lightgray=0x7f070005;
+        public static final int newgreen=0x7f07000a;
+        public static final int newwhitegrey=0x7f070006;
+        public static final int orange=0x7f070009;
         public static final int red=0x7f070004;
         public static final int transparentBlack=0x7f070000;
         public static final int white=0x7f070001;
@@ -55,18 +58,21 @@ public final class R {
         public static final int ic_action_search=0x7f020002;
         public static final int ic_launcher=0x7f020003;
         public static final int icon_place_checkin=0x7f020004;
-        public static final int newbg=0x7f020005;
+        public static final int line=0x7f020005;
+        public static final int loginbg=0x7f020006;
+        public static final int newbg=0x7f020007;
     }
     public static final class id {
         public static final int ARGB_4444=0x7f040003;
         public static final int ARGB_8888=0x7f040002;
         public static final int RGB_565=0x7f040004;
-        public static final int about=0x7f040027;
+        public static final int about=0x7f040029;
         public static final int description=0x7f04000e;
-        public static final int flipView=0x7f040026;
-        public static final int flip_text_view_fragment=0x7f040024;
+        public static final int dividline=0x7f040024;
+        public static final int flipView=0x7f040028;
+        public static final int flip_text_view_fragment=0x7f040026;
         public static final int horizontal=0x7f040001;
-        public static final int iv=0x7f040025;
+        public static final int iv=0x7f040027;
         public static final int iv_image=0x7f040011;
         public static final int iv_sourceicon=0x7f040016;
         public static final int ivc_source=0x7f04001d;
@@ -76,6 +82,7 @@ public final class R {
         public static final int ll_basetop=0x7f040006;
         public static final int ll_centerleft=0x7f040008;
         public static final int ll_centerright=0x7f040009;
+        public static final int ll_contextforlin=0x7f040023;
         public static final int ll_image=0x7f040010;
         public static final int ll_ivsourceforlin=0x7f040015;
         public static final int ll_source=0x7f040014;
@@ -89,7 +96,7 @@ public final class R {
         public static final int photo=0x7f04000c;
         public static final int tag_async_image_view_position=0x7f040005;
         public static final int title=0x7f04000b;
-        public static final int toggle_button=0x7f040023;
+        public static final int toggle_button=0x7f040025;
         public static final int tv_content=0x7f04001a;
         public static final int tv_source=0x7f040018;
         public static final int tv_title=0x7f040013;
@@ -143,6 +150,7 @@ public final class R {
     public static final class style {
         public static final int AppTheme=0x7f060000;
         public static final int AppTheme1=0x7f060001;
+        public static final int itemstyle=0x7f060002;
     }
     public static final class styleable {
         /** Attributes that can be used with a FlipViewController.

@@ -25,6 +25,9 @@
     <color name="blue">#19a6a7</color>
     <color name="red">#FFCCCC</color>
     <color name="darkgrey">#666666</color>
+    <color name="lightgray">#5e5e5e</color>
+    <color name="newwhitegrey">#303030</color>
+    <color name="greywhite">#f0f0f0</color>
     <color name="black">#000000</color>
     <color name="orange">#d26e00</color>
     <color name="newgreen">#3d813d</color>

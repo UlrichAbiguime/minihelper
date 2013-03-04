@@ -3,6 +3,9 @@ package com.barfoo.flip.demo.data;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.app.Activity;
+import android.content.pm.ActivityInfo;
+
 public class Util {
 
 	/**
@@ -19,4 +22,18 @@ public class Util {
 			return false;
 		}
 	}
+	
+	/**
+	 *  获取当前的屏幕是横屏还是竖屏
+	 * @param activity
+	 * @return
+	 */
+	public static boolean isScreenOrientation(Activity activity){
+		
+		if(activity.getRequestedOrientation() ==ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE){
+			return true;
+		}else{
+			return false;
+		}
+	} 
 }

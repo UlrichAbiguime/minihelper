@@ -5,8 +5,10 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.app.Activity;
+import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Bundle;
+import android.util.Log;
 
 import com.barfoo.flip.demo.data.ViewUtil;
 import com.barfoo.flipview.demo.R;
@@ -16,6 +18,7 @@ public class TestDemo extends Activity {
 
 	Resources res;
 	private JSONArray array;
+	boolean isScreen;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -24,9 +27,22 @@ public class TestDemo extends Activity {
 		res=getResources();
 		getData();
 		//setContentView(new AFormateStyle(TestDemo.this,null,array));
-		setContentView(new BFormateStyle(TestDemo.this,null,array));
+		setContentView(new BFormateStyle(TestDemo.this,null,array,isScreen));
 	}
 
+	@Override
+	protected void onResume() {
+		super.onResume();
+		Configuration configuration = getResources().getConfiguration();
+		if (configuration.orientation == Configuration.ORIENTATION_LANDSCAPE) {
+			isScreen=true;
+			Log.e("onResume", "hengping");
+		}else{
+			isScreen=false;
+			Log.e("onResume:", "shuping");
+		}
+	}
+	
 	public void getData() {
 		//title、sourceimage、source、content、titleimage
 		
@@ -37,8 +53,8 @@ public class TestDemo extends Activity {
 			obj0.put("sourceimage", "sourceimage");
 			obj0.put("source",res.getString(R.string.Adatasource));
 			obj0.put("content", res.getString(R.string.Adatacontent));
-			//obj0.put("titleimage","image");
-			obj0.put("titleimage",null);
+			obj0.put("titleimage","image");
+			//obj0.put("titleimage",null);
 
 			JSONObject obj1 = new JSONObject();
 			obj1.put("title", res.getString(R.string.Bdatatitle));

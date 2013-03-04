@@ -1,34 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/lla_container"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:background="@color/white"
     android:orientation="vertical" >
 
-    <!-- 图片 -->
-
-    <LinearLayout
-        android:id="@+id/ll_image"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content" >
-
-        <ImageView
-            android:id="@+id/iv_image"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:background="@drawable/feed_taggeduser_image" />
-    </LinearLayout>
-
     <!-- 标题 -->
-
     <LinearLayout
-        android:id="@+id/ll_title"
+        android:id="@+id/llc_title"
+        style="@style/itemstyle"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true" >
 
         <TextView
-            android:id="@+id/tv_title"
+            android:id="@+id/tvc_title"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:layout_margin="10dip"
@@ -44,61 +31,72 @@
 
     <LinearLayout
         android:id="@+id/ll_source"
+        style="@style/itemstyle"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="10dip"
-        android:layout_marginRight="10dip" >
+        android:layout_below="@id/llc_title" >
 
-        <!-- 来源图片 -->
+        <ImageView
+            android:id="@+id/ivc_source"
+            android:layout_width="15dip"
+            android:layout_height="15dip"
+            android:layout_marginRight="5dip" />
 
-        <LinearLayout
-            android:id="@+id/ll_ivsourceforlin"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" >
-
-            <ImageView
-                android:id="@+id/iv_sourceicon"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="5dip"
-                android:background="@drawable/feed_taggeduser_image" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/ll_tvsourceforlin"
+        <TextView
+            android:id="@+id/tvc_source"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1" >
-
-            <TextView
-                android:id="@+id/tv_source"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:ellipsize="end"
-                android:maxLines="2"
-                android:text="来源"
-                android:textColor="@color/black"
-                android:textSize="@dimen/textSourceSize" />
-        </LinearLayout>
+            android:ellipsize="end"
+            android:gravity="center"
+            android:maxLines="2"
+            android:text="来源"
+            android:textColor="@color/black"
+            android:textSize="@dimen/textSourceSize" />
     </LinearLayout>
 
     <!-- 内容 -->
 
     <LinearLayout
-        android:id="@+id/ll_tvcontent"
+        android:id="@+id/llc_tvcontent"
+        style="@style/itemstyle"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:padding="10dip" >
+        android:layout_below="@id/ll_source" >
 
-        <TextView
-            android:id="@+id/tv_content"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical|left"
-            android:text="内容A"
-            android:textColor="@color/black"
-            android:textSize="@dimen/textContentSize" />
+        <LinearLayout
+            android:id="@+id/ll_contextforlin"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:id="@+id/tvc_content"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:gravity="center_vertical|left"
+                android:text="内容A"
+                android:textColor="@color/black"
+                android:textSize="@dimen/textContentSize" />
+        </LinearLayout>
+        <!-- 图片 -->
+
+        <LinearLayout
+            android:id="@+id/ll_titlepic"
+            android:layout_width="fill_parent"
+            android:layout_marginLeft="5dip"
+            android:layout_height="wrap_content" >
+
+            <ImageView
+                android:id="@+id/ivpicc"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent" />
+        </LinearLayout>
     </LinearLayout>
-    
 
-</LinearLayout>
+    <View
+        android:id="@+id/dividline"
+        android:layout_width="fill_parent"
+        android:layout_height="1dip"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/line" />
+
+</RelativeLayout>
