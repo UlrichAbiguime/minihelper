@@ -18,17 +18,18 @@ import android.content.res.Resources;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Toast;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 import com.barfoo.flip.FlipViewController;
-import com.barfoo.flip.demo.adapter.TravelAdapter;
+import com.barfoo.flip.demo.adapter.FlipDynamicAdapter;
 import com.barfoo.flip.demo.data.ViewUtil;
 import com.barfoo.flipview.demo.R;
 
-public class FlipDynamicAdapterActivity extends Activity {
+public class FlipDynamicActivity extends Activity {
 	private FlipViewController flipView;
 
-	private TravelAdapter adapter;
+	private FlipDynamicAdapter adapter;
 
 	private Resources res;
 
@@ -39,21 +40,21 @@ public class FlipDynamicAdapterActivity extends Activity {
 		super.onCreate(savedInstanceState);
 
 		ViewUtil.screenInfo(this);// 获取屏幕的宽高
-		
+
 		res = getResources();
 
 		getData();
 
 		flipView = new FlipViewController(this, FlipViewController.HORIZONTAL);
 		flipView.setBackgroundColor(Color.WHITE);
-		adapter = new TravelAdapter(this, array);
+		adapter = new FlipDynamicAdapter(this, array);
 		flipView.setAdapter(adapter);
 
 		flipView.setOnViewFlipListener(new FlipViewController.ViewFlipListener() {
 			@Override
 			public void onViewFlipped(View view, int position) {
 				if (position == adapter.getCount() - 1) {
-					adapter.setRepeatCount(adapter.getRepeatCount() +2);
+					adapter.setRepeatCount(adapter.getRepeatCount() + 3);
 					adapter.notifyDataSetChanged();
 				}
 			}
@@ -75,7 +76,6 @@ public class FlipDynamicAdapterActivity extends Activity {
 	}
 
 	public void getData() {
-		// title、sourceimage、source、content、titleimage
 
 		array = new JSONArray();
 		try {
@@ -84,7 +84,6 @@ public class FlipDynamicAdapterActivity extends Activity {
 			obj0.put("sourceimage", "sourceimage");
 			obj0.put("source", res.getString(R.string.Adatasource));
 			obj0.put("content", res.getString(R.string.Adatacontent));
-			// obj0.put("titleimage","image");
 			obj0.put("titleimage", null);
 
 			JSONObject obj1 = new JSONObject();

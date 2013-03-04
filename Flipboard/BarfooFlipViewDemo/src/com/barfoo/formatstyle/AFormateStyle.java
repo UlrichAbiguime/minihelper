@@ -42,6 +42,8 @@ public  class  AFormateStyle extends BaseFormat implements IFormat{
 			getTopLinear().addView(new AContainerFormate(mContext, null,array.getJSONObject(0)));
 			getCenterLeftLinear().addView(new BContainerFormate(mContext, null,array.getJSONObject(1)));
 			getCenterRightLinear().addView(new CContainerFormate(mContext, null,array.getJSONObject(2)));
+			
+			
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}

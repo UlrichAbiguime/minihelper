@@ -2,7 +2,6 @@
 
     <style name="AppTheme" parent="android:Theme.Light" />
     
-    <style name="AppTheme1" parent="@android:style/Theme.NoTitleBar.Fullscreen" />
     <color name="white">#ffffff</color>
     <color name="transparentBlack">#55000000</color>
 

@@ -61,12 +61,15 @@ public final class R {
         public static final int ARGB_4444=0x7f040003;
         public static final int ARGB_8888=0x7f040002;
         public static final int RGB_565=0x7f040004;
-        public static final int about=0x7f04001f;
+        public static final int about=0x7f040022;
         public static final int horizontal=0x7f040001;
         public static final int iv_image=0x7f04000d;
         public static final int iv_sourceicon=0x7f040012;
         public static final int ivc_source=0x7f040019;
         public static final int ivpicc=0x7f04001e;
+        public static final int layoutfooder=0x7f040021;
+        public static final int layoutfragment=0x7f040020;
+        public static final int layoutheader=0x7f04001f;
         public static final int ll_basebottom=0x7f04000a;
         public static final int ll_basecenter=0x7f040007;
         public static final int ll_basetop=0x7f040006;
@@ -97,6 +100,7 @@ public final class R {
         public static final int containeritemb=0x7f030002;
         public static final int containeritemc=0x7f030003;
         public static final int containeritemd=0x7f030004;
+        public static final int layoutmain=0x7f030005;
     }
     public static final class menu {
         public static final int main=0x7f090000;
@@ -129,7 +133,6 @@ public final class R {
     }
     public static final class style {
         public static final int AppTheme=0x7f060000;
-        public static final int AppTheme1=0x7f060001;
     }
     public static final class styleable {
         /** Attributes that can be used with a FlipViewController.
