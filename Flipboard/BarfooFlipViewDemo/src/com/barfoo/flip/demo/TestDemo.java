@@ -29,19 +29,6 @@ public class TestDemo extends Activity {
 		//setContentView(new AFormateStyle(TestDemo.this,null,array));
 		setContentView(new BFormateStyle(TestDemo.this,null,array));
 	}
-
-	@Override
-	protected void onResume() {
-		super.onResume();
-		Configuration configuration = getResources().getConfiguration();
-		if (configuration.orientation == Configuration.ORIENTATION_LANDSCAPE) {
-			isScreen=true;
-			Log.e("onResume", "hengping");
-		}else{
-			isScreen=false;
-			Log.e("onResume:", "shuping");
-		}
-	}
 	
 	public void getData() {
 		//title、sourceimage、source、content、titleimage

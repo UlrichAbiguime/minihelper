@@ -141,11 +141,13 @@ public class ViewUtil {
 		view.setPadding((int)(width * proleft),(int)(height *protop),(int)(width * proright),(int)(height *probottom));
 	}
 	
+	
 	/**
 	 * 获取为设置view的宽度
 	 * @param view
 	 * @return
 	 */
+	/**
 	public static int getNoSetViewWidth(View view){
 		if(view.getLayoutParams().width==0){
 			return setViewWidthHeight(view).getMeasuredWidth();
@@ -172,4 +174,5 @@ public class ViewUtil {
 		return view;
 	}
 	
+	**/
 }

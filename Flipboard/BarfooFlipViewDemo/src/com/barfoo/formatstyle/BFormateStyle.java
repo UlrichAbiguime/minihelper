@@ -3,6 +3,7 @@ package com.barfoo.formatstyle;
 import org.json.JSONArray;
 import org.json.JSONException;
 
+import android.app.Activity;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
@@ -12,13 +13,13 @@ import com.barfoo.flipview.demo.R;
 
 public class BFormateStyle extends BaseFormat implements IFormat{
 
-	Context mContext;
+	Activity mContext;
 	boolean misScreen;
 	public BFormateStyle(Context context) {
 		super(context);
 	}
 
-	public BFormateStyle(Context context,AttributeSet attrs,JSONArray array) {
+	public BFormateStyle(Activity context,AttributeSet attrs,JSONArray array) {
 		super(context,attrs);
 		mContext=context;
 		LayoutInflater.from(context).inflate(R.layout.baseviewmain, this, true);
