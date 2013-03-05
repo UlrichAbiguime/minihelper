@@ -78,10 +78,10 @@ public class FlipDynamicAdapter extends BaseAdapter {
 		ViewUtil.setViewWidHeight(layoutFormat.getHeaderLinear(), 1, 0.1);
 		ViewUtil.setViewWidHeight(layoutFormat.getFragmentLinear(), 1, 0.8);
 		ViewUtil.setViewWidHeight(layoutFormat.getFooderLinear(), 1, 0.1);
-		ViewUtil.trueScreenH=ViewUtil.getViewHeight(layoutFormat.getFragmentLinear());
-		ViewUtil.trueScreenW=ViewUtil.getViewWidth(layoutFormat.getFragmentLinear());
+		ViewUtil.trueScreenH = ViewUtil.getViewHeight(layoutFormat.getFragmentLinear());
+		ViewUtil.trueScreenW = ViewUtil.getViewWidth(layoutFormat.getFragmentLinear());
+
 		layoutFormat.getFragmentLinear().addView(new AFormateStyle(mContext, null, mJsonArray));
-		
 
 		return layoutFormat;
 	}
