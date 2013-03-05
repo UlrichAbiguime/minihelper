@@ -82,7 +82,6 @@ public class FlipDynamicAdapter extends BaseAdapter {
 		ViewUtil.trueScreenW=ViewUtil.getViewWidth(layoutFormat.getFragmentLinear());
 		layoutFormat.getFragmentLinear().addView(new AFormateStyle(mContext, null, mJsonArray));
 		
-
 		return layoutFormat;
 	}
 }

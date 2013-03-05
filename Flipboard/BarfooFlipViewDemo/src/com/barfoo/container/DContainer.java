@@ -14,26 +14,26 @@ import com.barfoo.flipview.demo.R;
 
 public class DContainer extends AContainer implements IContainer {
 
-	Activity mContext;
+	Context mContext;
 
 	public DContainer(Context context) {
 		super(context);
 	}
 
-	public DContainer(Activity context, AttributeSet attrs,JSONObject json) {
+	public DContainer(Context context, AttributeSet attrs,JSONObject json) {
 		super(context, attrs, json);
 		mContext = context;
 	}
 	
 	@Override
 	public void buildView(JSONObject json) {
-		ViewUtil.setViewWidHeight(this, ViewUtil.trueScreenW, ViewUtil.trueScreenH,  0.5, 0.346);// 竖屏0.35
+		ViewUtil.setViewWidHeight(this,0.5, 0.346);// 竖屏0.35
+		//ViewUtil.setViewWidHeight(this, ViewUtil.trueScreenW, ViewUtil.trueScreenH,  0.5, 0.346);// 竖屏0.35
 		int itemviewW = ViewUtil.getViewWidth(this);
 		int itemviewH = ViewUtil.getViewHeight(this);
 
 		ViewUtil.setViewWidHeight(ll_title, itemviewW, itemviewH, 1, 0.2);
 		ViewUtil.setViewWidHeight(ll_source, itemviewW, itemviewH, 1, 0.05);
-
 		
 		try {
 			if (Util.isJsonNull(json, "titleimage")) {

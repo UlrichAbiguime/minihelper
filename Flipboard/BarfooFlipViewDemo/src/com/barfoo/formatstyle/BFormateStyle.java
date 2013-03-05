@@ -13,13 +13,13 @@ import com.barfoo.flipview.demo.R;
 
 public class BFormateStyle extends BaseFormat implements IFormat{
 
-	Activity mContext;
+	Context mContext;
 	boolean misScreen;
 	public BFormateStyle(Context context) {
 		super(context);
 	}
 
-	public BFormateStyle(Activity context,AttributeSet attrs,JSONArray array) {
+	public BFormateStyle(Context context,AttributeSet attrs,JSONArray array) {
 		super(context,attrs);
 		mContext=context;
 		LayoutInflater.from(context).inflate(R.layout.baseviewmain, this, true);
