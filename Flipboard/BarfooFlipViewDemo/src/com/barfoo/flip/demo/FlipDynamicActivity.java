@@ -18,8 +18,6 @@ import android.content.res.Resources;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
 
 import com.barfoo.flip.FlipViewController;
 import com.barfoo.flip.demo.adapter.FlipDynamicAdapter;
@@ -84,42 +82,42 @@ public class FlipDynamicActivity extends Activity {
 			obj0.put("sourceimage", "sourceimage");
 			obj0.put("source", res.getString(R.string.Adatasource));
 			obj0.put("content", res.getString(R.string.Adatacontent));
-			obj0.put("titleimage", null);
+			obj0.put("titleimage", "");
 
 			JSONObject obj1 = new JSONObject();
 			obj1.put("title", res.getString(R.string.Bdatatitle));
 			obj1.put("sourceimage", "sourceimage");
 			obj1.put("source", res.getString(R.string.Bdatasource));
 			obj1.put("content", res.getString(R.string.Bdatacontent));
-			obj1.put("titleimage", null);
+			obj1.put("titleimage", "");
 
 			JSONObject obj2 = new JSONObject();
 			obj2.put("title", res.getString(R.string.Cdatatitle));
 			obj2.put("sourceimage", "sourceimage");
 			obj2.put("source", res.getString(R.string.Cdatasource));
 			obj2.put("content", res.getString(R.string.Cdatacontent));
-			obj2.put("titleimage", null);
+			obj2.put("titleimage", "sourceimage");
 
 			JSONObject obj3 = new JSONObject();
 			obj3.put("title", res.getString(R.string.Ddatatitle));
 			obj3.put("sourceimage", "sourceimage");
 			obj3.put("source", res.getString(R.string.Ddatasource));
 			obj3.put("content", res.getString(R.string.Ddatacontent));
-			obj3.put("titleimage", null);
+			obj3.put("titleimage", "");
 
 			JSONObject obj4 = new JSONObject();
 			obj4.put("title", res.getString(R.string.Edatatitle));
 			obj4.put("sourceimage", "sourceimage");
 			obj4.put("source", res.getString(R.string.Edatasource));
 			obj4.put("content", res.getString(R.string.Edatacontent));
-			obj4.put("titleimage", null);
+			obj4.put("titleimage", "");
 
 			JSONObject obj5 = new JSONObject();
 			obj5.put("title", res.getString(R.string.Fdatatitle));
 			obj5.put("sourceimage", "sourceimage");
 			obj5.put("source", res.getString(R.string.Fdatasource));
 			obj5.put("content", res.getString(R.string.Fdatacontent));
-			obj5.put("titleimage", null);
+			obj5.put("titleimage", "");
 
 			array.put(obj0);
 			array.put(obj1);

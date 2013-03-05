@@ -5,11 +5,9 @@ import org.json.JSONException;
 
 import android.content.Context;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.LayoutInflater;
 
 import com.barfoo.container.DContainerFormate;
-import com.barfoo.container.DashedLine;
 import com.barfoo.flipview.demo.R;
 
 public class BFormateStyle extends BaseFormat implements IFormat{
@@ -23,13 +21,11 @@ public class BFormateStyle extends BaseFormat implements IFormat{
 	public BFormateStyle(Context context,AttributeSet attrs,JSONArray array) {
 		super(context,attrs);
 		mContext=context;
-		//this.misScreen=isScreen;
 		LayoutInflater.from(context).inflate(R.layout.baseviewmain, this, true);
 		buildFormat(array);
 		
 	}
 	
-	DashedLine line;
 	@Override
 	public void buildFormat(JSONArray array) {
 		try {

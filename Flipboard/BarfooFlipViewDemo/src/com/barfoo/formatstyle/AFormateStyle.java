@@ -13,9 +13,9 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 
-import com.barfoo.container.AContainerFormate;
-import com.barfoo.container.BContainerFormate;
-import com.barfoo.container.CContainerFormate;
+import com.barfoo.container.AContainer;
+import com.barfoo.container.BContainer;
+import com.barfoo.container.CContainer;
 import com.barfoo.flipview.demo.R;
 
 public  class  AFormateStyle extends BaseFormat implements IFormat{
@@ -39,9 +39,9 @@ public  class  AFormateStyle extends BaseFormat implements IFormat{
 	public void buildFormat(JSONArray array) {
 
 		try {
-			getTopLinear().addView(new AContainerFormate(mContext, null,array.getJSONObject(0)));
-			getCenterLeftLinear().addView(new BContainerFormate(mContext, null,array.getJSONObject(1)));
-			getCenterRightLinear().addView(new CContainerFormate(mContext, null,array.getJSONObject(2)));
+			getTopLinear().addView(new AContainer(mContext, null,array.getJSONObject(0)));
+			getCenterLeftLinear().addView(new BContainer(mContext, null,array.getJSONObject(1)));
+			getCenterRightLinear().addView(new CContainer(mContext, null,array.getJSONObject(2)));
 			
 			
 		} catch (JSONException e) {

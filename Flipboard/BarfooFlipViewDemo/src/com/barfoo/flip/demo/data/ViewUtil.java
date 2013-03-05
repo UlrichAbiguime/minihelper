@@ -114,6 +114,7 @@ public class ViewUtil {
 	 * @return
 	 */
 	public static int getViewWidth(View view){
+		
 		return view.getLayoutParams().width;
 	}
 	/**
@@ -139,4 +140,33 @@ public class ViewUtil {
 	public static void setViewPadding(View view ,int width,int height,double proleft,double protop,double proright,double probottom ){
 		view.setPadding((int)(width * proleft),(int)(height *protop),(int)(width * proright),(int)(height *probottom));
 	}
+	
+	/**
+	 * 获取为设置view的宽度
+	 * @param view
+	 * @return
+	 */
+	public static int getNoSetViewWidth(View view){
+		if(view.getLayoutParams().width==0){
+			return setViewWidthHeight(view).getMeasuredWidth();
+		}else{
+			return view.getLayoutParams().width;
+		}
+	}
+	
+	public static int getNoSetViewHeight(View view){
+		if(view.getLayoutParams().height==0){
+			return setViewWidthHeight(view).getMeasuredHeight();
+		}else{
+			return view.getLayoutParams().height;
+		}
+	}
+	
+	public static View setViewWidthHeight(View view){
+		int viewW = View.MeasureSpec.makeMeasureSpec(0,View.MeasureSpec.UNSPECIFIED); 
+		int viewH = View.MeasureSpec.makeMeasureSpec(0,View.MeasureSpec.UNSPECIFIED); 
+		view.measure(viewW,viewH);
+		return view;
+	}
+	
 }

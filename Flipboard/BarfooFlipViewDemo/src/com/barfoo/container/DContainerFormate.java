@@ -3,113 +3,100 @@ package com.barfoo.container;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.barfoo.flip.demo.data.Util;
-import com.barfoo.flip.demo.data.ViewUtil;
-import com.barfoo.flipview.demo.R;
-
 import android.content.Context;
 import android.util.AttributeSet;
-import android.view.LayoutInflater;
+import android.util.Log;
 import android.view.View;
-import android.view.ViewTreeObserver;
-import android.view.ViewTreeObserver.OnGlobalLayoutListener;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-public class DContainerFormate extends LinearLayout implements IContainer {
+import com.barfoo.flip.demo.data.Util;
+import com.barfoo.flip.demo.data.ViewUtil;
+import com.barfoo.flipview.demo.R;
+
+public class DContainerFormate extends AContainer implements IContainer {
 
 	Context mContext;
-	public  TextView tva_content;
 	public View view;
-	public LinearLayout ll_titlepic;
-	public ImageView ivpicc;
-	public TextView tvc_title;
-	public TextView tvc_source;
-	public ImageView ivc_source;
-	public TextView tvc_content;
-	private LinearLayout ll_bodyforlin;
-	boolean misScreen=true;
+	private LinearLayout ll_image;
+	private ImageView iv_image;
+	private LinearLayout ll_title;
+	private LinearLayout ll_source;
+	private LinearLayout ll_ivsourceforlin;
+	private ImageView iv_sourceicon;
+	private LinearLayout ll_tvsourceforlin;
+	private TextView tv_source;
+	private LinearLayout ll_tvcontent;
+	private TextView tv_content;
+	private TextView tv_title;
 
 	public DContainerFormate(Context context) {
 		super(context);
 	}
 
 	public DContainerFormate(Context context, AttributeSet attrs,JSONObject json) {
-		super(context, attrs);
+		super(context, attrs, json);
+		//LayoutInflater.from(mContext).inflate(getXmlResource(), this,true);
 		mContext = context;
-		//misScreen=isScreen;
-		LayoutInflater.from(mContext).inflate(R.layout.containeritemd, this,true);
-		buildView(json);
 	}
+	
+	
 
 	@Override
 	public void buildView(JSONObject json) {
 		View view = this;
-		ViewUtil.setViewWidHeight(this, 0.5, 0.34);//竖屏0.35
+		ViewUtil.setViewWidHeight(this, 0.5, 0.346);// 竖屏0.35
 		int itemviewW = ViewUtil.getViewWidth(this);
 		int itemviewH = ViewUtil.getViewHeight(this);
-		ll_titlepic = (LinearLayout) findViewById(R.id.ll_titlepic);
-		ll_bodyforlin = (LinearLayout) findViewById(R.id.ll_contextforlin);
-		ivpicc = (ImageView) findViewById(R.id.ivpicc);
-		//ViewUtil.setViewWidth(ll_bodyforlin, groupviewWidth, width)
-		tvc_title = (TextView) findViewById(R.id.tvc_title);
-		tvc_source = (TextView) findViewById(R.id.tvc_source);
-		ivc_source = (ImageView) findViewById(R.id.ivc_source);
-		tvc_content = (TextView) findViewById(R.id.tvc_content);
-
+		ll_image = (LinearLayout) findViewById(R.id.ll_image);
+		iv_image = (ImageView) findViewById(R.id.iv_image);
+		ll_title = (LinearLayout) findViewById(R.id.ll_title);
+		tv_title = (TextView) findViewById(R.id.tv_title);
+		ll_source = (LinearLayout) findViewById(R.id.ll_source);
+		ll_ivsourceforlin = (LinearLayout) findViewById(R.id.ll_ivsourceforlin);
+		iv_sourceicon = (ImageView) findViewById(R.id.iv_sourceicon);
+		ll_tvsourceforlin = (LinearLayout) findViewById(R.id.ll_tvsourceforlin);
+		tv_source = (TextView) findViewById(R.id.tv_source);
+		ll_tvcontent = (LinearLayout) findViewById(R.id.ll_tvcontent);
+		tv_content = (TextView) findViewById(R.id.tv_content);
+		ViewUtil.setViewWidHeight(ll_title, itemviewW, itemviewH, 1, 0.2);
+		ViewUtil.setViewWidHeight(ll_source, itemviewW, itemviewH, 1, 0.05);
+		
+		/**
+		int maxlines=Util.getMaxLines(ViewUtil.getViewHeight(ll_tvcontent), tv_content.getTextSize());
 		try {
-			tvc_title.setText(json.getString("title"));
+			tv_title.setText(json.getString("title"));
 			if (Util.isJsonNull(json, "sourceimage")) {
-				ivc_source.setImageResource(R.drawable.feed_taggeduser_image);
+				iv_image.setImageResource(R.drawable.feed_taggeduser_image);
 			}
-			tvc_source.setText(json.getString("source"));
-			tvc_content.setText(json.getString("content"));
-			if(misScreen){
-				truncate(tvc_content,5);
-				if (Util.isJsonNull(json, "titleimage")) {
-					ll_titlepic.setLayoutParams(new LayoutParams((int)(itemviewW * 0.35), LayoutParams.WRAP_CONTENT));
-					ll_bodyforlin.setLayoutParams(new LayoutParams((int)(itemviewW * 0.6), LayoutParams.WRAP_CONTENT));
-					ViewUtil.setViewPadding(ll_titlepic, ViewUtil.getViewWidth(ll_titlepic), ViewUtil.getViewHeight(ll_titlepic), 0.05, 0, 0, 0);
-					ivpicc.setImageResource(R.drawable.loginbg);
-				} else {
-					//ViewUtil.setViewWidHeight(ll_titlepic, itemviewW, itemviewH,0.5, 0.5);
-					ll_titlepic.setVisibility(View.GONE);
-				}
-			}else{
-				truncate(tvc_content,11);
-				if (Util.isJsonNull(json, "titleimage")) {
-					
-					ll_titlepic.setLayoutParams(new LayoutParams((int)(itemviewW * 0.45), LayoutParams.WRAP_CONTENT));
-					ll_bodyforlin.setLayoutParams(new LayoutParams((int)(itemviewW * 0.55), LayoutParams.WRAP_CONTENT));
-					ViewUtil.setViewPadding(ll_titlepic, ViewUtil.getViewWidth(ll_titlepic), ViewUtil.getViewHeight(ll_titlepic), 0.05, 0, 0, 0);
-					ivpicc.setImageResource(R.drawable.loginbg);
-				} else {
-					//ViewUtil.setViewWidHeight(ll_titlepic, itemviewW, itemviewH,0.5, 0.5);
-					ll_titlepic.setVisibility(View.GONE);
-				}
+			tv_source.setText(json.getString("source"));
+			tv_content.setText(json.getString("content"));
+
+			Log.e("tv_content", maxlines+"");
+			Util.truncate(tv_content, maxlines);
+			Log.e("json", json.toString());
+			if (Util.isJsonNull(json, "titleimage")) {
+				ViewUtil.setViewWidHeight(ll_tvcontent, itemviewW, itemviewH, 0.5, 0.75);
+				ViewUtil.setViewWidHeight(ll_image, itemviewW, itemviewH, 0.5, 0.75);
+				ll_image.setLayoutParams(new LayoutParams((int) (itemviewW * 0.45), LayoutParams.WRAP_CONTENT));
+				ll_tvcontent.setLayoutParams(new LayoutParams((int) (itemviewW * 0.55), LayoutParams.WRAP_CONTENT));
+				ViewUtil.setViewPadding(ll_image,ViewUtil.getViewWidth(ll_image),ViewUtil.getViewHeight(ll_image), 0.05, 0, 0, 0);
+				iv_image.setImageResource(R.drawable.loginbg);
+			} else {
+				ViewUtil.setViewWidHeight(ll_tvcontent, itemviewW, itemviewH, 1, 0.75);
+				ll_image.setVisibility(View.GONE);
 			}
 		} catch (JSONException e) {
+			Log.e("error", e.getMessage());
 			e.printStackTrace();
 		}
+		**/
 	}
 
-	/**
-	 * 对textview进行设置最大行数，更多用省略号省略
-	 * @param view
-	 * @param maxLine
-	 */
-	public  void truncate(final TextView view, final int maxLine) {
-		ViewTreeObserver vto = view.getViewTreeObserver();
-		vto.addOnGlobalLayoutListener(new OnGlobalLayoutListener() {
-
-			public void onGlobalLayout() {
-				if (view.getLineCount() > maxLine) {
-					int lineEndIndex = view.getLayout().getLineEnd(maxLine - 1);
-					String text = view.getText().subSequence(0,lineEndIndex - 3)+ "...";
-					view.setText(text);
-				}
-			}
-		});
+	@Override
+	public int getXmlResource() {
+		return R.layout.containeritemd;
 	}
+
 }
