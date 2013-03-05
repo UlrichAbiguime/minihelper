@@ -6,6 +6,7 @@ package com.barfoo.formatstyle;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
@@ -13,12 +14,17 @@ import com.barfoo.flipview.demo.R;
 
 public class LayoutFormat extends LinearLayout {
 
+	Context mContext;
+	
 	RelativeLayout baseheader;
 	LinearLayout basefooder;
 	LinearLayout basefragment;
+	
+	Button Button01;
 
 	public LayoutFormat(Context context) {
 		super(context);
+		this.mContext=context;
 		LayoutInflater.from(context).inflate(R.layout.layoutmain, this, true);
 	}
 
@@ -32,6 +38,13 @@ public class LayoutFormat extends LinearLayout {
 			baseheader = (RelativeLayout) findViewById(R.id.layoutheader);
 		}
 		return baseheader;
+	}
+	
+	public Button getBackButton() {
+		if (Button01 == null) {
+			Button01 = (Button) findViewById(R.id.Button01);
+		}
+		return Button01;
 	}
 
 	public LinearLayout getFragmentLinear() {
@@ -47,6 +60,5 @@ public class LayoutFormat extends LinearLayout {
 		}
 		return basefooder;
 	}
-
-
+	
 }

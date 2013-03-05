@@ -47,7 +47,7 @@ public class FlipDynamicActivity extends Activity {
 		flipView = new FlipViewController(this, FlipViewController.HORIZONTAL);
 		flipView.setBackgroundColor(Color.WHITE);
 		adapter = new FlipDynamicAdapter(this, array);
-		adapter.setRepeatCount(2);
+		adapter.setRepeatCount(10);
 		flipView.setAdapter(adapter);
 
 		flipView.setOnViewFlipListener(new FlipViewController.ViewFlipListener() {

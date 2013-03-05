@@ -13,10 +13,12 @@ import org.json.JSONArray;
 
 import android.content.Context;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.barfoo.flip.demo.data.ViewUtil;
 import com.barfoo.flipview.demo.R;
@@ -69,11 +71,11 @@ public class FlipDynamicAdapter extends BaseAdapter {
 
 		for (int i = 0; i < getCount(); i++) {
 			image = new ImageView(mContext);
-			image.setLayoutParams(new LayoutParams(20, 20));
-			image.setPadding(20, 0, 20, 0);
+			image.setLayoutParams(new LayoutParams(32, 32));
+			image.setPadding(32, 0, 32, 0);
 			imageViews[i] = image;
 
-			if (i == 0) {
+			if (i == position) {
 				image.setBackgroundResource(R.drawable.feed_taggeduser_image);
 			} else {
 				image.setBackgroundResource(R.drawable.ic_launcher);
@@ -82,18 +84,27 @@ public class FlipDynamicAdapter extends BaseAdapter {
 			layoutFormat.getFooderLinear().addView(image);
 		}
 
-		ViewUtil.setViewWidHeight(layoutFormat.getHeaderLinear(), 1, 0.1);
-		ViewUtil.setViewWidHeight(layoutFormat.getFragmentLinear(), 1, 0.8);
-		ViewUtil.setViewWidHeight(layoutFormat.getFooderLinear(), 1, 0.1);
+		ViewUtil.setViewWidHeight(layoutFormat.getHeaderLinear(), 1, 0.05);
+		ViewUtil.setViewWidHeight(layoutFormat.getFragmentLinear(), 1, 0.9);
+		ViewUtil.setViewWidHeight(layoutFormat.getFooderLinear(), 1, 0.05);
 		ViewUtil.trueScreenH = ViewUtil.getViewHeight(layoutFormat.getFragmentLinear());
 		ViewUtil.trueScreenW = ViewUtil.getViewWidth(layoutFormat.getFragmentLinear());
 
 		if (position % 2 == 0) {
-			//layoutFormat.getFragmentLinear().addView(new BFormateStyle(mContext, null, mJsonArray));
+			layoutFormat.getFragmentLinear().addView(new BFormateStyle(mContext, null, mJsonArray));
 		} else {
 			layoutFormat.getFragmentLinear().addView(new AFormateStyle(mContext, null, mJsonArray));
 		}
-
+		
+		
+		layoutFormat.getBackButton().setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				android.os.Process.killProcess(android.os.Process.myPid());
+			}
+		});
+		
 		return layoutFormat;
 	}
 }

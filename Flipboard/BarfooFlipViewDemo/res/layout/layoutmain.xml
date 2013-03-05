@@ -45,6 +45,7 @@
     <LinearLayout
         android:id="@+id/layoutfooder"
         android:layout_width="fill_parent"
+        android:gravity="center"
         android:layout_height="wrap_content" >
     </LinearLayout>
 
