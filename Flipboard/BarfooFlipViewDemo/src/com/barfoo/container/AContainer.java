@@ -100,6 +100,7 @@ public class AContainer extends LinearLayout implements IContainer {
 	 * @param json
 	 */
 	public void setData(JSONObject json) {
+		
 		maxlines = Util.getMaxLines(ViewUtil.getViewHeight(ll_tvcontent),tv_content.getTextSize());
 		Log.e("maxline", maxlines + "");
 		
@@ -110,7 +111,9 @@ public class AContainer extends LinearLayout implements IContainer {
 			}
 			tv_source.setText(json.getString("source"));
 			tv_content.setText(json.getString("content"));
-			Util.truncate(tv_content, maxlines);
+			if(maxlines>0){
+				Util.truncate(tv_content, maxlines);
+			}
 
 			if (Util.isJsonNull(json, "titleimage")) {
 				iv_image.setImageResource(R.drawable.newbg);
