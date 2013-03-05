@@ -69,8 +69,7 @@ public class AContainer extends LinearLayout implements IContainer {
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
-		maxlines = Util.getMaxLines(ViewUtil.getViewHeight(ll_tvcontent),tv_content.getTextSize());
-		Log.e("maxline", maxlines + "");
+		
 	}
 
 	@Override
@@ -101,6 +100,9 @@ public class AContainer extends LinearLayout implements IContainer {
 	 * @param json
 	 */
 	public void setData(JSONObject json) {
+		maxlines = Util.getMaxLines(ViewUtil.getViewHeight(ll_tvcontent),tv_content.getTextSize());
+		Log.e("maxline", maxlines + "");
+		
 		try {
 			tv_title.setText(json.getString("title"));
 			if (Util.isJsonNull(json, "sourceimage")) {
