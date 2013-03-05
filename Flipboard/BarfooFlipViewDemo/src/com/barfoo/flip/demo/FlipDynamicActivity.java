@@ -18,6 +18,7 @@ import android.content.res.Resources;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 import com.barfoo.flip.FlipViewController;
 import com.barfoo.flip.demo.adapter.FlipDynamicAdapter;
@@ -46,14 +47,16 @@ public class FlipDynamicActivity extends Activity {
 		flipView = new FlipViewController(this, FlipViewController.HORIZONTAL);
 		flipView.setBackgroundColor(Color.WHITE);
 		adapter = new FlipDynamicAdapter(this, array);
+		adapter.setRepeatCount(2);
 		flipView.setAdapter(adapter);
 
 		flipView.setOnViewFlipListener(new FlipViewController.ViewFlipListener() {
 			@Override
 			public void onViewFlipped(View view, int position) {
-				if (position == adapter.getCount() - 1) {
-					adapter.setRepeatCount(adapter.getRepeatCount() + 3);
-					adapter.notifyDataSetChanged();
+				if (position==0) {
+					Toast.makeText(FlipDynamicActivity.this, "最前一页", Toast.LENGTH_SHORT).show();
+				}if (position==9) {
+					Toast.makeText(FlipDynamicActivity.this, "最后一页", Toast.LENGTH_SHORT).show();
 				}
 			}
 		});

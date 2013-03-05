@@ -7,12 +7,13 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 
 import com.barfoo.flipview.demo.R;
 
 public class LayoutFormat extends LinearLayout {
 
-	LinearLayout baseheader;
+	RelativeLayout baseheader;
 	LinearLayout basefooder;
 	LinearLayout basefragment;
 
@@ -26,9 +27,9 @@ public class LayoutFormat extends LinearLayout {
 
 	}
 
-	public LinearLayout getHeaderLinear() {
+	public RelativeLayout getHeaderLinear() {
 		if (baseheader == null) {
-			baseheader = (LinearLayout) findViewById(R.id.layoutheader);
+			baseheader = (RelativeLayout) findViewById(R.id.layoutheader);
 		}
 		return baseheader;
 	}
