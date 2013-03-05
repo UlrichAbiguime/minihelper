@@ -156,7 +156,10 @@ public class ViewUtil {
 	
 	public static int getNoSetViewHeight(View view){
 		if(view.getLayoutParams().height==0){
-			return setViewWidthHeight(view).getMeasuredHeight();
+			int viewW = View.MeasureSpec.makeMeasureSpec(0,View.MeasureSpec.UNSPECIFIED); 
+			int viewH = View.MeasureSpec.makeMeasureSpec(0,View.MeasureSpec.UNSPECIFIED); 
+			view.measure(viewW,viewH);
+			return view.getMeasuredHeight();
 		}else{
 			return view.getLayoutParams().height;
 		}
