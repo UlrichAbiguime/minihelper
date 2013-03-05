@@ -9,6 +9,7 @@ import org.json.JSONObject;
 import android.content.Context;
 import android.util.AttributeSet;
 
+import com.barfoo.flip.demo.data.Util;
 import com.barfoo.flip.demo.data.ViewUtil;
 import com.barfoo.flipview.demo.R;
 
@@ -37,6 +38,7 @@ public class BContainer extends AContainer implements IContainer{
 		ViewUtil.setViewWidHeight(ll_source, itemviewW, itemviewH, 1, 0.05);
 		ViewUtil.setViewWidHeight(ll_tvcontent, itemviewW, itemviewH, 1, 0.35);
 		ViewUtil.setViewWidHeight(ll_image, itemviewW, itemviewH, 1, 0.4);
+		maxlines = Util.getMaxLines(ViewUtil.getNoSetViewHeight(ll_tvcontent),tv_content.getTextSize());
 		
 	}
 	

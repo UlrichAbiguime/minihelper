@@ -37,6 +37,7 @@ public class CContainer extends AContainer implements IContainer {
 		ViewUtil.setViewWidHeight(ll_source, itemviewW, itemviewH, 1, 0.05);
 		ViewUtil.setViewWidHeight(ll_image, itemviewW, itemviewH, 0.45, 0.65);
 		ViewUtil.setViewWidHeight(ll_tvcontent, itemviewW, itemviewH, 0.55, 0.65);
+		maxlines = Util.getMaxLines(ViewUtil.getNoSetViewHeight(ll_tvcontent),tv_content.getTextSize());
 		
 		try {
 			if (Util.isJsonNull(json, "titleimage")) {
