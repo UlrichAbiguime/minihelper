@@ -12,15 +12,15 @@ import com.barfoo.flip.demo.data.Util;
 import com.barfoo.flip.demo.data.ViewUtil;
 import com.barfoo.flipview.demo.R;
 
-public class DContainerFormate extends AContainer implements IContainer {
+public class DContainer extends AContainer implements IContainer {
 
 	Activity mContext;
 
-	public DContainerFormate(Context context) {
+	public DContainer(Context context) {
 		super(context);
 	}
 
-	public DContainerFormate(Activity context, AttributeSet attrs,JSONObject json) {
+	public DContainer(Activity context, AttributeSet attrs,JSONObject json) {
 		super(context, attrs, json);
 		mContext = context;
 	}
