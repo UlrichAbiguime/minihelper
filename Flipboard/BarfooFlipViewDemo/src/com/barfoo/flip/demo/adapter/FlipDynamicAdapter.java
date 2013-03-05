@@ -14,13 +14,14 @@ import org.json.JSONArray;
 import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.ViewGroup.LayoutParams;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 
 import com.barfoo.flip.demo.data.ViewUtil;
 import com.barfoo.flipview.demo.R;
 import com.barfoo.formatstyle.AFormateStyle;
+import com.barfoo.formatstyle.BFormateStyle;
 import com.barfoo.formatstyle.LayoutFormat;
 
 public class FlipDynamicAdapter extends BaseAdapter {
@@ -63,25 +64,35 @@ public class FlipDynamicAdapter extends BaseAdapter {
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
 		LayoutFormat layoutFormat = new LayoutFormat(mContext);
+		ImageView[] imageViews = new ImageView[getCount()];
+		ImageView image = new ImageView(mContext);
 
-		for (int i = 0; i <= getCount(); i++) {
-			ImageView image = new ImageView(mContext);
-			if (i == position) {
+		for (int i = 0; i < getCount(); i++) {
+			image = new ImageView(mContext);
+			image.setLayoutParams(new LayoutParams(20, 20));
+			image.setPadding(20, 0, 20, 0);
+			imageViews[i] = image;
+
+			if (i == 0) {
 				image.setBackgroundResource(R.drawable.feed_taggeduser_image);
 			} else {
 				image.setBackgroundResource(R.drawable.ic_launcher);
 			}
 
-			image.setLayoutParams(new LinearLayout.LayoutParams(32, 32));
 			layoutFormat.getFooderLinear().addView(image);
 		}
+
 		ViewUtil.setViewWidHeight(layoutFormat.getHeaderLinear(), 1, 0.1);
 		ViewUtil.setViewWidHeight(layoutFormat.getFragmentLinear(), 1, 0.8);
 		ViewUtil.setViewWidHeight(layoutFormat.getFooderLinear(), 1, 0.1);
 		ViewUtil.trueScreenH = ViewUtil.getViewHeight(layoutFormat.getFragmentLinear());
 		ViewUtil.trueScreenW = ViewUtil.getViewWidth(layoutFormat.getFragmentLinear());
 
-		layoutFormat.getFragmentLinear().addView(new AFormateStyle(mContext, null, mJsonArray));
+		if (position % 2 == 0) {
+			//layoutFormat.getFragmentLinear().addView(new BFormateStyle(mContext, null, mJsonArray));
+		} else {
+			layoutFormat.getFragmentLinear().addView(new AFormateStyle(mContext, null, mJsonArray));
+		}
 
 		return layoutFormat;
 	}
