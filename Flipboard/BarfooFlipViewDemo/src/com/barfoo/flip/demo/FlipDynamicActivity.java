@@ -28,7 +28,7 @@ import com.barfoo.flip.demo.data.ViewUtil;
 import com.barfoo.flipview.demo.R;
 
 public class FlipDynamicActivity extends Activity {
-	private FlipViewController flipView;
+	public FlipViewController flipView;
 
 	private FlipDynamicAdapter adapter;
 
@@ -48,7 +48,7 @@ public class FlipDynamicActivity extends Activity {
 
 		flipView = new FlipViewController(this, FlipViewController.HORIZONTAL);
 		flipView.setBackgroundColor(Color.WHITE);
-		adapter = new FlipDynamicAdapter(this, array);
+		adapter = new FlipDynamicAdapter(this, array,flipView);
 		adapter.setRepeatCount(10);
 		flipView.setAdapter(adapter);
 
