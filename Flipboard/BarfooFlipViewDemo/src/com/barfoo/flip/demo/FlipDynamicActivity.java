@@ -65,7 +65,6 @@ public class FlipDynamicActivity extends Activity {
 
 		setContentView(flipView);
 		if (this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
-			
 			Log.e("change", "hengping");
 		} else if (this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
 			Log.e("change", "shuping");
