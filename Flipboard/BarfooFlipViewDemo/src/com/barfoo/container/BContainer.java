@@ -44,4 +44,6 @@ public class BContainer extends AContainer implements IContainer{
 	public int getXmlResource() {
 		return R.layout.containeritemb;
 	}
+	
+	
 }

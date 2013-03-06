@@ -68,7 +68,7 @@ public class FlipDynamicAdapter extends BaseAdapter {
 		LayoutFormat layoutFormat = new LayoutFormat(mContext);
 		ImageView[] imageViews = new ImageView[getCount()];
 		ImageView image = new ImageView(mContext);
-
+		
 		for (int i = 0; i < getCount(); i++) {
 			image = new ImageView(mContext);
 			image.setLayoutParams(new LayoutParams(32, 32));
@@ -83,7 +83,7 @@ public class FlipDynamicAdapter extends BaseAdapter {
 
 			layoutFormat.getFooderLinear().addView(image);
 		}
-
+	
 		ViewUtil.setViewWidHeight(layoutFormat.getHeaderLinear(), 1, 0.05);
 		ViewUtil.setViewWidHeight(layoutFormat.getFragmentLinear(), 1, 0.9);
 		ViewUtil.setViewWidHeight(layoutFormat.getFooderLinear(), 1, 0.05);

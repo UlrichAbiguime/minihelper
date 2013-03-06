@@ -7,10 +7,13 @@ package com.barfoo.container;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.graphics.Canvas;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -20,6 +23,7 @@ import com.barfoo.flip.demo.data.Util;
 import com.barfoo.flip.demo.data.ViewUtil;
 import com.barfoo.flipview.demo.R;
 
+@SuppressLint("WrongCall")
 public class AContainer extends LinearLayout implements IContainer {
 
 	Context mContext;
@@ -59,6 +63,7 @@ public class AContainer extends LinearLayout implements IContainer {
 		ViewUtil.setViewWidHeight(ll_title, itemviewW, itemviewH, 1, 0.15);
 		ViewUtil.setViewWidHeight(ll_source, itemviewW, itemviewH, 1, 0.05);
 		ViewUtil.setViewWidHeight(ll_tvcontent, itemviewW, itemviewH, 1, 0.4);
+		Log.i("message", "Ac_bu");
 		try {
 			if (Util.isJsonNull(json, "titleimage")) {
 				ViewUtil.setViewWidHeight(ll_image, itemviewW, itemviewH, 1,0.4);
@@ -77,7 +82,7 @@ public class AContainer extends LinearLayout implements IContainer {
 		return R.layout.containeritema;
 	}
 
-	/**
+	/**maxlines
 	 * 初始化组件
 	 */
 	public void initWidget() {
@@ -102,8 +107,9 @@ public class AContainer extends LinearLayout implements IContainer {
 	public void setData(JSONObject json) {
 		
 		maxlines = Util.getMaxLines(ViewUtil.getViewHeight(ll_tvcontent),tv_content.getTextSize());
+		Log.i("maxlines", ""+maxlines);
 		Log.e("maxline", maxlines + "");
-		
+
 		try {
 			tv_title.setText(json.getString("title"));
 			if (Util.isJsonNull(json, "sourceimage")) {
@@ -113,6 +119,7 @@ public class AContainer extends LinearLayout implements IContainer {
 			tv_content.setText(json.getString("content"));
 			if(maxlines>0){
 				Util.truncate(tv_content, maxlines);
+				tv_content.setText(json.getString("content"));
 			}
 
 			if (Util.isJsonNull(json, "titleimage")) {
@@ -124,4 +131,5 @@ public class AContainer extends LinearLayout implements IContainer {
 			e.printStackTrace();
 		}
 	}
+	
 }

@@ -57,4 +57,6 @@ public class CContainer extends AContainer implements IContainer {
 	public int getXmlResource() {
 		return R.layout.containeritemc;
 	}
+	
+	
 }
