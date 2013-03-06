@@ -12,7 +12,7 @@
         android:id="@+id/ll_image"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:background="@color/red" >
+        android:layout_marginLeft="5dip" >
 
         <ImageView
             android:id="@+id/iv_image"
@@ -25,13 +25,13 @@
     <LinearLayout
         android:id="@+id/ll_title"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal|top" >
 
         <TextView
             android:id="@+id/tv_title"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:layout_margin="10dip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:ellipsize="end"
             android:gravity="center_vertical|left"
             android:maxLines="2"
@@ -45,16 +45,17 @@
     <LinearLayout
         android:id="@+id/ll_source"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dip"
-        android:layout_marginRight="10dip" >
+        android:background="@color/blue"
+        android:layout_height="wrap_content" >
 
         <!-- 来源图片 -->
 
         <LinearLayout
             android:id="@+id/ll_ivsourceforlin"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" >
+            android:background="@color/red"
+            android:gravity="center_vertical"
+            android:layout_height="fill_parent" >
 
             <ImageView
                 android:id="@+id/iv_sourceicon"
@@ -67,13 +68,15 @@
         <LinearLayout
             android:id="@+id/ll_tvsourceforlin"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1" >
+            android:layout_height="fill_parent"
+             android:background="@color/orange"
+            android:layout_weight="1"
+            android:gravity="center_vertical" >
 
             <TextView
                 android:id="@+id/tv_source"
                 android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
+                android:layout_height="wrap_content"
                 android:ellipsize="end"
                 android:maxLines="2"
                 android:text="来源"

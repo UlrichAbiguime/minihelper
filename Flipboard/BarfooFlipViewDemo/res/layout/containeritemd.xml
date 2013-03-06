@@ -3,23 +3,21 @@
     android:id="@+id/lla_container"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="@color/white"
     android:orientation="vertical" >
 
     <!-- 标题 -->
 
     <LinearLayout
         android:id="@+id/ll_title"
-        style="@style/itemstyle"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true" >
+        android:layout_alignParentTop="true"
+        android:gravity="center" >
 
         <TextView
             android:id="@+id/tv_title"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:layout_margin="10dip"
             android:ellipsize="end"
             android:gravity="center_vertical|left"
             android:maxLines="2"
@@ -30,16 +28,11 @@
 
     <!-- 来源 -->
 
-
-    <!-- 来源 -->
-
     <LinearLayout
         android:id="@+id/ll_source"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/ll_title"
-        android:layout_marginLeft="10dip"
-        android:layout_marginRight="10dip" >
+        android:layout_below="@id/ll_title" >
 
         <!-- 来源图片 -->
 
@@ -78,16 +71,16 @@
 
     <LinearLayout
         android:id="@+id/ll_body"
-        style="@style/itemstyle"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/ll_source" >
+        android:layout_below="@id/ll_source"
+        android:gravity="center_horizontal|top" >
 
         <LinearLayout
             android:id="@+id/ll_tvcontent"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:padding="10dip" >
+            android:gravity="center_horizontal|top" >
 
             <TextView
                 android:id="@+id/tv_content"
@@ -113,11 +106,12 @@
         </LinearLayout>
     </LinearLayout>
 
+    <!-- 
     <View
         android:id="@+id/dividline"
         android:layout_width="fill_parent"
         android:layout_height="1dip"
         android:layout_alignParentBottom="true"
         android:background="@drawable/line" />
-
+ -->
 </RelativeLayout>

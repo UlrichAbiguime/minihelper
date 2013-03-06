@@ -1,5 +1,10 @@
 /**
+<<<<<<< HEAD
+ * AContainerFormate(为AContainer的竖屏版式)
+ * 功能:设定好container中的布局样式以及根据布局样式自动填充数据
+=======
  * AContainerFormate 功能:设定好container中的布局样式以及根据布局样式自动填充数据
+>>>>>>> 501d9080b550355a87514cf179fb70b39ba20e1f
  */
 package com.barfoo.container;
 
@@ -53,7 +58,7 @@ public class AContainer extends LinearLayout implements IContainer {
 		setData(json);
 		setTextLin();
 	}
-
+	
 	@Override
 	public void buildView(JSONObject json) {
 		ViewUtil.setViewWidHeight(this, ViewUtil.trueScreenW, ViewUtil.trueScreenH, 1, 0.4);
@@ -73,12 +78,6 @@ public class AContainer extends LinearLayout implements IContainer {
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
-
-	}
-
-	@Override
-	public int getXmlResource() {
-		return R.layout.containeritema;
 	}
 
 	/**maxlines
@@ -125,6 +124,11 @@ public class AContainer extends LinearLayout implements IContainer {
 		}
 	}
 
+	@Override
+	public int getXmlResource() {
+		return R.layout.containeritema;
+	}
+	
 	public void setTextLin() {
 		tv_content.setMaxLines(2);
 		tv_content.setEllipsize(TruncateAt.END);
