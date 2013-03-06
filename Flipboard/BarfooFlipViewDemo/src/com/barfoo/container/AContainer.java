@@ -6,7 +6,6 @@ package com.barfoo.container;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import android.R.bool;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.text.TextUtils.TruncateAt;

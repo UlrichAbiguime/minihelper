@@ -23,7 +23,6 @@ public class BFormateStyle extends BaseFormat implements IFormat{
 		mContext=context;
 		LayoutInflater.from(context).inflate(R.layout.baseviewmain, this, true);
 		buildFormat(array);
-		
 	}
 	
 	@Override

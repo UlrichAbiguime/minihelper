@@ -13,13 +13,12 @@ import org.json.JSONArray;
 
 import android.content.Context;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
-import android.widget.Toast;
 
+import com.barfoo.flip.FlipViewController;
 import com.barfoo.flip.demo.data.ViewUtil;
 import com.barfoo.flipview.demo.R;
 import com.barfoo.formatstyle.AFormateStyle;
@@ -34,7 +33,10 @@ public class FlipDynamicAdapter extends BaseAdapter {
 
 	private int repeatCount = 1;
 
-	public FlipDynamicAdapter(Context context, JSONArray jsonArray) {
+	FlipViewController mFlipViewController;
+
+	public FlipDynamicAdapter(Context context, JSONArray jsonArray, FlipViewController flipView) {
+		this.mFlipViewController = flipView;
 		this.mContext = context;
 		this.mJsonArray = jsonArray;
 
@@ -64,46 +66,49 @@ public class FlipDynamicAdapter extends BaseAdapter {
 	}
 
 	@Override
-	public View getView(int position, View convertView, ViewGroup parent) {
+	public View getView(final int position, View convertView, ViewGroup parent) {
 		LayoutFormat layoutFormat = new LayoutFormat(mContext);
-		ImageView[] imageViews = new ImageView[getCount()];
+		final ImageView[] imageViews = new ImageView[getCount()];
 		ImageView image = new ImageView(mContext);
-		
 		for (int i = 0; i < getCount(); i++) {
 			image = new ImageView(mContext);
 			image.setLayoutParams(new LayoutParams(32, 32));
 			imageViews[i] = image;
-
 			if (i == position) {
 				image.setBackgroundResource(R.drawable.radio_checked_down);
 			} else {
 				image.setBackgroundResource(R.drawable.radio_unchecked);
 			}
 
+			image.setOnClickListener(new FlipOnClickListener(i));
 			layoutFormat.getFooderLinear().addView(image);
 		}
-	
+
 		ViewUtil.setViewWidHeight(layoutFormat.getHeaderLinear(), 1, 0.05);
 		ViewUtil.setViewWidHeight(layoutFormat.getFragmentLinear(), 1, 0.9);
 		ViewUtil.setViewWidHeight(layoutFormat.getFooderLinear(), 1, 0.05);
 		ViewUtil.trueScreenH = ViewUtil.getViewHeight(layoutFormat.getFragmentLinear());
 		ViewUtil.trueScreenW = ViewUtil.getViewWidth(layoutFormat.getFragmentLinear());
-
 		if (position % 2 == 0) {
 			layoutFormat.getFragmentLinear().addView(new BFormateStyle(mContext, null, mJsonArray));
 		} else {
 			layoutFormat.getFragmentLinear().addView(new AFormateStyle(mContext, null, mJsonArray));
 		}
-		
-		
-		layoutFormat.getBackButton().setOnClickListener(new OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				Toast.makeText(mContext, "后退", Toast.LENGTH_SHORT).show();
-			}
-		});
-		
+
 		return layoutFormat;
 	}
+
+	public class FlipOnClickListener implements View.OnClickListener { // 标签点击监听事件
+		private int indexpage;
+
+		public FlipOnClickListener(int i) {
+			indexpage = i;
+		}
+
+		@Override
+		public void onClick(View v) {
+			mFlipViewController.setSelection(indexpage);
+		}
+	};
+
 }
