@@ -31,18 +31,18 @@ public class DContainer extends AContainer implements IContainer {
 		ViewUtil.setViewWidHeight(this, ViewUtil.trueScreenW, ViewUtil.trueScreenH,  0.5, 1.0/3);// 竖屏0.35
 		int itemviewW = ViewUtil.getViewWidth(this);
 		int itemviewH = ViewUtil.getViewHeight(this);
-
-		ViewUtil.setViewWidHeight(ll_title, itemviewW, itemviewH, 1, 0.25);
-		ViewUtil.setViewWidHeight(ll_source, itemviewW, itemviewH, 1, 0.05);
+		ViewUtil.setViewPadding(this, itemviewW, itemviewH, 0.04, 0, 0.04, 0);
+		ViewUtil.setViewWidHeight(ll_title, itemviewW, itemviewH, 0.91, 0.25);
+		ViewUtil.setViewWidHeight(ll_source, itemviewW, itemviewH, 0.91, 0.13);
 		
 		try {
 			if (Util.isJsonNull(json, "titleimage")) {
-				ViewUtil.setViewWidHeight(ll_image, itemviewW, itemviewH, 0.5, 0.7);
-				ViewUtil.setViewWidHeight(ll_tvcontent, itemviewW, itemviewH, 0.5, 0.7);
+				ViewUtil.setViewWidHeight(ll_image, itemviewW, itemviewH, 0.4, 0.62);
+				ViewUtil.setViewWidHeight(ll_tvcontent, itemviewW, itemviewH, 0.51,  0.62);
 				ViewUtil.setViewPadding(ll_image,ViewUtil.getViewWidth(ll_image),ViewUtil.getViewHeight(ll_image), 0.05, 0, 0, 0);
 				iv_image.setImageResource(R.drawable.loginbg);
 			} else {
-				ViewUtil.setViewWidHeight(ll_tvcontent, itemviewW, itemviewH, 1, 0.7);
+				ViewUtil.setViewWidHeight(ll_tvcontent, itemviewW, itemviewH, 0.91,  0.62);
 				ll_image.setVisibility(View.GONE);
 			}
 		} catch (JSONException e) {

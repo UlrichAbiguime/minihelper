@@ -89,17 +89,19 @@ public class FlipDynamicAdapter extends BaseAdapter {
 		ViewUtil.setViewWidHeight(layoutFormat.getFooderLinear(), 1, 0.05);
 		ViewUtil.trueScreenH=ViewUtil.getViewHeight(layoutFormat.getFragmentLinear());
 		ViewUtil.trueScreenW=ViewUtil.getViewWidth(layoutFormat.getFragmentLinear());
-		//layoutFormat.getFragmentLinear().addView(new AFormateStyle(mContext, null, mJsonArray));
-		layoutFormat.getFragmentLinear().addView(new CFormateStyle(mContext, null, mJsonArray));
+		//layoutFormat.getFragmentLinear().addView(new AFormateStyle(mContext, null, mJsonArray,getChangeScreenValue()));
+		//layoutFormat.getFragmentLinear().addView(new BFormateStyle(mContext, null, mJsonArray,getChangeScreenValue()));
+		//layoutFormat.getFragmentLinear().addView(new CFormateStyle(mContext, null, mJsonArray,getChangeScreenValue()));
 		//layoutFormat.getFragmentLinear().addView(new BFormateStyle(mContext, null, mJsonArray));
 
-
+		
+		
 		if (position % 2 == 0) {
-			layoutFormat.getFragmentLinear().addView(new BFormateStyle(mContext, null, mJsonArray));
+			layoutFormat.getFragmentLinear().addView(new BFormateStyle(mContext, null, mJsonArray,getChangeScreenValue()));
 		} else {
-			layoutFormat.getFragmentLinear().addView(new AFormateStyle(mContext, null, mJsonArray));
+			layoutFormat.getFragmentLinear().addView(new AFormateStyle(mContext, null, mJsonArray,getChangeScreenValue()));
 		}
-
+		
 		return layoutFormat;
 	}
 
@@ -116,4 +118,26 @@ public class FlipDynamicAdapter extends BaseAdapter {
 		}
 	};
 
+	/**
+	 * 获取当前的activity是横屏还是竖屏
+	 * @param HorizonVerticalScreen :0为 横屏，1为竖屏
+	 * 
+	 */
+	
+	public int changeScreenValue;
+
+	public int getChangeScreenValue() {
+		return changeScreenValue;
+	}
+
+	public void setChangeScreenValue(int changeScreenValue) {
+		this.changeScreenValue = changeScreenValue;
+	}
+
+	public void screenRefresh(){
+		notifyDataSetInvalidated();
+		notifyDataSetChanged();
+	}
+	
+	
 }

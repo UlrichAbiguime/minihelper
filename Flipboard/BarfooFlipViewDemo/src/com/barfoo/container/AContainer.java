@@ -13,9 +13,7 @@ import org.json.JSONObject;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.text.TextUtils.TruncateAt;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
@@ -56,7 +54,7 @@ public class AContainer extends LinearLayout implements IContainer {
 		initWidget();
 		buildView(json);
 		setData(json);
-		setTextLin();
+		//setTextLin();
 	}
 	
 	@Override
@@ -64,15 +62,17 @@ public class AContainer extends LinearLayout implements IContainer {
 		ViewUtil.setViewWidHeight(this, ViewUtil.trueScreenW, ViewUtil.trueScreenH, 1, 0.4);
 		int itemviewW = ViewUtil.getViewWidth(this);
 		int itemviewH = ViewUtil.getViewHeight(this);
-		ViewUtil.setViewWidHeight(ll_title, itemviewW, itemviewH, 1, 0.15);
-		ViewUtil.setViewWidHeight(ll_source, itemviewW, itemviewH, 1, 0.05);
-		ViewUtil.setViewWidHeight(ll_tvcontent, itemviewW, itemviewH, 1, 0.4);
-		Log.i("message", "Ac_bu");
+		ViewUtil.setViewPadding(this, itemviewW, itemviewH, 0.04, 0, 0.04, 0);
+		ViewUtil.setViewWidHeight(ll_title, itemviewW, itemviewH, 0.91, 0.15);
+		ViewUtil.setViewWidHeight(ll_source, itemviewW, itemviewH,0.91, 0.13);
 		try {
 			if (Util.isJsonNull(json, "titleimage")) {
-				ViewUtil.setViewWidHeight(ll_image, itemviewW, itemviewH, 1, 0.4);
+				ViewUtil.setViewWidHeight(ll_image, itemviewW, itemviewH, 0.91, 0.43);
+				ViewUtil.setViewPadding(ll_image, ViewUtil.getViewWidth(ll_image), ViewUtil.getViewHeight(ll_image), 0, 0.05, 0, 0.05);
+				ViewUtil.setViewWidHeight(ll_tvcontent, itemviewW, itemviewH,0.91, 0.24);
 
 			} else {
+				ViewUtil.setViewWidHeight(ll_tvcontent, itemviewW, itemviewH,0.91, 0.77);
 				ll_image.setVisibility(View.GONE);
 			}
 		} catch (JSONException e) {
@@ -113,6 +113,9 @@ public class AContainer extends LinearLayout implements IContainer {
 			}
 			tv_source.setText(json.getString("source"));
 			tv_content.setText(json.getString("content"));
+			if(maxlines>0){
+				Util.truncate(tv_content, maxlines);
+			}
 
 			if (Util.isJsonNull(json, "titleimage")) {
 				iv_image.setImageResource(R.drawable.newbg);
@@ -129,9 +132,11 @@ public class AContainer extends LinearLayout implements IContainer {
 		return R.layout.containeritema;
 	}
 	
-	public void setTextLin() {
+	/**
+	private void setTextLin() {
 		tv_content.setMaxLines(2);
 		tv_content.setEllipsize(TruncateAt.END);
 	}
+	**/
 
 }

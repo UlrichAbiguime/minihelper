@@ -45,7 +45,6 @@
     <LinearLayout
         android:id="@+id/ll_source"
         android:layout_width="fill_parent"
-        android:background="@color/blue"
         android:layout_height="wrap_content" >
 
         <!-- 来源图片 -->
@@ -53,7 +52,6 @@
         <LinearLayout
             android:id="@+id/ll_ivsourceforlin"
             android:layout_width="wrap_content"
-            android:background="@color/red"
             android:gravity="center_vertical"
             android:layout_height="fill_parent" >
 
@@ -69,7 +67,6 @@
             android:id="@+id/ll_tvsourceforlin"
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
-             android:background="@color/orange"
             android:layout_weight="1"
             android:gravity="center_vertical" >
 
