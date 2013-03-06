@@ -72,13 +72,12 @@ public class FlipDynamicAdapter extends BaseAdapter {
 		for (int i = 0; i < getCount(); i++) {
 			image = new ImageView(mContext);
 			image.setLayoutParams(new LayoutParams(32, 32));
-			image.setPadding(32, 0, 32, 0);
 			imageViews[i] = image;
 
 			if (i == position) {
-				image.setBackgroundResource(R.drawable.feed_taggeduser_image);
+				image.setBackgroundResource(R.drawable.radio_checked_down);
 			} else {
-				image.setBackgroundResource(R.drawable.ic_launcher);
+				image.setBackgroundResource(R.drawable.radio_unchecked);
 			}
 
 			layoutFormat.getFooderLinear().addView(image);
@@ -101,7 +100,7 @@ public class FlipDynamicAdapter extends BaseAdapter {
 			
 			@Override
 			public void onClick(View v) {
-				android.os.Process.killProcess(android.os.Process.myPid());
+				Toast.makeText(mContext, "后退", Toast.LENGTH_SHORT).show();
 			}
 		});
 		

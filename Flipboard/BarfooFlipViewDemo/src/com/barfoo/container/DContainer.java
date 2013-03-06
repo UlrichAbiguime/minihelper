@@ -5,6 +5,7 @@ import org.json.JSONObject;
 
 import android.app.Activity;
 import android.content.Context;
+import android.text.TextUtils.TruncateAt;
 import android.util.AttributeSet;
 import android.view.View;
 
@@ -55,4 +56,8 @@ public class DContainer extends AContainer implements IContainer {
 		return R.layout.containeritemd;
 	}
 
+	public void setTextLin() {
+		tv_content.setMaxLines(10);
+		tv_content.setEllipsize(TruncateAt.END);
+	}
 }

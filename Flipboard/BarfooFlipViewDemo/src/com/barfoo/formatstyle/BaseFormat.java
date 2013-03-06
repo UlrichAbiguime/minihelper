@@ -12,7 +12,6 @@ import com.barfoo.flipview.demo.R;
 
 public abstract class BaseFormat extends LinearLayout {
 
-	private LayoutInflater layoutInflater;
 	LinearLayout basetop;
 	LinearLayout basebottom;
 	LinearLayout basecenter;

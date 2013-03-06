@@ -85,14 +85,14 @@ public class FlipDynamicActivity extends Activity {
 			obj0.put("sourceimage", "sourceimage");
 			obj0.put("source", res.getString(R.string.Adatasource));
 			obj0.put("content", res.getString(R.string.Adatacontent));
-			obj0.put("titleimage", "");
+			obj0.put("titleimage", "aa");
 
 			JSONObject obj1 = new JSONObject();
 			obj1.put("title", res.getString(R.string.Bdatatitle));
 			obj1.put("sourceimage", "sourceimage");
 			obj1.put("source", res.getString(R.string.Bdatasource));
 			obj1.put("content", res.getString(R.string.Bdatacontent));
-			obj1.put("titleimage", "");
+			obj1.put("titleimage", "aa");
 
 			JSONObject obj2 = new JSONObject();
 			obj2.put("title", res.getString(R.string.Cdatatitle));

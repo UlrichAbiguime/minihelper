@@ -7,6 +7,7 @@ package com.barfoo.container;
 import org.json.JSONObject;
 
 import android.content.Context;
+import android.text.TextUtils.TruncateAt;
 import android.util.AttributeSet;
 
 import com.barfoo.flip.demo.data.ViewUtil;
@@ -45,5 +46,10 @@ public class BContainer extends AContainer implements IContainer{
 		return R.layout.containeritemb;
 	}
 	
+	@Override
+	public void setTextLin() {
+		tv_content.setMaxLines(10);
+		tv_content.setEllipsize(TruncateAt.END);
+	}
 	
 }

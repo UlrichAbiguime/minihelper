@@ -26,8 +26,8 @@ public final class R {
 		public static final int[] FlipViewController = { 0x7f010000, 0x7f010001 };
 	}
 	public static final class drawable {
-		public static final int ic_launcher = 0x7f020003;
-		public static final int ic_action_search = 0x7f020002;
+		public static final int ic_launcher = 0x7f020004;
+		public static final int ic_action_search = 0x7f020003;
 	}
 	public static final class attr {
 		public static final int orientation = 0x7f010000;

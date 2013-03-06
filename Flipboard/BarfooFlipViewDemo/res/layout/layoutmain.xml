@@ -11,30 +11,33 @@
         android:layout_height="wrap_content" >
 
         <Button
-            android:id="@+id/Button01"
+            android:id="@+id/back_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingLeft="5dip"
-            android:text="返回" />
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dip"
+            android:background="@drawable/backbuttonstyle" />
 
         <TextView
-            android:id="@+id/textView1"
+            android:id="@+id/main_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
             android:gravity="center"
-            android:text="主页" />
+            android:textSize="34sp"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:text="新闻" />
 
         <Button
-            android:id="@+id/button1"
+            android:id="@+id/search_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:layout_alignParentTop="true"
-            android:paddingRight="5dip"
-            android:text="主页" />
-
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/searchbuttonstyle" />
     </RelativeLayout>
 
     <LinearLayout
@@ -45,8 +48,8 @@
     <LinearLayout
         android:id="@+id/layoutfooder"
         android:layout_width="fill_parent"
-        android:gravity="center"
-        android:layout_height="wrap_content" >
+        android:layout_height="wrap_content"
+        android:gravity="center" >
     </LinearLayout>
 
 </LinearLayout>
