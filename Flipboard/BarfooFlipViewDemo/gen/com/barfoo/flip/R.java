@@ -67,13 +67,12 @@ public final class R {
         public static final int ARGB_8888=0x7f040002;
         public static final int RGB_565=0x7f040004;
         public static final int about=0x7f04001c;
-        public static final int dividline=0x7f040018;
         public static final int horizontal=0x7f040001;
         public static final int iv_image=0x7f04000d;
         public static final int iv_sourceicon=0x7f040012;
-        public static final int layoutfooder=0x7f04001b;
-        public static final int layoutfragment=0x7f04001a;
-        public static final int layoutheader=0x7f040019;
+        public static final int layoutfooder=0x7f04001a;
+        public static final int layoutfragment=0x7f040019;
+        public static final int layoutheader=0x7f040018;
         public static final int ll_basebottom=0x7f04000a;
         public static final int ll_basecenter=0x7f040007;
         public static final int ll_basetop=0x7f040006;
@@ -92,6 +91,7 @@ public final class R {
         public static final int tv_source=0x7f040014;
         public static final int tv_title=0x7f04000f;
         public static final int vertical=0x7f040000;
+        public static final int viewline=0x7f04001b;
     }
     public static final class layout {
         public static final int baseviewmain=0x7f030000;
@@ -100,6 +100,8 @@ public final class R {
         public static final int containeritemc=0x7f030003;
         public static final int containeritemd=0x7f030004;
         public static final int layoutmain=0x7f030005;
+        public static final int verticalviewline=0x7f030006;
+        public static final int viewline=0x7f030007;
     }
     public static final class menu {
         public static final int main=0x7f090000;

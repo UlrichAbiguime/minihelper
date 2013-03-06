@@ -20,7 +20,7 @@ import android.widget.LinearLayout;
 
 import com.barfoo.flip.demo.data.ViewUtil;
 import com.barfoo.flipview.demo.R;
-import com.barfoo.formatstyle.AFormateStyle;
+import com.barfoo.formatstyle.CFormateStyle;
 import com.barfoo.formatstyle.LayoutFormat;
 
 public class FlipDynamicAdapter extends BaseAdapter {
@@ -75,12 +75,14 @@ public class FlipDynamicAdapter extends BaseAdapter {
 			image.setLayoutParams(new LinearLayout.LayoutParams(32, 32));
 			layoutFormat.getFooderLinear().addView(image);
 		}
-		ViewUtil.setViewWidHeight(layoutFormat.getHeaderLinear(), 1, 0.1);
-		ViewUtil.setViewWidHeight(layoutFormat.getFragmentLinear(), 1, 0.8);
-		ViewUtil.setViewWidHeight(layoutFormat.getFooderLinear(), 1, 0.1);
+		ViewUtil.setViewWidHeight(layoutFormat.getHeaderLinear(), 1, 0.05);
+		ViewUtil.setViewWidHeight(layoutFormat.getFragmentLinear(), 1, 0.9);
+		ViewUtil.setViewWidHeight(layoutFormat.getFooderLinear(), 1, 0.05);
 		ViewUtil.trueScreenH=ViewUtil.getViewHeight(layoutFormat.getFragmentLinear());
 		ViewUtil.trueScreenW=ViewUtil.getViewWidth(layoutFormat.getFragmentLinear());
-		layoutFormat.getFragmentLinear().addView(new AFormateStyle(mContext, null, mJsonArray));
+		//layoutFormat.getFragmentLinear().addView(new AFormateStyle(mContext, null, mJsonArray));
+		layoutFormat.getFragmentLinear().addView(new CFormateStyle(mContext, null, mJsonArray));
+		//layoutFormat.getFragmentLinear().addView(new BFormateStyle(mContext, null, mJsonArray));
 		
 		return layoutFormat;
 	}

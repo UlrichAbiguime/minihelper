@@ -14,10 +14,13 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.app.Activity;
+import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 import com.barfoo.flip.FlipViewController;
 import com.barfoo.flip.demo.adapter.FlipDynamicAdapter;
@@ -59,6 +62,12 @@ public class FlipDynamicActivity extends Activity {
 		});
 
 		setContentView(flipView);
+		if (this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+			
+			Log.e("change", "hengping");
+		} else if (this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+			Log.e("change", "shuping");
+		}
 	}
 
 	@Override
@@ -82,14 +91,14 @@ public class FlipDynamicActivity extends Activity {
 			obj0.put("sourceimage", "sourceimage");
 			obj0.put("source", res.getString(R.string.Adatasource));
 			obj0.put("content", res.getString(R.string.Adatacontent));
-			obj0.put("titleimage", "");
+			obj0.put("titleimage", "xx");
 
 			JSONObject obj1 = new JSONObject();
 			obj1.put("title", res.getString(R.string.Bdatatitle));
 			obj1.put("sourceimage", "sourceimage");
 			obj1.put("source", res.getString(R.string.Bdatasource));
 			obj1.put("content", res.getString(R.string.Bdatacontent));
-			obj1.put("titleimage", "");
+			obj1.put("titleimage", "xx");
 
 			JSONObject obj2 = new JSONObject();
 			obj2.put("title", res.getString(R.string.Cdatatitle));
@@ -103,21 +112,21 @@ public class FlipDynamicActivity extends Activity {
 			obj3.put("sourceimage", "sourceimage");
 			obj3.put("source", res.getString(R.string.Ddatasource));
 			obj3.put("content", res.getString(R.string.Ddatacontent));
-			obj3.put("titleimage", "");
+			obj3.put("titleimage", "xx");
 
 			JSONObject obj4 = new JSONObject();
 			obj4.put("title", res.getString(R.string.Edatatitle));
 			obj4.put("sourceimage", "sourceimage");
 			obj4.put("source", res.getString(R.string.Edatasource));
 			obj4.put("content", res.getString(R.string.Edatacontent));
-			obj4.put("titleimage", "");
+			obj4.put("titleimage", "xx");
 
 			JSONObject obj5 = new JSONObject();
 			obj5.put("title", res.getString(R.string.Fdatatitle));
 			obj5.put("sourceimage", "sourceimage");
 			obj5.put("source", res.getString(R.string.Fdatasource));
 			obj5.put("content", res.getString(R.string.Fdatacontent));
-			obj5.put("titleimage", "");
+			obj5.put("titleimage", "xx");
 
 			array.put(obj0);
 			array.put(obj1);
@@ -125,9 +134,20 @@ public class FlipDynamicActivity extends Activity {
 			array.put(obj3);
 			array.put(obj4);
 			array.put(obj5);
-
+			
 		} catch (JSONException e) {
 			e.printStackTrace();
+		}
+	}
+
+	@Override
+	public void onConfigurationChanged(Configuration newConfig) {
+		super.onConfigurationChanged(newConfig);
+
+		if (this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+			Log.e("onConfigurationChanged", "hengping");
+		} else if (this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+			Log.e("onConfigurationChanged", "shuping");
 		}
 	}
 }

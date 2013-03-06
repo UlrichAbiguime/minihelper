@@ -1,5 +1,5 @@
 /**
- * AContainerFormate
+ * AContainerFormate(为AContainer的竖屏版式)
  * 功能:设定好container中的布局样式以及根据布局样式自动填充数据
  */
 package com.barfoo.container;
@@ -50,7 +50,7 @@ public class AContainer extends LinearLayout implements IContainer {
 		buildView(json);
 		setData(json);
 	}
-
+	
 	@Override
 	public void buildView(JSONObject json) {
 		ViewUtil.setViewWidHeight(this, ViewUtil.trueScreenW,ViewUtil.trueScreenH, 1, 0.4);
@@ -69,12 +69,6 @@ public class AContainer extends LinearLayout implements IContainer {
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
-		
-	}
-
-	@Override
-	public int getXmlResource() {
-		return R.layout.containeritema;
 	}
 
 	/**
@@ -123,5 +117,10 @@ public class AContainer extends LinearLayout implements IContainer {
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
+	}
+
+	@Override
+	public int getXmlResource() {
+		return R.layout.containeritema;
 	}
 }

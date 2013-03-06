@@ -11,13 +11,13 @@
     <LinearLayout
         android:id="@+id/ll_title"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="wrap_content"
+        android:gravity="center" >
 
         <TextView
             android:id="@+id/tv_title"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:layout_margin="10dip"
             android:ellipsize="end"
             android:gravity="center_vertical|left"
             android:maxLines="2"
@@ -32,8 +32,7 @@
         android:id="@+id/ll_source"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="10dip"
-        android:layout_marginRight="10dip" >
+        >
 
         <!-- 来源图片 -->
 
@@ -53,7 +52,7 @@
         <LinearLayout
             android:id="@+id/ll_tvsourceforlin"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="fill_parent"
             android:layout_weight="1" >
 
             <TextView
@@ -72,25 +71,27 @@
     <LinearLayout
         android:id="@+id/ll_body"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal|top" >
 
+        <!-- 图片 -->
         <LinearLayout
             android:id="@+id/ll_image"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content" >
+            android:layout_height="fill_parent"
+            android:layout_marginLeft="5dip" >
 
             <ImageView
                 android:id="@+id/iv_image"
                 android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                />
+                android:layout_height="fill_parent" />
         </LinearLayout>
 
         <LinearLayout
             android:id="@+id/ll_tvcontent"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:padding="10dip" >
+            android:gravity="center_horizontal|top" >
 
             <TextView
                 android:id="@+id/tv_content"
@@ -102,5 +103,4 @@
                 android:textSize="@dimen/textContentSize" />
         </LinearLayout>
     </LinearLayout>
-
 </LinearLayout>
