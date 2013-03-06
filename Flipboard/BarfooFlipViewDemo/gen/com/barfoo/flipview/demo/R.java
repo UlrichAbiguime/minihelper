@@ -53,25 +53,36 @@ public final class R {
         public static final int texttitleSize=0x7f080001;
     }
     public static final class drawable {
-        public static final int bg=0x7f020000;
-        public static final int feed_taggeduser_image=0x7f020001;
-        public static final int ic_action_search=0x7f020002;
-        public static final int ic_launcher=0x7f020003;
-        public static final int icon_place_checkin=0x7f020004;
-        public static final int line=0x7f020005;
-        public static final int loginbg=0x7f020006;
-        public static final int newbg=0x7f020007;
+        public static final int backbuttonstyle=0x7f020000;
+        public static final int bg=0x7f020001;
+        public static final int feed_taggeduser_image=0x7f020002;
+        public static final int ic_action_search=0x7f020003;
+        public static final int ic_launcher=0x7f020004;
+        public static final int icon_back_mini_black=0x7f020005;
+        public static final int icon_back_mini_down=0x7f020006;
+        public static final int icon_back_mini_white=0x7f020007;
+        public static final int icon_place_checkin=0x7f020008;
+        public static final int icon_search_black=0x7f020009;
+        public static final int icon_search_down=0x7f02000a;
+        public static final int icon_search_white=0x7f02000b;
+        public static final int line=0x7f02000c;
+        public static final int loginbg=0x7f02000d;
+        public static final int newbg=0x7f02000e;
+        public static final int radio_checked_down=0x7f02000f;
+        public static final int radio_unchecked=0x7f020010;
+        public static final int searchbuttonstyle=0x7f020011;
     }
     public static final class id {
         public static final int ARGB_4444=0x7f040003;
         public static final int ARGB_8888=0x7f040002;
         public static final int RGB_565=0x7f040004;
-        public static final int about=0x7f04001c;
+        public static final int about=0x7f04001f;
+        public static final int back_button=0x7f040019;
         public static final int horizontal=0x7f040001;
         public static final int iv_image=0x7f04000d;
         public static final int iv_sourceicon=0x7f040012;
-        public static final int layoutfooder=0x7f04001a;
-        public static final int layoutfragment=0x7f040019;
+        public static final int layoutfooder=0x7f04001d;
+        public static final int layoutfragment=0x7f04001c;
         public static final int layoutheader=0x7f040018;
         public static final int ll_basebottom=0x7f04000a;
         public static final int ll_basecenter=0x7f040007;
@@ -86,12 +97,14 @@ public final class R {
         public static final int ll_tvcontent=0x7f040015;
         public static final int ll_tvsourceforlin=0x7f040013;
         public static final int lla_container=0x7f04000b;
+        public static final int main_title=0x7f04001a;
+        public static final int search_button=0x7f04001b;
         public static final int tag_async_image_view_position=0x7f040005;
         public static final int tv_content=0x7f040016;
         public static final int tv_source=0x7f040014;
         public static final int tv_title=0x7f04000f;
         public static final int vertical=0x7f040000;
-        public static final int viewline=0x7f04001b;
+        public static final int viewline=0x7f04001e;
     }
     public static final class layout {
         public static final int baseviewmain=0x7f030000;

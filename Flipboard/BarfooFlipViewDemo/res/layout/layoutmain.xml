@@ -5,11 +5,40 @@
     android:background="@android:color/white"
     android:orientation="vertical" >
 
-    <LinearLayout
+    <RelativeLayout
         android:id="@+id/layoutheader"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content" >
-    </LinearLayout>
+
+        <Button
+            android:id="@+id/back_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dip"
+            android:background="@drawable/backbuttonstyle" />
+
+        <TextView
+            android:id="@+id/main_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:gravity="center"
+            android:textSize="34sp"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:text="新闻" />
+
+        <Button
+            android:id="@+id/search_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/searchbuttonstyle" />
+    </RelativeLayout>
 
     <LinearLayout
         android:id="@+id/layoutfragment"
@@ -19,7 +48,8 @@
     <LinearLayout
         android:id="@+id/layoutfooder"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="wrap_content"
+        android:gravity="center" >
     </LinearLayout>
 
 </LinearLayout>

@@ -1,13 +1,19 @@
 /**
+<<<<<<< HEAD
  * AContainerFormate(为AContainer的竖屏版式)
  * 功能:设定好container中的布局样式以及根据布局样式自动填充数据
+=======
+ * AContainerFormate 功能:设定好container中的布局样式以及根据布局样式自动填充数据
+>>>>>>> 501d9080b550355a87514cf179fb70b39ba20e1f
  */
 package com.barfoo.container;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.text.TextUtils.TruncateAt;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -20,6 +26,7 @@ import com.barfoo.flip.demo.data.Util;
 import com.barfoo.flip.demo.data.ViewUtil;
 import com.barfoo.flipview.demo.R;
 
+@SuppressLint("WrongCall")
 public class AContainer extends LinearLayout implements IContainer {
 
 	Context mContext;
@@ -49,19 +56,21 @@ public class AContainer extends LinearLayout implements IContainer {
 		initWidget();
 		buildView(json);
 		setData(json);
+		setTextLin();
 	}
 	
 	@Override
 	public void buildView(JSONObject json) {
-		ViewUtil.setViewWidHeight(this, ViewUtil.trueScreenW,ViewUtil.trueScreenH, 1, 0.4);
+		ViewUtil.setViewWidHeight(this, ViewUtil.trueScreenW, ViewUtil.trueScreenH, 1, 0.4);
 		int itemviewW = ViewUtil.getViewWidth(this);
 		int itemviewH = ViewUtil.getViewHeight(this);
 		ViewUtil.setViewWidHeight(ll_title, itemviewW, itemviewH, 1, 0.15);
 		ViewUtil.setViewWidHeight(ll_source, itemviewW, itemviewH, 1, 0.05);
 		ViewUtil.setViewWidHeight(ll_tvcontent, itemviewW, itemviewH, 1, 0.4);
+		Log.i("message", "Ac_bu");
 		try {
 			if (Util.isJsonNull(json, "titleimage")) {
-				ViewUtil.setViewWidHeight(ll_image, itemviewW, itemviewH, 1,0.4);
+				ViewUtil.setViewWidHeight(ll_image, itemviewW, itemviewH, 1, 0.4);
 
 			} else {
 				ll_image.setVisibility(View.GONE);
@@ -71,7 +80,7 @@ public class AContainer extends LinearLayout implements IContainer {
 		}
 	}
 
-	/**
+	/**maxlines
 	 * 初始化组件
 	 */
 	public void initWidget() {
@@ -94,10 +103,9 @@ public class AContainer extends LinearLayout implements IContainer {
 	 * @param json
 	 */
 	public void setData(JSONObject json) {
-		
-		maxlines = Util.getMaxLines(ViewUtil.getViewHeight(ll_tvcontent),tv_content.getTextSize());
-		Log.e("maxline", maxlines + "");
-		
+
+		maxlines = Util.getMaxLines(ViewUtil.getViewHeight(ll_tvcontent), tv_content.getTextSize());
+
 		try {
 			tv_title.setText(json.getString("title"));
 			if (Util.isJsonNull(json, "sourceimage")) {
@@ -105,9 +113,6 @@ public class AContainer extends LinearLayout implements IContainer {
 			}
 			tv_source.setText(json.getString("source"));
 			tv_content.setText(json.getString("content"));
-			if(maxlines>0){
-				Util.truncate(tv_content, maxlines);
-			}
 
 			if (Util.isJsonNull(json, "titleimage")) {
 				iv_image.setImageResource(R.drawable.newbg);
@@ -123,4 +128,10 @@ public class AContainer extends LinearLayout implements IContainer {
 	public int getXmlResource() {
 		return R.layout.containeritema;
 	}
+	
+	public void setTextLin() {
+		tv_content.setMaxLines(2);
+		tv_content.setEllipsize(TruncateAt.END);
+	}
+
 }

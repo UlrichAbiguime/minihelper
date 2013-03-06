@@ -8,6 +8,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.content.Context;
+import android.text.TextUtils.TruncateAt;
 import android.util.AttributeSet;
 
 import com.barfoo.flip.demo.data.Util;
@@ -57,4 +58,11 @@ public class BContainer extends AContainer implements IContainer{
 	public int getXmlResource() {
 		return R.layout.containeritemb;
 	}
+	
+	@Override
+	public void setTextLin() {
+		tv_content.setMaxLines(10);
+		tv_content.setEllipsize(TruncateAt.END);
+	}
+	
 }

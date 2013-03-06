@@ -13,13 +13,17 @@ import org.json.JSONArray;
 
 import android.content.Context;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.view.ViewGroup.LayoutParams;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.barfoo.flip.demo.data.ViewUtil;
 import com.barfoo.flipview.demo.R;
+import com.barfoo.formatstyle.AFormateStyle;
+import com.barfoo.formatstyle.BFormateStyle;
 import com.barfoo.formatstyle.CFormateStyle;
 import com.barfoo.formatstyle.LayoutFormat;
 
@@ -63,16 +67,20 @@ public class FlipDynamicAdapter extends BaseAdapter {
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
 		LayoutFormat layoutFormat = new LayoutFormat(mContext);
+		ImageView[] imageViews = new ImageView[getCount()];
+		ImageView image = new ImageView(mContext);
+		
+		for (int i = 0; i < getCount(); i++) {
+			image = new ImageView(mContext);
+			image.setLayoutParams(new LayoutParams(32, 32));
+			imageViews[i] = image;
 
-		for (int i = 0; i <= getCount(); i++) {
-			ImageView image = new ImageView(mContext);
 			if (i == position) {
-				image.setBackgroundResource(R.drawable.feed_taggeduser_image);
+				image.setBackgroundResource(R.drawable.radio_checked_down);
 			} else {
-				image.setBackgroundResource(R.drawable.ic_launcher);
+				image.setBackgroundResource(R.drawable.radio_unchecked);
 			}
 
-			image.setLayoutParams(new LinearLayout.LayoutParams(32, 32));
 			layoutFormat.getFooderLinear().addView(image);
 		}
 		ViewUtil.setViewWidHeight(layoutFormat.getHeaderLinear(), 1, 0.05);
@@ -83,6 +91,22 @@ public class FlipDynamicAdapter extends BaseAdapter {
 		//layoutFormat.getFragmentLinear().addView(new AFormateStyle(mContext, null, mJsonArray));
 		layoutFormat.getFragmentLinear().addView(new CFormateStyle(mContext, null, mJsonArray));
 		//layoutFormat.getFragmentLinear().addView(new BFormateStyle(mContext, null, mJsonArray));
+
+
+		if (position % 2 == 0) {
+			layoutFormat.getFragmentLinear().addView(new BFormateStyle(mContext, null, mJsonArray));
+		} else {
+			layoutFormat.getFragmentLinear().addView(new AFormateStyle(mContext, null, mJsonArray));
+		}
+		
+		
+		layoutFormat.getBackButton().setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				Toast.makeText(mContext, "后退", Toast.LENGTH_SHORT).show();
+			}
+		});
 		
 		return layoutFormat;
 	}
