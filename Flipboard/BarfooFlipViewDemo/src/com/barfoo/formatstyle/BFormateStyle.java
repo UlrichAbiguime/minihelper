@@ -23,7 +23,6 @@ import com.barfoo.flipview.demo.R;
 public class BFormateStyle extends BaseFormat implements IFormat{
 
 	Context mContext;
-	boolean misScreen;
 	int screenFlag;
 	public BFormateStyle(Context context) {
 		super(context);

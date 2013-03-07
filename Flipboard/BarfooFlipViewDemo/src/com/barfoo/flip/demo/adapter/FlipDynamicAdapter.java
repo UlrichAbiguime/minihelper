@@ -23,7 +23,6 @@ import com.barfoo.flip.demo.data.ViewUtil;
 import com.barfoo.flipview.demo.R;
 import com.barfoo.formatstyle.AFormateStyle;
 import com.barfoo.formatstyle.BFormateStyle;
-import com.barfoo.formatstyle.CFormateStyle;
 import com.barfoo.formatstyle.LayoutFormat;
 
 public class FlipDynamicAdapter extends BaseAdapter {
@@ -94,13 +93,12 @@ public class FlipDynamicAdapter extends BaseAdapter {
 		//layoutFormat.getFragmentLinear().addView(new CFormateStyle(mContext, null, mJsonArray,getChangeScreenValue()));
 		//layoutFormat.getFragmentLinear().addView(new BFormateStyle(mContext, null, mJsonArray));
 
-		
-		
 		if (position % 2 == 0) {
 			layoutFormat.getFragmentLinear().addView(new BFormateStyle(mContext, null, mJsonArray,getChangeScreenValue()));
 		} else {
 			layoutFormat.getFragmentLinear().addView(new AFormateStyle(mContext, null, mJsonArray,getChangeScreenValue()));
 		}
+		
 		
 		return layoutFormat;
 	}

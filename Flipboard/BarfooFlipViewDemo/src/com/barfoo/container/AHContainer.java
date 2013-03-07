@@ -1,5 +1,6 @@
 /**
- * AHContainer(为AContainer的横屏版式)
+ * AHContainer(为AFormateStyle的横屏版式)
+ * 设计：采用containeritema.xml的版式,计算是横屏锁适应的版式
  * 功能:设定好container中的布局样式以及根据布局样式自动填充数据
  */
 package com.barfoo.container;

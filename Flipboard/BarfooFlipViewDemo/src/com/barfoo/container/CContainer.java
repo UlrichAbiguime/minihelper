@@ -1,5 +1,5 @@
 /**
- * AContainerFormate
+ * AContainerFormate(为AFormateStyle的竖屏版式)
  * 功能:设定好container中的布局样式以及根据布局样式自动填充数据
  */
 package com.barfoo.container;

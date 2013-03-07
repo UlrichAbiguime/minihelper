@@ -1,3 +1,8 @@
+/**
+ * DContainer(为BFormateStyle的竖屏版式)
+ * 设计：采用containeritemd.xml的版式,计算是竖屏锁适应的版式
+ * 功能:设定好container中的布局样式以及根据布局样式自动填充数据
+ */
 package com.barfoo.container;
 
 import org.json.JSONException;

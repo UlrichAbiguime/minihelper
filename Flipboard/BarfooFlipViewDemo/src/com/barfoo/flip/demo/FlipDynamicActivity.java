@@ -41,7 +41,7 @@ public class FlipDynamicActivity extends Activity {
 		super.onCreate(savedInstanceState);
 
 		ViewUtil.screenInfo(this);// 获取屏幕的宽高
-
+		
 		res = getResources();
 
 		getData();
@@ -62,7 +62,17 @@ public class FlipDynamicActivity extends Activity {
 				}
 			}
 		});
-
+		if (this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+			adapter.setChangeScreenValue(0);
+			adapter.notifyDataSetChanged();
+			//adapter.screenRefresh();
+			Log.e("change", "hengping");
+			//Log.e("change", "shuping");
+		} else if (this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+			adapter.setChangeScreenValue(1);
+			adapter.notifyDataSetChanged();
+			Log.e("change", "shuping");
+		}
 		setContentView(flipView);
 		
 	}

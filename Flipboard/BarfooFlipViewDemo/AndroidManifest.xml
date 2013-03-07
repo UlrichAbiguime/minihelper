@@ -18,6 +18,9 @@
     <!-- android:theme="@android:style/android.NoTitleBar.Fullscreen" -->
     <!-- android:theme="@style/AppTheme" -->
     <!-- android:theme="@style/AppTheme1" -->
+    
+    <!-- keyboardHidden|orientation" -->
+    <!--  orientation|screenSize api 13以上的版本横竖屏切换需要这种设置-->
     <application
         android:debuggable="true"
         android:icon="@drawable/ic_launcher"
