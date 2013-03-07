@@ -55,5 +55,4 @@ public class Util {
 	public static int getMaxLines(int contentHeight,float fontSize){
 		return (int)(contentHeight/getFontHeight(fontSize));
 	}
-	
 }

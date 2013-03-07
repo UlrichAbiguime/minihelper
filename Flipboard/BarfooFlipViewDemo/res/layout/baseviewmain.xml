@@ -13,9 +13,11 @@
     </LinearLayout>
 
     <View
+        android:id="@+id/topcenterline"
         android:layout_width="fill_parent"
-        android:layout_height="1dip"
-        android:background="@color/darkgrey" />
+        android:layout_height="wrap_content"
+        android:background="@color/black"
+        android:visibility="gone" />
 
     <LinearLayout
         android:id="@+id/ll_basecenter"
@@ -30,9 +32,11 @@
         </LinearLayout>
 
         <View
-            android:layout_width="1dip"
-            android:layout_height="fill_parent"
-            android:background="@color/darkgrey" />
+            android:id="@+id/centerline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/black"
+            android:visibility="gone" />
 
         <LinearLayout
             android:id="@+id/ll_centerright"
@@ -44,9 +48,11 @@
     </LinearLayout>
 
     <View
-        android:layout_width="fill_parent"
-        android:layout_height="1dip"
-        android:background="@color/darkgrey" />
+        android:id="@+id/centerbottomline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/black"
+        android:visibility="gone" />
 
     <LinearLayout
         android:id="@+id/ll_basebottom"

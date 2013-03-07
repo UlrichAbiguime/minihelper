@@ -1,8 +1,12 @@
 package com.barfoo.flip.demo.data;
 
+import com.barfoo.flipview.demo.R;
+
 import android.app.Activity;
+import android.content.Context;
 import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup.LayoutParams;
 
@@ -145,36 +149,53 @@ public class ViewUtil {
 	
 	
 	/**
-	 * 获取为设置view的宽度
-	 * @param view
+	 * 横向称满全屏的直线
+	 * @param context
 	 * @return
 	 */
-	/**
-	public static int getNoSetViewWidth(View view){
-		if(view.getLayoutParams().width==0){
-			return setViewWidthHeight(view).getMeasuredWidth();
-		}else{
-			return view.getLayoutParams().width;
-		}
-	}
-	
-	public static int getNoSetViewHeight(View view){
-		if(view.getLayoutParams().height==0){
-			int viewW = View.MeasureSpec.makeMeasureSpec(0,View.MeasureSpec.UNSPECIFIED); 
-			int viewH = View.MeasureSpec.makeMeasureSpec(0,View.MeasureSpec.UNSPECIFIED); 
-			view.measure(viewW,viewH);
-			return view.getMeasuredHeight();
-		}else{
-			return view.getLayoutParams().height;
-		}
-	}
-	
-	public static View setViewWidthHeight(View view){
-		int viewW = View.MeasureSpec.makeMeasureSpec(0,View.MeasureSpec.UNSPECIFIED); 
-		int viewH = View.MeasureSpec.makeMeasureSpec(0,View.MeasureSpec.UNSPECIFIED); 
-		view.measure(viewW,viewH);
+	public static View addViewlines(Context context){
+		View view=LayoutInflater.from(context).inflate(R.layout.viewline, null);
+		setViewWidth(view, screenW, 1);
+		view.getLayoutParams().height=1;
 		return view;
 	}
 	
-	**/
+	/**
+	 * 横向container之间添加横线
+	 * @param context
+	 * @return
+	 */
+	public static View addViewlines(Context context,int width,int height){
+		View view=LayoutInflater.from(context).inflate(R.layout.viewline, null);
+		ViewUtil.setViewWidth(view, width, 1);
+		view.getLayoutParams().height=1;
+		Log.e("height", view.getLayoutParams().height+"");
+		return view;
+	}
+	
+	/**
+	 * 纵向称满全屏
+	 * @param context
+	 * @return
+	 */
+	public static View addVerticalViewlines(Context context){
+		View view=LayoutInflater.from(context).inflate(R.layout.verticalviewline, null);
+		ViewUtil.setViewHeight(view, screenH, 1);
+		view.getLayoutParams().width=1;
+		return view;
+	}
+	
+	/**
+	 * 纵向container之间添加竖线
+	 * @param context
+	 * @param width
+	 * @param height
+	 * @return
+	 */
+	public static View addVerticalViewlines(Context context,int height){
+		View view=LayoutInflater.from(context).inflate(R.layout.verticalviewline, null);
+		ViewUtil.setViewHeight(view, height, 1);
+		view.getLayoutParams().width=1;
+		return view;
+	}
 }

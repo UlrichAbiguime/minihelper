@@ -22,6 +22,7 @@ import com.barfoo.container.GContainer;
 import com.barfoo.container.HContainer;
 import com.barfoo.container.JContainer;
 import com.barfoo.flip.demo.IFormat;
+import com.barfoo.flip.demo.data.ViewUtil;
 import com.barfoo.flipview.demo.R;
 
 public class CFormateStyle extends BaseFormat implements IFormat{
@@ -43,27 +44,46 @@ public class CFormateStyle extends BaseFormat implements IFormat{
 		
 	}
 
+	@SuppressWarnings("deprecation")
 	@Override
 	public void buildFormat(JSONArray array) {
 		try {
 			
 			if(screenFlag==0){
 				//横屏
-				getCenterLeftLinear().addView(new EHContainer(mContext, null, array.getJSONObject(0)));
+				View leftView=new EHContainer(mContext, null, array.getJSONObject(0));
+				getCenterLeftLinear().addView(leftView);
+				
+				getCenterLine().setVisibility(View.VISIBLE);
+				getCenterLine().setLayoutParams(new LayoutParams(1,ViewUtil.getViewHeight(leftView)));
+				
 				getCenterRightLinear().addView(new EHContainer(mContext, null, array.getJSONObject(1)));
-				getBottomLinear().addView(new FHContainer(mContext, null, array.getJSONObject(2)));
+				getBottomline().setVisibility(View.VISIBLE);
+				getBottomline().setLayoutParams(new LayoutParams(LayoutParams.FILL_PARENT, 1));
+				
+				
+				View bottomview=new FHContainer(mContext, null, array.getJSONObject(2));
+				getBottomLinear().addView(bottomview);
+				getBottomLinear().addView(ViewUtil.addVerticalViewlines(mContext, ViewUtil.getViewHeight(bottomview)));
 				getBottomLinear().addView(new FHContainer(mContext, null, array.getJSONObject(3)));
+				getBottomLinear().addView(ViewUtil.addVerticalViewlines(mContext, ViewUtil.getViewHeight(bottomview)));
 				getBottomLinear().addView(new FHContainer(mContext, null, array.getJSONObject(4)));
 				
 			}else{
 				//竖屏
-				getCenterLeftLinear().addView(new EContainer(mContext, null, array.getJSONObject(0)));
-				getCenterLeftLinear().addView(addViewlines(mContext));
+				View view =new EContainer(mContext, null, array.getJSONObject(0));
+				getCenterLeftLinear().addView(view);
+				getCenterLeftLinear().addView(ViewUtil.addViewlines(mContext,ViewUtil.getViewWidth(view),ViewUtil.getViewHeight(view)));
 				getCenterLeftLinear().addView(new FContainer(mContext, null, array.getJSONObject(1)));
-				getCenterLeftLinear().addView(addViewlines(mContext));
+				getCenterLeftLinear().addView(ViewUtil.addViewlines(mContext,ViewUtil.getViewWidth(view),ViewUtil.getViewHeight(view)));
 				getCenterLeftLinear().addView(new GContainer(mContext, null, array.getJSONObject(2)));
 				
-				getCenterRightLinear().addView(new HContainer(mContext, null, array.getJSONObject(3)));
+				getCenterLine().setVisibility(View.VISIBLE);
+				getCenterLine().setLayoutParams(new LayoutParams(1,LayoutParams.FILL_PARENT));
+				
+				View rightView=new HContainer(mContext, null, array.getJSONObject(3));
+				getCenterRightLinear().addView(rightView);
+				getCenterRightLinear().addView(ViewUtil.addViewlines(mContext,ViewUtil.getViewWidth(rightView),ViewUtil.getViewHeight(rightView)));
 				getCenterRightLinear().addView(new JContainer(mContext, null, array.getJSONObject(4)));
 			}
 			
@@ -72,10 +92,5 @@ public class CFormateStyle extends BaseFormat implements IFormat{
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
-	}
-	
-	public View addViewlines(Context context){
-		View view=LayoutInflater.from(mContext).inflate(R.layout.viewline, null);
-		return view;
 	}
 }

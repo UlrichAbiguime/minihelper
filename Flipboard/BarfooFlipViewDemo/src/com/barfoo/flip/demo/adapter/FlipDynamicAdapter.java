@@ -93,6 +93,7 @@ public class FlipDynamicAdapter extends BaseAdapter {
 		//layoutFormat.getFragmentLinear().addView(new CFormateStyle(mContext, null, mJsonArray,getChangeScreenValue()));
 		//layoutFormat.getFragmentLinear().addView(new BFormateStyle(mContext, null, mJsonArray));
 
+		
 		if (position % 2 == 0) {
 			layoutFormat.getFragmentLinear().addView(new BFormateStyle(mContext, null, mJsonArray,getChangeScreenValue()));
 		} else {
@@ -131,11 +132,5 @@ public class FlipDynamicAdapter extends BaseAdapter {
 	public void setChangeScreenValue(int changeScreenValue) {
 		this.changeScreenValue = changeScreenValue;
 	}
-
-	public void screenRefresh(){
-		notifyDataSetInvalidated();
-		notifyDataSetChanged();
-	}
-	
 	
 }

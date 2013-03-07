@@ -34,7 +34,7 @@ public class AHContainer extends AContainer{
 		int itemviewW=ViewUtil.getViewWidth(this);
 		int itemviewH=ViewUtil.getViewHeight(this);
 		ViewUtil.setViewPadding(this, itemviewW, itemviewH, 0.04, 0, 0.03, 0);
-		ViewUtil.setViewWidHeight(ll_title, itemviewW, itemviewH, 0.92, 0.1);//1/0.15
+		ViewUtil.setViewWidHeight(ll_title, itemviewW, itemviewH, 0.92, 0.13);//1/0.15
 		ViewUtil.setViewWidHeight(ll_source, itemviewW, itemviewH, 0.92, 0.07);//1/0.05
 		
 		try {
