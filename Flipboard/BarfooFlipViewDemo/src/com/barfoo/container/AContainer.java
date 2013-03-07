@@ -129,7 +129,7 @@ public class AContainer extends LinearLayout implements IContainer {
 		return R.layout.containeritema;
 	}
 	
-	public void setTextLin() {
+	private void setTextLin() {
 		tv_content.setMaxLines(2);
 		tv_content.setEllipsize(TruncateAt.END);
 	}

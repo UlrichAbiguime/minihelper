@@ -55,4 +55,10 @@ public  class  AFormateStyle extends BaseFormat implements IFormat{
 			e.printStackTrace();
 		}
 	}
+	
+	public static int getContainerSize(){
+		return 3;
+	}
+	
+	
 }

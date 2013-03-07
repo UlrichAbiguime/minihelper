@@ -11,4 +11,5 @@ import org.json.JSONArray;
 public interface IFormat{
 
 	void buildFormat(JSONArray array);
+	
 }

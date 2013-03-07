@@ -59,10 +59,4 @@ public class BContainer extends AContainer implements IContainer{
 		return R.layout.containeritemb;
 	}
 	
-	@Override
-	public void setTextLin() {
-		tv_content.setMaxLines(10);
-		tv_content.setEllipsize(TruncateAt.END);
-	}
-	
 }

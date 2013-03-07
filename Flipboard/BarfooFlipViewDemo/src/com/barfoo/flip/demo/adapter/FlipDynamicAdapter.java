@@ -9,6 +9,8 @@
  */
 package com.barfoo.flip.demo.adapter;
 
+import java.lang.reflect.InvocationTargetException;
+
 import org.json.JSONArray;
 
 import android.content.Context;
@@ -24,6 +26,8 @@ import com.barfoo.flipview.demo.R;
 import com.barfoo.formatstyle.AFormateStyle;
 import com.barfoo.formatstyle.BFormateStyle;
 import com.barfoo.formatstyle.CFormateStyle;
+import com.barfoo.formatstyle.FormatMaster;
+import com.barfoo.formatstyle.IFormat;
 import com.barfoo.formatstyle.LayoutFormat;
 
 public class FlipDynamicAdapter extends BaseAdapter {
@@ -35,6 +39,8 @@ public class FlipDynamicAdapter extends BaseAdapter {
 	private int repeatCount = 1;
 
 	FlipViewController mFlipViewController;
+
+	private IFormat createFormatView;
 
 	public FlipDynamicAdapter(Context context, JSONArray jsonArray, FlipViewController flipView) {
 		this.mFlipViewController = flipView;
@@ -89,18 +95,18 @@ public class FlipDynamicAdapter extends BaseAdapter {
 		ViewUtil.setViewWidHeight(layoutFormat.getFooderLinear(), 1, 0.05);
 		ViewUtil.trueScreenH=ViewUtil.getViewHeight(layoutFormat.getFragmentLinear());
 		ViewUtil.trueScreenW=ViewUtil.getViewWidth(layoutFormat.getFragmentLinear());
-		//layoutFormat.getFragmentLinear().addView(new AFormateStyle(mContext, null, mJsonArray));
-		layoutFormat.getFragmentLinear().addView(new CFormateStyle(mContext, null, mJsonArray));
-		//layoutFormat.getFragmentLinear().addView(new BFormateStyle(mContext, null, mJsonArray));
 
 
+		FormatMaster formatMaster = new FormatMaster();
+		
 		if (position % 2 == 0) {
 			layoutFormat.getFragmentLinear().addView(new BFormateStyle(mContext, null, mJsonArray));
 		} else {
 			layoutFormat.getFragmentLinear().addView(new AFormateStyle(mContext, null, mJsonArray));
 		}
 
-		return layoutFormat;
+
+		return (View) createFormatView;
 	}
 
 	public class FlipOnClickListener implements View.OnClickListener { // 标签点击监听事件
