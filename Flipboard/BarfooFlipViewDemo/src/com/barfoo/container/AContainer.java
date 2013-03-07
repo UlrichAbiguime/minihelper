@@ -62,11 +62,11 @@ public class AContainer extends LinearLayout implements IContainer {
 		int itemviewW = ViewUtil.getViewWidth(this);
 		int itemviewH = ViewUtil.getViewHeight(this);
 		ViewUtil.setViewPadding(this, itemviewW, itemviewH, 0.04, 0, 0.04, 0);//mobile: 0.04, 0, 0.04, 0//pad:0.04, 0, 0.04, 0
-		ViewUtil.setViewWidHeight(ll_title, itemviewW, itemviewH, 0.91, 0.15);//mobile://pad:0.91, 0.15
+		ViewUtil.setViewWidHeight(ll_title, itemviewW, itemviewH, 0.91, 0.17);//mobile://pad:0.91, 0.15
 		ViewUtil.setViewWidHeight(ll_source, itemviewW, itemviewH,0.91, 0.13);//mobile://pad:0.91, 0.13
 		try {
 			if (Util.isJsonNull(json, "titleimage")) {
-				ViewUtil.setViewWidHeight(ll_image, itemviewW, itemviewH, 0.91, 0.38);//mobile:0.91, 0.38//pad: 0.91, 0.43
+				ViewUtil.setViewWidHeight(ll_image, itemviewW, itemviewH, 0.91, 0.37);//mobile:0.91, 0.38//pad: 0.91, 0.43
 				ViewUtil.setViewPadding(ll_image, ViewUtil.getViewWidth(ll_image), ViewUtil.getViewHeight(ll_image), 0, 0.05, 0, 0.05);//mobile://pad:0, 0.05, 0, 0.05
 				ViewUtil.setViewWidHeight(ll_tvcontent, itemviewW, itemviewH,0.91, 0.24);//mobile://pad:0.91, 0.24
 

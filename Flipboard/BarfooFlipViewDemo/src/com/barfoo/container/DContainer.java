@@ -38,16 +38,16 @@ public class DContainer extends AContainer implements IContainer {
 		int itemviewH = ViewUtil.getViewHeight(this);
 		ViewUtil.setViewPadding(this, itemviewW, itemviewH, 0.04, 0, 0.04, 0);
 		ViewUtil.setViewWidHeight(ll_title, itemviewW, itemviewH, 0.91, 0.25);
-		ViewUtil.setViewWidHeight(ll_source, itemviewW, itemviewH, 0.91, 0.13);
+		ViewUtil.setViewWidHeight(ll_source, itemviewW, itemviewH, 0.91, 0.14);
 		
 		try {
 			if (Util.isJsonNull(json, "titleimage")) {
-				ViewUtil.setViewWidHeight(ll_image, itemviewW, itemviewH, 0.4, 0.62);
-				ViewUtil.setViewWidHeight(ll_tvcontent, itemviewW, itemviewH, 0.51,  0.62);
+				ViewUtil.setViewWidHeight(ll_image, itemviewW, itemviewH, 0.4, 0.61);
+				ViewUtil.setViewWidHeight(ll_tvcontent, itemviewW, itemviewH, 0.51,  0.61);
 				ViewUtil.setViewPadding(ll_image,ViewUtil.getViewWidth(ll_image),ViewUtil.getViewHeight(ll_image), 0.05, 0, 0, 0);
 				iv_image.setImageResource(R.drawable.loginbg);
 			} else {
-				ViewUtil.setViewWidHeight(ll_tvcontent, itemviewW, itemviewH, 0.91,  0.62);
+				ViewUtil.setViewWidHeight(ll_tvcontent, itemviewW, itemviewH, 0.91,  0.61);
 				ll_image.setVisibility(View.GONE);
 			}
 		} catch (JSONException e) {
