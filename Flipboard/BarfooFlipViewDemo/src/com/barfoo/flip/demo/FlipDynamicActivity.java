@@ -43,7 +43,6 @@ public class FlipDynamicActivity extends Activity {
 		ViewUtil.screenInfo(this);// 获取屏幕的宽高
 		
 		res = getResources();
-
 		getData();
 
 		flipView = new FlipViewController(this, FlipViewController.HORIZONTAL);
