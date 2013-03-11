@@ -109,12 +109,7 @@ public class FlipDynamicAdapter extends BaseAdapter {
 
 
 		
-		try {
-			createFormatMaster = FormatMaster.createFormatMaster(mContent, mJsonArray);
-		} catch (JSONException e) {
-			Toast.makeText(mContent, e.getMessage(), Toast.LENGTH_SHORT).show();
-		}
-		layoutFormat.getFragmentLinear().addView(createFormatMaster);
+		//layoutFormat.getFragmentLinear().addView(createFormatMaster);
 		return layoutFormat;
 	}
 

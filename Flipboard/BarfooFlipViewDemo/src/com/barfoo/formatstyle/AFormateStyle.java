@@ -27,6 +27,8 @@ import com.barfoo.flipview.demo.R;
 
 public  class  AFormateStyle extends BaseFormat implements IFormat{
 	
+	public static int containSize = 3;
+	
 	Context mContext;
 	int screenFlag;//0为横屏 ;1为竖屏
 	public AFormateStyle(Context context) {

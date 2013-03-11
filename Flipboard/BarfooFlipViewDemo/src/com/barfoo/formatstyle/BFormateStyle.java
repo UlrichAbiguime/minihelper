@@ -26,6 +26,7 @@ public class BFormateStyle extends BaseFormat implements IFormat {
 
 	Context mContext;
 	int screenFlag;
+	public static int containSize = 6;
 
 	public BFormateStyle(Context context) {
 		super(context);
