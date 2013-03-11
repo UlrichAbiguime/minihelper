@@ -21,12 +21,13 @@
     </LinearLayout>
 
     <!-- 标题 -->
-
+<!-- android:gravity="center_horizontal|top" -->
     <LinearLayout
         android:id="@+id/ll_title"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:gravity="center_horizontal|top" >
+        android:gravity="center"
+         >
 
         <TextView
             android:id="@+id/tv_title"

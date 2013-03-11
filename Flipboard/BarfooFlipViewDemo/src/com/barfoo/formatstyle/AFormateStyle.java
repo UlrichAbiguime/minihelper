@@ -14,6 +14,7 @@ import org.json.JSONException;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
+import android.view.View;
 
 import com.barfoo.container.AContainer;
 import com.barfoo.container.AHContainer;
@@ -21,6 +22,7 @@ import com.barfoo.container.BContainer;
 import com.barfoo.container.CContainer;
 import com.barfoo.container.CHContainer;
 import com.barfoo.container.DHContainer;
+import com.barfoo.flip.demo.data.ViewUtil;
 import com.barfoo.flipview.demo.R;
 
 public  class  AFormateStyle extends BaseFormat implements IFormat{
@@ -37,26 +39,34 @@ public  class  AFormateStyle extends BaseFormat implements IFormat{
 		this.screenFlag=screenFlag;
 		LayoutInflater.from(context).inflate(R.layout.baseviewmain, this, true);
 		buildFormat(array);
-		
 	}
 	
+	@SuppressWarnings("deprecation")
 	@Override
 	public void buildFormat(JSONArray array) {
-
 		try {
-			
 			if(screenFlag==0){
-				//Log.e("change", "hengping");
-			
+				
 				getCenterLeftLinear().addView(new AHContainer(mContext, null,array.getJSONObject(0)));
-				getCenterRightLinear().addView(new DHContainer(mContext, null,array.getJSONObject(1)));
+				getCenterLine().setVisibility(View.VISIBLE);
+				getCenterLine().setLayoutParams(new LayoutParams(1,LayoutParams.FILL_PARENT));
+				View view =new DHContainer(mContext, null,array.getJSONObject(1));
+				getCenterRightLinear().addView(view);
+				getCenterRightLinear().addView(ViewUtil.addViewlines(mContext, ViewUtil.getViewWidth(view),ViewUtil.getViewHeight(view)));
 				getCenterRightLinear().addView(new CHContainer(mContext, null,array.getJSONObject(2)));
+
 			}else{
 				//竖屏设置AContainer、BContainer、CContainer
 				getTopLinear().addView(new AContainer(mContext, null,array.getJSONObject(0)));
-				getCenterLeftLinear().addView(new BContainer(mContext, null,array.getJSONObject(1)));
-				getCenterRightLinear().addView(new CContainer(mContext, null,array.getJSONObject(2)));
-				//Log.e("change", "shuping");
+				getTopline().setVisibility(View.VISIBLE);
+				getTopline().setLayoutParams(new LayoutParams(LayoutParams.FILL_PARENT,1));
+				View leftview =new BContainer(mContext, null,array.getJSONObject(1));
+				getCenterLeftLinear().addView(leftview);
+				getCenterLine().setVisibility(View.VISIBLE);
+				getCenterLine().setLayoutParams(new LayoutParams(1,ViewUtil.getViewHeight(leftview)));
+				
+				getCenterRightLinear().addView(new CContainer(mContext, null,array.getJSONObject(0)));
+				
 			}
 			
 		} catch (JSONException e) {
@@ -64,9 +74,6 @@ public  class  AFormateStyle extends BaseFormat implements IFormat{
 		}
 	}
 	
-	public int getContainerSize(){
-		return 3;
-	}
 	
 	
 }

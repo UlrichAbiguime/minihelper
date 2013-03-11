@@ -9,11 +9,9 @@ import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.Toast;
 
 import com.barfoo.flip.demo.data.ViewUtil;
 import com.barfoo.flipview.demo.R;
-import com.barfoo.formatstyle.BFormateStyle;
 
 public class TestDemo extends Activity {
 

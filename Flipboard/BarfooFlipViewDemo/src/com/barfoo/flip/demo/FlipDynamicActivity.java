@@ -43,7 +43,6 @@ public class FlipDynamicActivity extends Activity {
 		ViewUtil.screenInfo(this);// 获取屏幕的宽高
 		
 		res = getResources();
-
 		getData();
 
 		flipView = new FlipViewController(this, FlipViewController.HORIZONTAL);
@@ -98,7 +97,7 @@ public class FlipDynamicActivity extends Activity {
 			obj0.put("sourceimage", "sourceimage");
 			obj0.put("source", res.getString(R.string.Adatasource));
 			obj0.put("content", res.getString(R.string.Adatacontent));
-			obj0.put("titleimage", "xx");
+			obj0.put("titleimage", "");
 
 
 			JSONObject obj1 = new JSONObject();
@@ -143,6 +142,7 @@ public class FlipDynamicActivity extends Activity {
 			array.put(obj3);
 			array.put(obj4);
 			array.put(obj5);
+			
 			
 		} catch (JSONException e) {
 			e.printStackTrace();

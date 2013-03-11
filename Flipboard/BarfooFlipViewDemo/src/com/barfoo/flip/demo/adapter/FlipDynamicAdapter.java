@@ -13,6 +13,7 @@ import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 
 import android.content.Context;
 import android.view.View;
@@ -20,6 +21,7 @@ import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.barfoo.flip.FlipViewController;
 import com.barfoo.flip.demo.data.ViewUtil;
@@ -94,42 +96,17 @@ public class FlipDynamicAdapter extends BaseAdapter {
 		ViewUtil.setViewWidHeight(layoutFormat.getHeaderLinear(), 1, 0.05);
 		ViewUtil.setViewWidHeight(layoutFormat.getFragmentLinear(), 1, 0.9);
 		ViewUtil.setViewWidHeight(layoutFormat.getFooderLinear(), 1, 0.05);
-		ViewUtil.trueScreenH=ViewUtil.getViewHeight(layoutFormat.getFragmentLinear());
-		ViewUtil.trueScreenW=ViewUtil.getViewWidth(layoutFormat.getFragmentLinear());
+		ViewUtil.trueScreenH = ViewUtil.getViewHeight(layoutFormat.getFragmentLinear());
+		ViewUtil.trueScreenW = ViewUtil.getViewWidth(layoutFormat.getFragmentLinear());
 
 
-		/*if (position % 2 == 0) {
-			layoutFormat.getFragmentLinear().addView(new BFormateStyle(mContext, null, mJsonArray));
-		} else {
-			layoutFormat.getFragmentLinear().addView(new AFormateStyle(mContext, null, mJsonArray));
-		}*/
-		FormatMaster formatMaster = new FormatMaster();
 		try {
-			createFormatView = formatMaster.createFormatView(mJsonArray,mContext);
-		} catch (SecurityException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IllegalArgumentException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (NoSuchMethodException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IllegalAccessException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (InvocationTargetException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			createFormatMaster = FormatMaster.createFormatMaster(mContext, mJsonArray);
+		} catch (JSONException e) {
+			Toast.makeText(mContext, e.getMessage(), Toast.LENGTH_SHORT).show();
 		}
-
-		return (View) createFormatView;
+		layoutFormat.getFragmentLinear().addView(createFormatMaster);
+		return layoutFormat;
 	}
 
 	public class FlipOnClickListener implements View.OnClickListener { // 标签点击监听事件
@@ -144,5 +121,22 @@ public class FlipDynamicAdapter extends BaseAdapter {
 			mFlipViewController.setSelection(indexpage);
 		}
 	};
+
+	/**
+	 * 获取当前的activity是横屏还是竖屏
+	 * @param HorizonVerticalScreen :0为 横屏，1为竖屏
+	 * 
+	 */
+	public int changeScreenValue;
+
+	private View createFormatMaster;
+
+	public int getChangeScreenValue() {
+		return changeScreenValue;
+	}
+
+	public void setChangeScreenValue(int changeScreenValue) {
+		this.changeScreenValue = changeScreenValue;
+	}
 
 }
