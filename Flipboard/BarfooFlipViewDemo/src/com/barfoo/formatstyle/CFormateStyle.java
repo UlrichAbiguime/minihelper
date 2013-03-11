@@ -14,8 +14,6 @@ import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 
-import com.barfoo.container.BContainer;
-import com.barfoo.container.DContainer;
 import com.barfoo.container.EContainer;
 import com.barfoo.container.EHContainer;
 import com.barfoo.container.FContainer;
@@ -29,15 +27,17 @@ import com.barfoo.flipview.demo.R;
 public class CFormateStyle extends BaseFormat implements IFormat{
 
 	Context mContext;
+	int screenFlag;//0为横屏 ;1为竖屏
 	
 	public CFormateStyle(Context context) {
 		super(context);
 		
 	}
 	
-	public CFormateStyle(Context context,AttributeSet attrs,JSONArray array) {
+	public CFormateStyle(Context context,AttributeSet attrs,JSONArray array, int screenFlag) {
 		super(context,attrs);
 		mContext=context;
+		this.screenFlag=screenFlag;
 		LayoutInflater.from(context).inflate(R.layout.baseviewmain, this, true);
 		buildFormat(array);
 		
@@ -46,24 +46,27 @@ public class CFormateStyle extends BaseFormat implements IFormat{
 	@Override
 	public void buildFormat(JSONArray array) {
 		try {
-			//竖屏
-			/**
-			getCenterLeftLinear().addView(new EContainer(mContext, null, array.getJSONObject(0)));
-			getCenterLeftLinear().addView(addViewlines(mContext));
-			getCenterLeftLinear().addView(new FContainer(mContext, null, array.getJSONObject(1)));
-			getCenterLeftLinear().addView(addViewlines(mContext));
-			getCenterLeftLinear().addView(new GContainer(mContext, null, array.getJSONObject(2)));
 			
-			getCenterRightLinear().addView(new HContainer(mContext, null, array.getJSONObject(3)));
-			getCenterRightLinear().addView(new JContainer(mContext, null, array.getJSONObject(4)));
-			**/
+			if(screenFlag==0){
+				//横屏
+				getCenterLeftLinear().addView(new EHContainer(mContext, null, array.getJSONObject(0)));
+				getCenterRightLinear().addView(new EHContainer(mContext, null, array.getJSONObject(1)));
+				getBottomLinear().addView(new FHContainer(mContext, null, array.getJSONObject(2)));
+				getBottomLinear().addView(new FHContainer(mContext, null, array.getJSONObject(3)));
+				getBottomLinear().addView(new FHContainer(mContext, null, array.getJSONObject(4)));
+				
+			}else{
+				//竖屏
+				getCenterLeftLinear().addView(new EContainer(mContext, null, array.getJSONObject(0)));
+				getCenterLeftLinear().addView(addViewlines(mContext));
+				getCenterLeftLinear().addView(new FContainer(mContext, null, array.getJSONObject(1)));
+				getCenterLeftLinear().addView(addViewlines(mContext));
+				getCenterLeftLinear().addView(new GContainer(mContext, null, array.getJSONObject(2)));
+				
+				getCenterRightLinear().addView(new HContainer(mContext, null, array.getJSONObject(3)));
+				getCenterRightLinear().addView(new JContainer(mContext, null, array.getJSONObject(4)));
+			}
 			
-			//横屏
-			getCenterLeftLinear().addView(new EHContainer(mContext, null, array.getJSONObject(0)));
-			getCenterRightLinear().addView(new EHContainer(mContext, null, array.getJSONObject(1)));
-			getBottomLinear().addView(new FHContainer(mContext, null, array.getJSONObject(2)));
-			getBottomLinear().addView(new FHContainer(mContext, null, array.getJSONObject(3)));
-			getBottomLinear().addView(new FHContainer(mContext, null, array.getJSONObject(4)));
 			
 			
 		} catch (JSONException e) {

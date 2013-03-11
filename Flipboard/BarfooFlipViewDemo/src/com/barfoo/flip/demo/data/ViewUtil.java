@@ -2,6 +2,7 @@ package com.barfoo.flip.demo.data;
 
 import android.app.Activity;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup.LayoutParams;
 
@@ -16,6 +17,7 @@ public class ViewUtil {
 		activity.getWindowManager().getDefaultDisplay().getMetrics(dm);
 		screenW = dm .widthPixels;
 		screenH = dm.heightPixels;
+		Log.e("screenW:", screenW+",screenH:"+screenH);
 	}
 	/**
 	 * 设置组件的宽度(给父类的宽度为整个屏幕的宽度)

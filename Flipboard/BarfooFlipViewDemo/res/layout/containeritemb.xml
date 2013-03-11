@@ -16,7 +16,6 @@
             android:id="@+id/tv_title"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:layout_margin="10dip"
             android:ellipsize="end"
             android:gravity="center_vertical|left"
             android:maxLines="2"
@@ -71,7 +70,6 @@
         android:id="@+id/ll_body"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-         android:background="@color/blue"
         android:gravity="center_horizontal|top"
         android:orientation="vertical" >
 
@@ -79,7 +77,6 @@
             android:id="@+id/ll_tvcontent"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-             android:background="@color/orange"
             android:gravity="center_horizontal|top" >
 
             <TextView
@@ -97,7 +94,6 @@
             android:id="@+id/ll_image"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:background="@color/red"
             android:layout_marginLeft="5dip" >
 
             <ImageView

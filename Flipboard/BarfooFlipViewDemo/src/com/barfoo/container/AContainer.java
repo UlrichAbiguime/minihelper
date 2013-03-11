@@ -1,10 +1,6 @@
 /**
-<<<<<<< HEAD
- * AContainerFormate(为AContainer的竖屏版式)
+ * AContainerFormate(为AFormateStyle的竖屏版式)
  * 功能:设定好container中的布局样式以及根据布局样式自动填充数据
-=======
- * AContainerFormate 功能:设定好container中的布局样式以及根据布局样式自动填充数据
->>>>>>> 501d9080b550355a87514cf179fb70b39ba20e1f
  */
 package com.barfoo.container;
 
@@ -13,9 +9,10 @@ import org.json.JSONObject;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.text.TextUtils.TruncateAt;
 import android.util.AttributeSet;
+import android.util.DisplayMetrics;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
@@ -56,30 +53,32 @@ public class AContainer extends LinearLayout implements IContainer {
 		initWidget();
 		buildView(json);
 		setData(json);
-		setTextLin();
+		//setTextLin();
 	}
 	
 	@Override
 	public void buildView(JSONObject json) {
-		ViewUtil.setViewWidHeight(this, ViewUtil.trueScreenW, ViewUtil.trueScreenH, 1, 0.4);
+		ViewUtil.setViewWidHeight(this, ViewUtil.trueScreenW, ViewUtil.trueScreenH, 1, 0.4);//mobile:1, 0.4//pad: 1, 0.4
 		int itemviewW = ViewUtil.getViewWidth(this);
 		int itemviewH = ViewUtil.getViewHeight(this);
-		ViewUtil.setViewWidHeight(ll_title, itemviewW, itemviewH, 1, 0.15);
-		ViewUtil.setViewWidHeight(ll_source, itemviewW, itemviewH, 1, 0.05);
-		ViewUtil.setViewWidHeight(ll_tvcontent, itemviewW, itemviewH, 1, 0.4);
-		Log.i("message", "Ac_bu");
+		ViewUtil.setViewPadding(this, itemviewW, itemviewH, 0.04, 0, 0.04, 0);//mobile: 0.04, 0, 0.04, 0//pad:0.04, 0, 0.04, 0
+		ViewUtil.setViewWidHeight(ll_title, itemviewW, itemviewH, 0.91, 0.15);//mobile://pad:0.91, 0.15
+		ViewUtil.setViewWidHeight(ll_source, itemviewW, itemviewH,0.91, 0.13);//mobile://pad:0.91, 0.13
 		try {
 			if (Util.isJsonNull(json, "titleimage")) {
-				ViewUtil.setViewWidHeight(ll_image, itemviewW, itemviewH, 1, 0.4);
+				ViewUtil.setViewWidHeight(ll_image, itemviewW, itemviewH, 0.91, 0.38);//mobile:0.91, 0.38//pad: 0.91, 0.43
+				ViewUtil.setViewPadding(ll_image, ViewUtil.getViewWidth(ll_image), ViewUtil.getViewHeight(ll_image), 0, 0.05, 0, 0.05);//mobile://pad:0, 0.05, 0, 0.05
+				ViewUtil.setViewWidHeight(ll_tvcontent, itemviewW, itemviewH,0.91, 0.24);//mobile://pad:0.91, 0.24
 
 			} else {
+				ViewUtil.setViewWidHeight(ll_tvcontent, itemviewW, itemviewH,0.91, 0.77);//mobile://pad:0.91, 0.77
 				ll_image.setVisibility(View.GONE);
 			}
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
 	}
-
+	
 	/**maxlines
 	 * 初始化组件
 	 */
@@ -105,7 +104,21 @@ public class AContainer extends LinearLayout implements IContainer {
 	public void setData(JSONObject json) {
 
 		maxlines = Util.getMaxLines(ViewUtil.getViewHeight(ll_tvcontent), tv_content.getTextSize());
-
+		int textFont;
+		if(ViewUtil.screenH>ViewUtil.screenW){
+			textFont=ViewUtil.screenH;
+		}else{
+			textFont=ViewUtil.screenW;
+		}
+		
+		//设置字体的大小随屏幕的宽高，进行调整(调整过程中是以pad的调整进行计算)
+		//横竖屏切换过程中以竖屏的高度为准，对字体进行调整
+		float textsize=((float)(textFont)/1920) *tv_title.getTextSize();
+		tv_title.setTextSize(TypedValue.COMPLEX_UNIT_PX,textsize);
+		tv_source.setTextSize(TypedValue.COMPLEX_UNIT_PX,((float)(textFont))/1920*tv_source.getTextSize());
+		tv_content.setTextSize(TypedValue.COMPLEX_UNIT_PX,((float)(textFont))/1920*tv_content.getTextSize());
+		
+		
 		try {
 			tv_title.setText(json.getString("title"));
 			if (Util.isJsonNull(json, "sourceimage")) {
@@ -113,6 +126,9 @@ public class AContainer extends LinearLayout implements IContainer {
 			}
 			tv_source.setText(json.getString("source"));
 			tv_content.setText(json.getString("content"));
+			if(maxlines>0){
+				Util.truncate(tv_content, maxlines);
+			}
 
 			if (Util.isJsonNull(json, "titleimage")) {
 				iv_image.setImageResource(R.drawable.newbg);
@@ -129,9 +145,11 @@ public class AContainer extends LinearLayout implements IContainer {
 		return R.layout.containeritema;
 	}
 	
+	/**
 	private void setTextLin() {
 		tv_content.setMaxLines(2);
 		tv_content.setEllipsize(TruncateAt.END);
 	}
+	**/
 
 }

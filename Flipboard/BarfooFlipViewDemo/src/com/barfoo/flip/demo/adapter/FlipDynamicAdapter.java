@@ -9,6 +9,7 @@
  */
 package com.barfoo.flip.demo.adapter;
 
+import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 
 import org.json.JSONArray;
@@ -97,14 +98,36 @@ public class FlipDynamicAdapter extends BaseAdapter {
 		ViewUtil.trueScreenW=ViewUtil.getViewWidth(layoutFormat.getFragmentLinear());
 
 
-		FormatMaster formatMaster = new FormatMaster();
-		
-		if (position % 2 == 0) {
+		/*if (position % 2 == 0) {
 			layoutFormat.getFragmentLinear().addView(new BFormateStyle(mContext, null, mJsonArray));
 		} else {
 			layoutFormat.getFragmentLinear().addView(new AFormateStyle(mContext, null, mJsonArray));
+		}*/
+		FormatMaster formatMaster = new FormatMaster();
+		try {
+			createFormatView = formatMaster.createFormatView(mJsonArray,mContext);
+		} catch (SecurityException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IllegalArgumentException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (NoSuchMethodException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (InvocationTargetException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-
 
 		return (View) createFormatView;
 	}

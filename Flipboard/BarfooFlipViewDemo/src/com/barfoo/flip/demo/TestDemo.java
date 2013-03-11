@@ -28,7 +28,7 @@ public class TestDemo extends Activity {
 		res=getResources();
 		getData();
 		//setContentView(new AFormateStyle(TestDemo.this,null,array));
-		setContentView(new BFormateStyle(TestDemo.this,null,array));
+		//setContentView(new BFormateStyle(TestDemo.this,null,array));
 	}
 	
 	public void getData() {

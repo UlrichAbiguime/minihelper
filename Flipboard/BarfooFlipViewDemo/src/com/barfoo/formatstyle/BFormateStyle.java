@@ -13,22 +13,26 @@ import org.json.JSONException;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.LayoutInflater;
 
 import com.barfoo.container.BHContainer;
+import com.barfoo.container.DContainer;
 import com.barfoo.flipview.demo.R;
 
 public class BFormateStyle extends BaseFormat implements IFormat{
 
 	Context mContext;
-	boolean misScreen;
+	int screenFlag;
 	public BFormateStyle(Context context) {
 		super(context);
 	}
 
-	public BFormateStyle(Context context,AttributeSet attrs,JSONArray array) {
+	public BFormateStyle(Context context,AttributeSet attrs,JSONArray array,int screenFlag) {
 		super(context,attrs);
 		mContext=context;
+		this.screenFlag=screenFlag;
+		Log.e("screenFlag", ""+screenFlag);
 		LayoutInflater.from(context).inflate(R.layout.baseviewmain, this, true);
 		buildFormat(array);
 	}
@@ -37,29 +41,36 @@ public class BFormateStyle extends BaseFormat implements IFormat{
 	public void buildFormat(JSONArray array) {
 		try {
 			
-			//竖屏
-			/**
-			for(int i=0;i<3;i++){
-				getCenterLeftLinear().addView(new DContainer(mContext,null,array.getJSONObject(i)));
-			}
 			
-			for(int i=3;i<6;i++){
-				getCenterRightLinear().addView(new DContainer(mContext,null,array.getJSONObject(i)));
-			}
-			**/
-			//横屏
-			for(int i=0;i<3;i++){
-				getTopLinear().addView(new BHContainer(mContext,null,array.getJSONObject(i)));
-			}
+			if(screenFlag==0){
+				//横屏
+				for(int i=0;i<3;i++){
+					getTopLinear().addView(new BHContainer(mContext,null,array.getJSONObject(i)));
+				}
+				
+				for(int i=3;i<6;i++){
+					getBottomLinear().addView(new BHContainer(mContext,null,array.getJSONObject(i)));
+				}
+				
+			}else{
+				//竖屏
+				for(int i=0;i<3;i++){
+					getCenterLeftLinear().addView(new DContainer(mContext,null,array.getJSONObject(i)));
+				}
 			
-			for(int i=3;i<6;i++){
-				getBottomLinear().addView(new BHContainer(mContext,null,array.getJSONObject(i)));
+				for(int i=3;i<6;i++){
+					getCenterRightLinear().addView(new DContainer(mContext,null,array.getJSONObject(i)));
+				}
+				
 			}
-			
-			
 			
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
+	}
+
+	@Override
+	public int getContainerSize() {
+		return 6;
 	}
 }

@@ -41,7 +41,7 @@ public class FlipDynamicActivity extends Activity {
 		super.onCreate(savedInstanceState);
 
 		ViewUtil.screenInfo(this);// 获取屏幕的宽高
-
+		
 		res = getResources();
 
 		getData();
@@ -62,15 +62,21 @@ public class FlipDynamicActivity extends Activity {
 				}
 			}
 		});
-
-		setContentView(flipView);
 		if (this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+			//adapter.setChangeScreenValue(0);
+			adapter.notifyDataSetChanged();
+			//adapter.screenRefresh();
 			Log.e("change", "hengping");
+			//Log.e("change", "shuping");
 		} else if (this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+			//adapter.setChangeScreenValue(1);
+			adapter.notifyDataSetChanged();
 			Log.e("change", "shuping");
 		}
+		setContentView(flipView);
+		
 	}
-
+	
 	@Override
 	protected void onResume() {
 		super.onResume();
@@ -145,12 +151,41 @@ public class FlipDynamicActivity extends Activity {
 
 	@Override
 	public void onConfigurationChanged(Configuration newConfig) {
+		ViewUtil.screenInfo(this);// 获取屏幕的宽高
+		if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {
+			//adapter.setChangeScreenValue(0);
+			adapter.notifyDataSetChanged();
+			//adapter.screenRefresh();
+			Log.e("change", "hengping");
+			//Log.e("change", "shuping");
+		} else if (newConfig.orientation == Configuration.ORIENTATION_PORTRAIT) {
+			//adapter.setChangeScreenValue(1);
+			adapter.notifyDataSetChanged();
+			Log.e("change", "shuping");
+		}
+		
 		super.onConfigurationChanged(newConfig);
+		/**
+		
+		if (this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+			adapter.setChangeScreenValue(0);
+			adapter.notifyDataSetChanged();
+			//adapter.screenRefresh();
+			Log.e("change", "hengping");
+			
+		} else if (this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+			adapter.setChangeScreenValue(1);
+			adapter.notifyDataSetChanged();
+			Log.e("change", "shuping");
+		}
+		**/
 
+		/**
 		if (this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
 			Log.e("onConfigurationChanged", "hengping");
 		} else if (this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
 			Log.e("onConfigurationChanged", "shuping");
 		}
+		**/
 	}
 }
