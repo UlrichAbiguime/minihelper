@@ -1,5 +1,7 @@
 package com.barfoo.flip.demo.data;
 
+import java.util.ArrayList;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -54,5 +56,61 @@ public class Util {
 	
 	public static int getMaxLines(int contentHeight,float fontSize){
 		return (int)(contentHeight/getFontHeight(fontSize));
+	}
+	
+	
+	
+	public String  selectRandomMapStyle(int count)throws JSONException{
+		ArrayList<String> threestyles=getThreeDataStyle();
+		ArrayList<String> fivestyles=getFiveDataStyle();
+		ArrayList<String> sixstyles=getSixDataStyle();
+		
+		int counts=0;
+		String str="";
+		switch (count) {
+		case 3:
+			counts= (int)(Math.random()*threestyles.size());
+			str=threestyles.get(counts);
+			break;
+
+		case 5:
+			counts= (int)(Math.random()*fivestyles.size());
+			str=threestyles.get(counts);
+			break;
+			
+		case 6:
+			counts= (int)(Math.random()*sixstyles.size());
+			str=threestyles.get(counts);
+			break;
+			
+		default:
+			break;
+		}
+		return str;
+	}
+	
+	
+	public ArrayList<String> getThreeDataStyle(){
+		ArrayList<String> list=new ArrayList<String>();
+		for(int i=0;i<3;i++){
+			list.add("com.barfoo.formatstyle.AFormateStyle");
+		}
+		return list;
+	}
+	
+	public ArrayList<String> getFiveDataStyle(){
+		ArrayList<String> list=new ArrayList<String>();
+		for(int i=0;i<3;i++){
+			list.add("com.barfoo.formatstyle.CFormateStyle");
+		}
+		return list;
+	}
+	
+	public ArrayList<String> getSixDataStyle(){
+		ArrayList<String> list=new ArrayList<String>();
+		for(int i=0;i<3;i++){
+			list.add("com.barfoo.formatstyle.BFormateStyle");
+		}
+		return list;
 	}
 }

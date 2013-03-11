@@ -143,6 +143,7 @@ public class FlipDynamicActivity extends Activity {
 			array.put(obj4);
 			array.put(obj5);
 			
+			
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
