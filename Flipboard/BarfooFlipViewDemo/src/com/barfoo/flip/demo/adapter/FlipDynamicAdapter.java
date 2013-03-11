@@ -9,13 +9,12 @@
  */
 package com.barfoo.flip.demo.adapter;
 
-import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
-
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
@@ -26,16 +25,13 @@ import android.widget.Toast;
 import com.barfoo.flip.FlipViewController;
 import com.barfoo.flip.demo.data.ViewUtil;
 import com.barfoo.flipview.demo.R;
-import com.barfoo.formatstyle.AFormateStyle;
-import com.barfoo.formatstyle.BFormateStyle;
-import com.barfoo.formatstyle.CFormateStyle;
 import com.barfoo.formatstyle.FormatMaster;
 import com.barfoo.formatstyle.IFormat;
 import com.barfoo.formatstyle.LayoutFormat;
 
 public class FlipDynamicAdapter extends BaseAdapter {
 
-	private Context mContext;
+	private Context mContent;
 
 	private JSONArray mJsonArray;
 
@@ -44,12 +40,20 @@ public class FlipDynamicAdapter extends BaseAdapter {
 	FlipViewController mFlipViewController;
 
 	private IFormat createFormatView;
+	
+	private Resources res;
 
-	public FlipDynamicAdapter(Context context, JSONArray jsonArray, FlipViewController flipView) {
+	private JSONArray array;
+
+	private JSONArray arrays;
+	
+
+	public FlipDynamicAdapter(Context context, FlipViewController flipView) {
 		this.mFlipViewController = flipView;
-		this.mContext = context;
-		this.mJsonArray = jsonArray;
-
+		this.mContent = context;
+		res = mContent.getResources();
+		getData();
+		mJsonArray=array;
 	}
 
 	@Override
@@ -77,11 +81,15 @@ public class FlipDynamicAdapter extends BaseAdapter {
 
 	@Override
 	public View getView(final int position, View convertView, ViewGroup parent) {
-		LayoutFormat layoutFormat = new LayoutFormat(mContext);
+		if (position==3) {
+			mJsonArray=arrays;
+		}
+		
+		LayoutFormat layoutFormat = new LayoutFormat(mContent);
 		final ImageView[] imageViews = new ImageView[getCount()];
-		ImageView image = new ImageView(mContext);
+		ImageView image = new ImageView(mContent);
 		for (int i = 0; i < getCount(); i++) {
-			image = new ImageView(mContext);
+			image = new ImageView(mContent);
 			image.setLayoutParams(new LayoutParams(32, 32));
 			imageViews[i] = image;
 			if (i == position) {
@@ -100,10 +108,11 @@ public class FlipDynamicAdapter extends BaseAdapter {
 		ViewUtil.trueScreenW = ViewUtil.getViewWidth(layoutFormat.getFragmentLinear());
 
 
+		
 		try {
-			createFormatMaster = FormatMaster.createFormatMaster(mContext, mJsonArray);
+			createFormatMaster = FormatMaster.createFormatMaster(mContent, mJsonArray);
 		} catch (JSONException e) {
-			Toast.makeText(mContext, e.getMessage(), Toast.LENGTH_SHORT).show();
+			Toast.makeText(mContent, e.getMessage(), Toast.LENGTH_SHORT).show();
 		}
 		layoutFormat.getFragmentLinear().addView(createFormatMaster);
 		return layoutFormat;
@@ -137,6 +146,97 @@ public class FlipDynamicAdapter extends BaseAdapter {
 
 	public void setChangeScreenValue(int changeScreenValue) {
 		this.changeScreenValue = changeScreenValue;
+	}
+	
+	public void addDatalist(JSONArray jsonArray) {
+		mJsonArray=jsonArray;
+	}
+
+	
+	
+	public void getData() {
+
+		array = new JSONArray();
+		arrays = new JSONArray();
+		
+		try {
+			JSONObject obj0 = new JSONObject();
+			obj0.put("title", res.getString(R.string.Adatatitle));
+			obj0.put("sourceimage", "sourceimage");
+			obj0.put("source", res.getString(R.string.Adatasource));
+			obj0.put("content", res.getString(R.string.Adatacontent));
+			obj0.put("titleimage", "");
+
+
+			JSONObject obj1 = new JSONObject();
+			obj1.put("title", res.getString(R.string.Bdatatitle));
+			obj1.put("sourceimage", "sourceimage");
+			obj1.put("source", res.getString(R.string.Bdatasource));
+			obj1.put("content", res.getString(R.string.Bdatacontent));
+			obj1.put("titleimage", "xx");
+
+
+			JSONObject obj2 = new JSONObject();
+			obj2.put("title", res.getString(R.string.Cdatatitle));
+			obj2.put("sourceimage", "sourceimage");
+			obj2.put("source", res.getString(R.string.Cdatasource));
+			obj2.put("content", res.getString(R.string.Cdatacontent));
+			obj2.put("titleimage", "sourceimage");
+
+			JSONObject obj3 = new JSONObject();
+			obj3.put("title", res.getString(R.string.Ddatatitle));
+			obj3.put("sourceimage", "sourceimage");
+			obj3.put("source", res.getString(R.string.Ddatasource));
+			obj3.put("content", res.getString(R.string.Ddatacontent));
+			obj3.put("titleimage", "xx");
+
+			JSONObject obj4 = new JSONObject();
+			obj4.put("title", res.getString(R.string.Edatatitle));
+			obj4.put("sourceimage", "sourceimage");
+			obj4.put("source", res.getString(R.string.Edatasource));
+			obj4.put("content", res.getString(R.string.Edatacontent));
+			obj4.put("titleimage", "xx");
+
+			JSONObject obj5 = new JSONObject();
+			obj5.put("title", res.getString(R.string.Fdatatitle));
+			obj5.put("sourceimage", "sourceimage");
+			obj5.put("source", res.getString(R.string.Fdatasource));
+			obj5.put("content", res.getString(R.string.Fdatacontent));
+			obj5.put("titleimage", "xx");
+			
+			JSONObject obj6 = new JSONObject();
+			obj5.put("title", res.getString(R.string.Fdatatitle));
+			obj5.put("sourceimage", "sourceimage");
+			obj5.put("source", res.getString(R.string.Fdatasource));
+			obj5.put("content", res.getString(R.string.Fdatacontent));
+			obj5.put("titleimage", "xx");
+			
+			JSONObject obj7 = new JSONObject();
+			obj5.put("title", res.getString(R.string.Fdatatitle));
+			obj5.put("sourceimage", "sourceimage");
+			obj5.put("source", res.getString(R.string.Fdatasource));
+			obj5.put("content", res.getString(R.string.Fdatacontent));
+			obj5.put("titleimage", "xx");
+			
+			JSONObject obj8 = new JSONObject();
+			obj5.put("title", res.getString(R.string.Fdatatitle));
+			obj5.put("sourceimage", "sourceimage");
+			obj5.put("source", res.getString(R.string.Fdatasource));
+			obj5.put("content", res.getString(R.string.Fdatacontent));
+			obj5.put("titleimage", "xx");
+			
+			arrays.put(obj0);
+			arrays.put(obj1);
+			arrays.put(obj2);
+			array.put(obj3);
+			array.put(obj4);
+			array.put(obj5);
+			array.put(obj6);
+			array.put(obj7);
+			array.put(obj8);
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
 	}
 
 }

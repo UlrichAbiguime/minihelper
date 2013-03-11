@@ -18,6 +18,8 @@ import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
@@ -32,9 +34,8 @@ public class FlipDynamicActivity extends Activity {
 
 	private FlipDynamicAdapter adapter;
 
-	private Resources res;
-
-	private JSONArray array;
+	
+	
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -42,25 +43,21 @@ public class FlipDynamicActivity extends Activity {
 
 		ViewUtil.screenInfo(this);// 获取屏幕的宽高
 		
-		res = getResources();
-		getData();
+		
 
 		flipView = new FlipViewController(this, FlipViewController.HORIZONTAL);
 		flipView.setBackgroundColor(Color.WHITE);
-		adapter = new FlipDynamicAdapter(this, array,flipView);
+		adapter = new FlipDynamicAdapter(FlipDynamicActivity.this,flipView);
 		adapter.setRepeatCount(10);
 		flipView.setAdapter(adapter);
-
+		
 		flipView.setOnViewFlipListener(new FlipViewController.ViewFlipListener() {
 			@Override
 			public void onViewFlipped(View view, int position) {
-				if (position==0) {
-					Toast.makeText(FlipDynamicActivity.this, "最前一页", Toast.LENGTH_SHORT).show();
-				}if (position==9) {
-					Toast.makeText(FlipDynamicActivity.this, "最后一页", Toast.LENGTH_SHORT).show();
-				}
+				
 			}
 		});
+
 		if (this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
 			//adapter.setChangeScreenValue(0);
 			adapter.notifyDataSetChanged();
@@ -88,66 +85,7 @@ public class FlipDynamicActivity extends Activity {
 		flipView.onPause();
 	}
 
-	public void getData() {
-
-		array = new JSONArray();
-		try {
-			JSONObject obj0 = new JSONObject();
-			obj0.put("title", res.getString(R.string.Adatatitle));
-			obj0.put("sourceimage", "sourceimage");
-			obj0.put("source", res.getString(R.string.Adatasource));
-			obj0.put("content", res.getString(R.string.Adatacontent));
-			obj0.put("titleimage", "");
-
-
-			JSONObject obj1 = new JSONObject();
-			obj1.put("title", res.getString(R.string.Bdatatitle));
-			obj1.put("sourceimage", "sourceimage");
-			obj1.put("source", res.getString(R.string.Bdatasource));
-			obj1.put("content", res.getString(R.string.Bdatacontent));
-			obj1.put("titleimage", "xx");
-
-
-			JSONObject obj2 = new JSONObject();
-			obj2.put("title", res.getString(R.string.Cdatatitle));
-			obj2.put("sourceimage", "sourceimage");
-			obj2.put("source", res.getString(R.string.Cdatasource));
-			obj2.put("content", res.getString(R.string.Cdatacontent));
-			obj2.put("titleimage", "sourceimage");
-
-			JSONObject obj3 = new JSONObject();
-			obj3.put("title", res.getString(R.string.Ddatatitle));
-			obj3.put("sourceimage", "sourceimage");
-			obj3.put("source", res.getString(R.string.Ddatasource));
-			obj3.put("content", res.getString(R.string.Ddatacontent));
-			obj3.put("titleimage", "xx");
-
-			JSONObject obj4 = new JSONObject();
-			obj4.put("title", res.getString(R.string.Edatatitle));
-			obj4.put("sourceimage", "sourceimage");
-			obj4.put("source", res.getString(R.string.Edatasource));
-			obj4.put("content", res.getString(R.string.Edatacontent));
-			obj4.put("titleimage", "xx");
-
-			JSONObject obj5 = new JSONObject();
-			obj5.put("title", res.getString(R.string.Fdatatitle));
-			obj5.put("sourceimage", "sourceimage");
-			obj5.put("source", res.getString(R.string.Fdatasource));
-			obj5.put("content", res.getString(R.string.Fdatacontent));
-			obj5.put("titleimage", "xx");
-
-			array.put(obj0);
-			array.put(obj1);
-			array.put(obj2);
-			array.put(obj3);
-			array.put(obj4);
-			array.put(obj5);
-			
-			
-		} catch (JSONException e) {
-			e.printStackTrace();
-		}
-	}
+	
 
 	@Override
 	public void onConfigurationChanged(Configuration newConfig) {
