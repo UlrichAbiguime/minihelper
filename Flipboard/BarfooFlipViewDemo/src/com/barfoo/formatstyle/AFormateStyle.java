@@ -11,6 +11,7 @@ package com.barfoo.formatstyle;
 import org.json.JSONArray;
 import org.json.JSONException;
 
+import android.R.integer;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
@@ -35,10 +36,10 @@ public  class  AFormateStyle extends BaseFormat implements IFormat{
 		super(context);
 	}
 
-	public AFormateStyle(Context context,AttributeSet attrs,JSONArray array, int screenFlag) {
+	public AFormateStyle(Context context,AttributeSet attrs,JSONArray array,Integer screenFlag) {
 		super(context,attrs);
 		mContext=context;
-		this.screenFlag=screenFlag;
+		this.screenFlag= (int)screenFlag;
 		LayoutInflater.from(context).inflate(R.layout.baseviewmain, this, true);
 		buildFormat(array);
 	}

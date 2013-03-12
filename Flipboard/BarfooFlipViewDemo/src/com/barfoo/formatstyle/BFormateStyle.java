@@ -32,11 +32,10 @@ public class BFormateStyle extends BaseFormat implements IFormat {
 		super(context);
 	}
 
-	public BFormateStyle(Context context, AttributeSet attrs, JSONArray array,
-			int screenFlag) {
+	public BFormateStyle(Context context, AttributeSet attrs, JSONArray array,Integer screenFlag) {
 		super(context, attrs);
 		mContext = context;
-		this.screenFlag = screenFlag;
+		this.screenFlag = (int)screenFlag;
 		Log.e("screenFlag", "" + screenFlag);
 		LayoutInflater.from(context).inflate(R.layout.baseviewmain, this, true);
 		buildFormat(array);

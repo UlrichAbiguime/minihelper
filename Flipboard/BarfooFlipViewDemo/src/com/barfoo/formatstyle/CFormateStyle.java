@@ -35,10 +35,10 @@ public class CFormateStyle extends BaseFormat implements IFormat {
 
 	}
 
-	public CFormateStyle(Context context, AttributeSet attrs, JSONArray array, int screenFlag) {
+	public CFormateStyle(Context context, AttributeSet attrs, JSONArray array,Integer screenFlag) {
 		super(context, attrs);
 		mContext = context;
-		this.screenFlag = screenFlag;
+		this.screenFlag = (int)screenFlag;
 		LayoutInflater.from(context).inflate(R.layout.baseviewmain, this, true);
 		buildFormat(array);
 

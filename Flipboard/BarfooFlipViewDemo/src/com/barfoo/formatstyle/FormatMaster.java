@@ -3,7 +3,7 @@
  * 
  * All right reserved
  * 
- * Created on 2013-3-6 下午5:40:47
+ * Created on 2013-3-12 上午10:07:49
  * 
  * @author zxy
  */
@@ -15,32 +15,32 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import org.json.JSONArray;
-import org.json.JSONException;
 
 import android.content.Context;
+import android.util.AttributeSet;
 import android.view.View;
 
-/**
- * 1. getallFormatClass
- * 2. getFormatClassBySize(size): FormatClass
- * 3. createview by FormatClass
- */
 public class FormatMaster {
-	public static Context mContent;
-	public static JSONArray mJsonArray;
 
-	private static ArrayList<Class<?>> getAllClasss() {
-		ArrayList<Class<?>> classList = new ArrayList<Class<?>>();
+	public static FormatMaster mFormatMasters = null;
+	ArrayList<Class<?>> classList;
+	public static FormatMaster getFormatMasters() {
+		if (mFormatMasters == null) {
+			mFormatMasters = new FormatMaster();
+			mFormatMasters.initClasss();
+		}
+		return mFormatMasters;
+	}
+
+	private void initClasss() {
 		classList.add(AFormateStyle.class);
 		classList.add(BFormateStyle.class);
 		classList.add(CFormateStyle.class);
-		return classList;
 	}
 
-	public static Class<?> getFormatSizeByClass(int size) throws IllegalArgumentException, IllegalAccessException, NoSuchFieldException {
-		ArrayList<Class<?>> list = getAllClasss();
+	public Class<?> getFormatSizeByClass(int size) throws IllegalArgumentException, IllegalAccessException, NoSuchFieldException {
 		ArrayList<Class<?>> newList = new ArrayList<Class<?>>();
-		for (Class<?> cls : list) {
+		for (Class<?> cls : classList) {
 			int sizevalue = cls.getDeclaredField("containSize").getInt(0);
 			if (size == sizevalue) {
 				newList.add(cls);
@@ -51,72 +51,50 @@ public class FormatMaster {
 		return newList.get(rint);
 	}
 
-	public static Object getClassNameFormatMaster(JSONArray jsonarray, Object[] args) throws IllegalArgumentException, IllegalAccessException, NoSuchFieldException, NoSuchMethodException, InstantiationException, InvocationTargetException {
-		Class<?> formatClass = getFormatSizeByClass(jsonarray.length());
-
-		Class[] argsClass = new Class[args.length];
-		for (int i = 0, j = args.length; i < j; i++) {
-			argsClass[i] = args[i].getClass();
+	public View createFormatView(Context context, JSONArray jsonarray) {
+		Class<?> formatClass = null;
+		try {
+			formatClass = getFormatSizeByClass(jsonarray.length());
+		} catch (IllegalArgumentException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (IllegalAccessException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (NoSuchFieldException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
 		}
-		Constructor cons = formatClass.getConstructor(argsClass);
-		return cons.newInstance(args);
-	}
 
-	public static View createFormatMaster(Context context, JSONArray jsonarray) throws JSONException, IllegalArgumentException, IllegalAccessException, NoSuchFieldException {
+		Constructor localConstructor = null;
+		try {
+			localConstructor = formatClass.getConstructor(Context.class, AttributeSet.class, JSONArray.class, Integer.class);
+		} catch (IllegalArgumentException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (NoSuchMethodException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		View newInstance = null;
+		try {
+			newInstance = (View) localConstructor.newInstance(context, null, jsonarray, getChangeScreenValue());
+		} catch (IllegalArgumentException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (InstantiationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (InvocationTargetException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
-		ArrayList<Object> objects =new ArrayList<Object>();
-		objects.add(context);
-		objects.add(jsonarray);
-		//getClassNameFormatMaster(jsonarray, objects);
-		
-		
-		
-		/*mContent = context;
-		mJsonArray = jsonarray;
-		int counts = 0;
-		View view = null;
+		return newInstance;
 
-		switch (mJsonArray.length()) {
-		case 3:
-			ArrayList<View> threestyles = getThreeDataStyle();
-			counts = (int) (Math.random() * threestyles.size());
-			view = threestyles.get(counts);
-			break;
-
-		case 5:
-			ArrayList<View> fivestyles = getFiveDataStyle();
-			counts = (int) (Math.random() * fivestyles.size());
-			view = fivestyles.get(counts);
-			break;
-
-		case 6:
-			ArrayList<View> sixstyles = getSixDataStyle();
-			counts = (int) (Math.random() * sixstyles.size());
-			view = sixstyles.get(counts);
-			break;
-
-		default:
-			break;
-		}*/
-		return null;
-	}
-
-	public static ArrayList<View> getThreeDataStyle() {
-		ArrayList<View> list = new ArrayList<View>();
-		list.add(new AFormateStyle(mContent, null, mJsonArray, getChangeScreenValue()));
-		return list;
-	}
-
-	public static ArrayList<View> getFiveDataStyle() {
-		ArrayList<View> list = new ArrayList<View>();
-		list.add(new CFormateStyle(mContent, null, mJsonArray, getChangeScreenValue()));
-		return list;
-	}
-
-	public static ArrayList<View> getSixDataStyle() {
-		ArrayList<View> list = new ArrayList<View>();
-		list.add(new BFormateStyle(mContent, null, mJsonArray, getChangeScreenValue()));
-		return list;
 	}
 
 	/**

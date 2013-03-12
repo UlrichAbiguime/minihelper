@@ -20,7 +20,6 @@ import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import com.barfoo.flip.FlipViewController;
 import com.barfoo.flip.demo.data.ViewUtil;
@@ -81,7 +80,7 @@ public class FlipDynamicAdapter extends BaseAdapter {
 
 	@Override
 	public View getView(final int position, View convertView, ViewGroup parent) {
-		if (position==3) {
+		if (position==5) {
 			mJsonArray=arrays;
 		}
 		
@@ -107,9 +106,9 @@ public class FlipDynamicAdapter extends BaseAdapter {
 		ViewUtil.trueScreenH = ViewUtil.getViewHeight(layoutFormat.getFragmentLinear());
 		ViewUtil.trueScreenW = ViewUtil.getViewWidth(layoutFormat.getFragmentLinear());
 
-
+		createFormatMaster = FormatMaster.getFormatMasters().createFormatView(mContent, mJsonArray);
 		
-		//layoutFormat.getFragmentLinear().addView(createFormatMaster);
+		layoutFormat.getFragmentLinear().addView(createFormatMaster);
 		return layoutFormat;
 	}
 
@@ -223,6 +222,7 @@ public class FlipDynamicAdapter extends BaseAdapter {
 			arrays.put(obj0);
 			arrays.put(obj1);
 			arrays.put(obj2);
+			
 			array.put(obj3);
 			array.put(obj4);
 			array.put(obj5);
